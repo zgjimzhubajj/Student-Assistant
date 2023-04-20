@@ -4,7 +4,6 @@ import sys
 from gui_register import UI_register
 
 
-
 class UI_login(QMainWindow):
     def __init__(self):
         super(UI_login, self).__init__()
@@ -13,20 +12,16 @@ class UI_login(QMainWindow):
         self.btn_register.clicked.connect(self.open_register_window)
         self.show()
 
-
     def open_register_window(self):
         register_window = UI_register(self)
         register_window.closed.connect(self.show_this_window)  # connect the closed signal to the showWindow method
-        self.hide()
+        self.close()
         register_window.show()
-
 
     def show_this_window(self):
         self.show()
 
 
-
-
 app = QApplication(sys.argv)
-UIWindow = UI()
+UIWindow = UI_login()
 app.exec_()
