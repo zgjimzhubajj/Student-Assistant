@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton
+from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QTextEdit
 from PyQt5 import uic
 import sys
 from gui_register import UI_register
@@ -10,34 +10,59 @@ class UI_login(QMainWindow):
     def __init__(self):
         super(UI_login, self).__init__()
         uic.loadUi("gui_login.ui", self)
+
+        # creating buttons
         self.btn_register = self.findChild(QPushButton, "btn_register")
-        self.btn_register.clicked.connect(self.open_register_window)
         self.btn_forgot_password = self.findChild(QPushButton, "btn_forgot_password")
-        self.btn_forgot_password.clicked.connect(self.open_forgot_password_window)
         self.btn_login = self.findChild(QPushButton, "btn_login")
-        self.btn_login.clicked.connect(self.open_main_window)
+
+        # creating actions for buttons
+        self.btn_register.clicked.connect(self.button_register_pushed)
+        self.btn_forgot_password.clicked.connect(self.button_forgot_password_pushed)
+        self.btn_login.clicked.connect(self.button_login_pushed)
+
+        # creating textFields objects so we can use them later in the button's actions
+        self.txt_username = self.findChild(QTextEdit, "txt_username")
+        self.txt_password = self.findChild(QTextEdit, "txt_password")
+
         self.show()
 
-    def open_register_window(self):
+    def button_register_pushed(self):
+        self.clear_window()
+
         register_window = UI_register(self)
         register_window.closed.connect(self.show_this_window)  # connect the closed signal to the showWindow method
+
         self.close()
         register_window.show()
 
-    def open_forgot_password_window(self):
+    def button_forgot_password_pushed(self):
+        self.clear_window()
+
         forgot_password_window = UI_forgot_password(self)
         forgot_password_window.closed.connect(self.show_this_window)  # connect the closed signal to the showWindow method
+
         self.close()
         forgot_password_window.show()
-    
-    def open_main_window(self):
+
+    def button_login_pushed(self):
+        username = self.txt_username.toPlainText()
+        password = self.txt_password.toPlainText()
+
+        self.clear_window()
+
         main_window = UI_main_window(self)
         main_window.closed.connect(self.show_this_window)  # connect the closed signal to the showWindow method
+
         self.close()
         main_window.show()
 
     def show_this_window(self):
         self.show()
+
+    def clear_window(self):
+        self.txt_username.clear()
+        self.txt_password.clear()
 
 
 app = QApplication(sys.argv)
