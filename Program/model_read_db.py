@@ -26,6 +26,7 @@ class Read_db():
         self.mycursor.close()
         self.mydb.close()
 
+# gui_register methods
     def get_programs_names(self) -> list:
         self.open_db()
 
@@ -40,3 +41,26 @@ class Read_db():
 
         self.close_db()
         return string_list
+
+# gui_forgot_password methods
+
+# gui_login methods
+    def check_login_stats(self, username, password):
+        self.open_db()
+
+        self.mycursor.execute(f"SELECT * FROM student_info WHERE user_name = '{username}' AND password = '{password}';")
+
+        self.myresult = self.mycursor.fetchall()
+        if self.myresult != []:
+            self.close_db()
+            return True
+        else:
+            self.close_db()
+            return False
+
+# gui_main_window methods
+    # team_session tab methods
+
+    # time_manegment tab methods
+
+    # material tab methods

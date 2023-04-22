@@ -26,6 +26,7 @@ class Write_db():
         self.mycursor.close()
         self.mydb.close()
 
+# gui_register methods
     def insert_student_info(self, first_name, last_name, email, username, password, personal_id, year_of_study, name_of_program):
         print('we are now in writer class')
         self.open_db()
@@ -58,3 +59,10 @@ class Write_db():
         # print(self.mycursor.rowcount, "record inserted.")
 
         self.close_db()
+
+# gui_main_window methods
+    # team_session tab methods
+
+    # time_manegment tab methods
+
+    # material tab methods

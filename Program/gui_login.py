@@ -4,6 +4,7 @@ import sys
 from gui_register import UI_register
 from gui_forgot_password import UI_forgot_password
 from gui_main_window import UI_main_window
+from controller import Controller
 
 
 class UI_login(QMainWindow):
@@ -30,11 +31,11 @@ class UI_login(QMainWindow):
     def button_register_pushed(self):
         self.clear_window()
 
-        register_window = UI_register(self)
-        register_window.closed.connect(self.show_this_window)  # connect the closed signal to the showWindow method
+        self.register_window = UI_register(self)
+        self.register_window.closed.connect(self.show_this_window)  # connect the closed signal to the showWindow method
 
         self.close()
-        register_window.show()
+        self.register_window.show()
 
     def button_forgot_password_pushed(self):
         self.clear_window()
@@ -48,14 +49,15 @@ class UI_login(QMainWindow):
     def button_login_pushed(self):
         username = self.txt_username.toPlainText()
         password = self.txt_password.toPlainText()
-
         self.clear_window()
-
-        main_window = UI_main_window(self)
-        main_window.closed.connect(self.show_this_window)  # connect the closed signal to the showWindow method
-
-        self.close()
-        main_window.show()
+        self.cntrl = Controller()
+        if self.cntrl.check_login_stats(username, password):
+            self.main_window = UI_main_window(self)
+            self.main_window.closed.connect(self.show_this_window)  # connect the closed signal to the showWindow method
+            self.close()
+            self.main_window.show()
+        else:
+            print("hi")
 
     def show_this_window(self):
         self.show()
