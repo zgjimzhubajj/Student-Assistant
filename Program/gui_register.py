@@ -144,9 +144,7 @@ class UI_register(QMainWindow):
             self.lbl_wrong_input.setText("You must write something as userName!")
             self.wrong_inputs = False
         # elif userName exist in database
-        elif self.cntrl.check_user_name_exist(self.username):
-            self.lbl_wrong_input.setText("This userName already exist in the database!")
-            self.wrong_inputs = False
+
 
         # here milan will write some elif statement for:
         # password which will check for text longer than 50 characters, if text doesnt have anything

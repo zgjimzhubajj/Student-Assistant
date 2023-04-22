@@ -16,12 +16,6 @@ class Controller():
     def register_student_in_database(self, first_name, last_name, email, username, password, personal_id, year_of_study, name_of_program):
         self.write_db.insert_student_info(first_name, last_name, email, username, password, personal_id, year_of_study, name_of_program)
 
-    def check_user_name_exist(self, username):
-        if self.read_db.check_user_name_exist(username):
-            return True
-        else:
-            return False
-
 # gui_login window methods
     def check_login_stats(self, username, password):
         if self.read_db.check_login_stats(username, password):
