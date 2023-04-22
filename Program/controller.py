@@ -22,3 +22,9 @@ class Controller():
             return True
         else:
             return False
+
+# gui_main_window methods
+    # tab_time_management methods
+
+    # tab_team_session methods
+    
