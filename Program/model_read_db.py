@@ -61,11 +61,30 @@ class Read_db():
             return False
 
 # gui_forgot_password methods
-    def retrieve_password(self, first_name, last_name, email, username, personal_id, spin_box_year_of_study, combo_box_name_of_program):
+    def retrieve_password(self, first_name, last_name, email, username, personal_id, year_of_study, name_of_program):
         self.open_db()
+        self.mycursor.execute(f"SELECT program_id From program_ab_es where program_name = '{name_of_program}';")
+        self.myresult = self.mycursor.fetchall()
 
-        
+        # change myResults from a list of tuples to a list of strings
+        string_list = []
+        for item in self.myresult:
+            string_list.append(str(item[0]))
+        program_id = string_list[0]
+
+        self.mycursor.execute(f"SELECT password FROM student_info WHERE personal_id = '{personal_id}' And first_name = '{first_name}' And last_name = '{last_name}' And user_name = '{username}' And email = '{email}' And year_of_study = '{year_of_study}' And program_id = '{program_id}';")
+
+        self.myresult = self.mycursor.fetchall()
+
+        password_list = []
+        for item in self.myresult:
+            password_list.append(str(item[0]))
+
+        password = password_list[0]
+
         self.close_db()
+
+        return password
 
 # gui_login methods
     def check_login_stats(self, username, password):

@@ -30,8 +30,8 @@ class Controller():
             return False
 
 # gui_forgot_password methods
-    def retrieve_password(self, first_name, last_name, email, username, personal_id, spin_box_year_of_study, combo_box_name_of_program):
-        self.password = self.read_db.retrieve_password(first_name, last_name, email, username, personal_id, spin_box_year_of_study, combo_box_name_of_program)
+    def retrieve_password(self, first_name, last_name, email, username, personal_id, year_of_study, name_of_program):
+        self.password = self.read_db.retrieve_password(first_name, last_name, email, username, personal_id, year_of_study, name_of_program)
         return self.password
 
 # gui_main_window methods

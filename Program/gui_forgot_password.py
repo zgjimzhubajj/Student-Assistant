@@ -11,7 +11,6 @@ class UI_forgot_password(QMainWindow):
     def __init__(self, parent=None):
         super(UI_forgot_password, self).__init__(parent)
         uic.loadUi("gui_forgot_password.ui", self)
-        self.cntrl = Controller()
 
         # label object
         self.lbl_wrong_input = self.findChild(QLabel, "lbl_wrong_input")
@@ -37,11 +36,13 @@ class UI_forgot_password(QMainWindow):
         # comboBox object
         self.combo_box_name_of_program = self.findChild(QComboBox, "combo_box_name_of_program")
 
+        self.cntrl = Controller()
+
         # window's settings
-        self.lbl_wrong_input.setStyleSheet("color: red")
         self.combo_box_name_of_program.addItems(self.cntrl.get_programs_info_from_database())
         self.spin_box_year_of_study.setEnabled(False)
         self.combo_box_name_of_program.currentIndexChanged.connect(self.handle_program_change)
+        self.lbl_wrong_input.setStyleSheet("color: red")
 
 
     def button_cancel_pushed(self):
@@ -57,12 +58,11 @@ class UI_forgot_password(QMainWindow):
         self.check_input()
 
         if self.wrong_inputs:
-            self.password = self.cntrl.retrieve_password(self.first_name, self.last_name, self.email, self.username, self.personal_id, self.spin_box_year_of_study, self.combo_box_name_of_program)
+            password = self.cntrl.retrieve_password(self.first_name, self.last_name, self.email, self.username, self.personal_id, self.year_of_study, self.name_of_program)
+
+            self.lbl_wrong_input.setText(password)
 
             self.clear_window()
-
-            self.closed.emit()  # emit the closed signal
-            self.close()  # close the new window
 
     def clear_window(self):
         self.txt_first_name.clear()
