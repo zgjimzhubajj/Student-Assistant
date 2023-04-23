@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QTextEdit
+from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QTextEdit, QLabel
 from PyQt5 import uic
 import sys
 from gui_register import UI_register
@@ -22,9 +22,15 @@ class UI_login(QMainWindow):
         self.btn_forgot_password.clicked.connect(self.button_forgot_password_pushed)
         self.btn_login.clicked.connect(self.button_login_pushed)
 
+        # label object
+        self.lbl_wrong_input = self.findChild(QLabel, "lbl_wrong_input")
+
         # creating textFields objects so we can use them later in the button's actions
         self.txt_username = self.findChild(QTextEdit, "txt_username")
         self.txt_password = self.findChild(QTextEdit, "txt_password")
+
+        # when window open settings for combobox and spinbox
+        self.lbl_wrong_input.setStyleSheet("color: red")
 
         self.show()
 
@@ -57,7 +63,7 @@ class UI_login(QMainWindow):
             self.close()
             self.main_window.show()
         else:
-            print("hi")
+            self.lbl_wrong_input.setText("Wong name or password!")
 
     def show_this_window(self):
         self.show()
