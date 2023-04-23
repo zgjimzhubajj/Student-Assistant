@@ -1,0 +1,9 @@
+.venv
+__pychace__
+build
+dist
+*.egg-info
+.coverage
+docs
+classes.dot 
+packages.dot

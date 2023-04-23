@@ -1,97 +1,59 @@
-#!/usr/bin/env make
+PYTHON :=
+ifeq ($(OS),Windows_NT)
+	PYTHON=.venv\Scripts\python
+else
+	PYTHON=.venv/bin/python
+endif
 
-# Change this to be your variant of the python command
-# Set the env variable PYTHON to another value if needed
-# PYTHON=python3 make version
-PYTHON ?= python # python3 py
+venv:
+	test -d .venv || python -m venv .venv/
+	. .venv/Scripts/activate
 
-# Print out colored action message
-MESSAGE = printf "\033[32;01m---> $(1)\033[0m\n"
+install-requirements: check-venv
+	$(PYTHON) -m pip install --upgrade -q pip
+	$(PYTHON) -m pip install -r requirements.txt
 
-all:
+install-toml: check-venv
+	$(PYTHON) -m pip install --upgrade -q pip
+	$(PYTHON) -m pip install .
 
+## creates dist files and package release files based on pyproject.toml (depends on check-virtual-env)
+build-toml: install-toml
+	$(PYTHON) -m pip install --upgrade -q pip
+	$(PYTHON) -m build
 
-# ---------------------------------------------------------
-# Check the current python executable.
-#
-version:
-	@printf "Currently using executable: $(PYTHON)\n"
-	which $(PYTHON)
-	$(PYTHON) --version
+run: check-venv
+	@$(PYTHON) Program/gui_login.py
 
+check-venv:
+	@if [ -z "$$(which python | grep -o .venv)" ]; then \
+		exit 1; \
+	fi
 
-# ---------------------------------------------------------
-# Setup a venv and install packages.
+pylint: check-venv
+	@find Program/ -name '*.py' -print0 | xargs -0 pylint -d C0103 -rn
 
-installed:
-	$(PYTHON) -m pip list
+test: check-venv
+	$(PYTHON) -m unittest discover -p 'test_*.py' -v -b
 
+flake8: check-venv
+	@$(call MESSAGE,$@)
+	@-flake8 --exclude=.svn,CVS,.bzr,.hg,.git,__pycache__,.tox,.nox,.eggs,*.egg,.venv,venv,*.pyc
 
-# ---------------------------------------------------------
-# Cleanup generated and installed files.
-#
 clean:
 	@$(call MESSAGE,$@)
 	rm -f .coverage *.pyc
 	rm -rf __pycache__
 	rm -rf htmlcov
 
-clean-doc: clean
-	@$(call MESSAGE,$@)
-	rm -rf doc
-
-clean-all: clean clean-doc
-	@$(call MESSAGE,$@)
-	rm -rf .venv
-
-
-# ---------------------------------------------------------
-# Work with static code linters.
-#
-pylint:
-	@$(call MESSAGE,$@)
-	-cd Program && $(PYTHON) -m pylint *.py
-
-flake8:
-	@$(call MESSAGE,$@)
-	-flake8
-
-lint: flake8 pylint
-
-
-# ---------------------------------------------------------
-# Work with codestyle.
-#
-black:
-	@$(call MESSAGE,$@)
-	 $(PYTHON) -m black Program/ test_controller.py
-	 $(PYTHON) -m black Program/ test_read_db.py
-	 $(PYTHON) -m black Program/ test_write_db.py
-
-codestyle: black
-
-
-# ---------------------------------------------------------
-# Work with unit test and code coverage.
-#
-unittest:
-	@$(call MESSAGE,$@)
-	 $(PYTHON) -m unittest discover Program
-
 coverage:
 	@$(call MESSAGE,$@)
-	coverage run -m unittest discover Program
+	coverage run -m unittest discover
+	coverage html
 	coverage report -m
 
-test: lint coverage
-
-
-# ---------------------------------------------------------
-
-
-# ---------------------------------------------------------
 # Calculate software metrics for your project.
-#
+
 radon-cc:
 	@$(call MESSAGE,$@)
 	radon cc --show-complexity --average Program
@@ -108,17 +70,5 @@ radon-hal:
 	@$(call MESSAGE,$@)
 	radon hal Program
 
-cohesion:
-	@$(call MESSAGE,$@)
-	cohesion --directory Program
-
 metrics: radon-cc radon-mi radon-raw radon-hal cohesion
 
-
-
-# ---------------------------------------------------------
-# Find security issues in your project.
-#
-bandit:
-	@$(call MESSAGE,$@)
-	bandit --recursive Program
