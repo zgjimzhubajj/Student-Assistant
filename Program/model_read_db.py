@@ -61,6 +61,11 @@ class Read_db():
             return False
 
 # gui_forgot_password methods
+    def retrieve_password(self, first_name, last_name, email, username, personal_id, spin_box_year_of_study, combo_box_name_of_program):
+        self.open_db()
+
+        
+        self.close_db()
 
 # gui_login methods
     def check_login_stats(self, username, password):
