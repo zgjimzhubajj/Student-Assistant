@@ -143,16 +143,29 @@ class UI_register(QMainWindow):
         elif self.username.strip() == "":
             self.lbl_wrong_input.setText("You must write something as userName!")
             self.wrong_inputs = False
-        # elif userName exist in database
-
-
-        # here milan will write some elif statement for:
-        # password which will check for text longer than 50 characters, if text doesnt have anything
-        # repeat_password which will check for if it matches password, text longer than 50 characters and text doesnt have anything
-        # combo_box_program which will check if the user chose a program or not
-
+        elif self.cntrl.check_user_name_exists(self.username):
+            self.lbl_wrong_input.setText("Username is already taken. Please choose another one!")
+            self.wrong_inputs = False
+        elif num_chars5 > 50 or num_chars5 < 1:
+            self.lbl_wrong_input.setText("Password is not in range of 1 to 50 characters!")
+            self.wrong_inputs = False
+        elif self.password.strip() == "":
+            self.lbl_wrong_input.setText("You must write something as password!")
+            self.wrong_inputs = False
+        elif num_chars6 > 50 or num_chars6 < 1:
+            self.lbl_wrong_input.setText("Repeat password is not in range of 1 to 50 characters!")
+            self.wrong_inputs = False
+        elif self.repeat_password.strip() == "":
+            self.lbl_wrong_input.setText("You must write something as repeat password!")
+            self.wrong_inputs = False
+        elif self.password != self.repeat_password:
+            self.lbl_wrong_input.setText("Password and repeat password must match!")
+            self.wrong_inputs = False
+        elif self.combo_box_name_of_program.currentText() == "":
+            self.lbl_wrong_input.setText("You must choose a program!")
+            self.wrong_inputs = False
         elif num_chars7 != 10:
-            self.lbl_wrong_input.setText("Personal ID is not equal to 10 numbers!")
+            self.lbl_wrong_input.setText("Personal ID must be a 10 digit number!")
             self.wrong_inputs = False
         elif self.personal_id.strip() == "":
             self.lbl_wrong_input.setText("You must write your personal ID!")

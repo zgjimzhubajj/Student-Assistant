@@ -42,6 +42,24 @@ class Read_db():
         self.close_db()
         return string_list
 
+    def check_user_name_exists(self, username):
+        self.open_db()
+
+        self.mycursor.execute(f"SELECT user_name From student_info Where user_name = '{username}';")
+
+        self.myresult = self.mycursor.fetchall()
+
+        username_list = []
+        for item in self.myresult:
+            username_list.append(str(item[0]))
+
+        self.close_db()
+
+        if username_list != []:
+            return True
+        else:
+            return False
+
 # gui_forgot_password methods
 
 # gui_login methods

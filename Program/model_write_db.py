@@ -40,14 +40,14 @@ class Write_db():
         program_id = string_list[0]
 
         # another way to insert
-        # self.mycursor.execute(f"INSERT INTO student_info (personal_id, first_name, last_name, user_name, password, program_id, year_of_study, email) Values('{personal_id}', '{first_name}', '{last_name}', '{username}', '{password}', '{program_id}', '{year_of_study}', '{email}')")
+        self.mycursor.execute(f"INSERT INTO student_info (personal_id, first_name, last_name, user_name, password, program_id, year_of_study, email) Values('{personal_id}', '{first_name}', '{last_name}', '{username}', '{password}', '{program_id}', '{year_of_study}', '{email}')")
 
         # Create the SQL query to insert the data
-        sql = "INSERT INTO student_info (personal_id, first_name, last_name, user_name, password, program_id, year_of_study, email) Values(%s, %s, %s, %s, %s, %s, %s, %s)"
-        val = (str(personal_id), first_name, last_name, username, password, program_id, str(year_of_study), email)
+        # sql = "INSERT INTO student_info (personal_id, first_name, last_name, user_name, password, program_id, year_of_study, email) Values(%s, %s, %s, %s, %s, %s, %s, %s)"
+        # val = (str(personal_id), first_name, last_name, username, password, str(program_id), str(year_of_study), email)
 
-        # Execute the query and commit the changes to the database
-        self.mycursor.execute(sql, val)
+        # # Execute the query and commit the changes to the database
+        # self.mycursor.execute(sql, val)
 
         # commit the changes to the database
         self.mydb.commit()
