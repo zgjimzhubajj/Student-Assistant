@@ -71,6 +71,7 @@ class UI_login(QMainWindow):
     def clear_window(self):
         self.txt_username.clear()
         self.txt_password.clear()
+        self.lbl_wrong_input.setText("")
 
 
 app = QApplication(sys.argv)

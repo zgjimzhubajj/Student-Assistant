@@ -78,6 +78,7 @@ class UI_register(QMainWindow):
         self.txt_personal_id.clear()
         self.spin_box_year_of_study.setValue(0)
         self.combo_box_name_of_program.setCurrentIndex(-1)
+        self.lbl_wrong_input.setText("")
 
     def get_window_values(self):
         self.first_name = self.txt_first_name.toPlainText()
