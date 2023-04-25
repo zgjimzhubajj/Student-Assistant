@@ -1,7 +1,8 @@
 from PyQt5.QtWidgets import QMainWindow, QTabWidget, QPushButton, QWidget, QListView, QLabel, QListWidget
 from PyQt5 import uic
 from PyQt5.QtCore import pyqtSignal
-
+from gui_create_session_window import UI_create_session_window
+from gui_see_session_window import UI_see_session_window
 
 class UI_main_window(QMainWindow):
     closed = pyqtSignal()
@@ -70,10 +71,25 @@ class UI_main_window(QMainWindow):
         self.close()  # close the new window
 
     def button_ts_create_session_pushed(self):
-        pass
+        self.clear_window()
+
+        self.create_session_window = UI_create_session_window(self)
+        self.create_session_window.closed.connect(self.show_this_window)
+
+        self.close()
+        self.create_session_window.show()
 
     def button_ts_see_session_pushed(self):
-        pass
+        self.clear_window()
+
+        self.see_session_window = UI_see_session_window(self)
+        self.see_session_window.closed.connect(self.show_this_window)
+
+        self.close()
+        self.see_session_window.show()
+
+    def show_this_window(self):
+        self.show()
 
     def clear_window(self):
         self.lbl_ts_time_left_for_next_homework_1.setText("")
