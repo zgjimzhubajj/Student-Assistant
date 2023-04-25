@@ -6,7 +6,6 @@ from PyQt5.QtCore import pyqtSignal
 class UI_main_window(QMainWindow):
     closed = pyqtSignal()
 
-
     def __init__(self, parent=None):
         super(UI_main_window, self).__init__(parent)
         uic.loadUi("gui_main_window.ui", self)

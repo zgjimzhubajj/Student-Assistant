@@ -72,6 +72,7 @@ class UI_forgot_password(QMainWindow):
         self.txt_personal_id.clear()
         self.spin_box_year_of_study.setValue(0)
         self.combo_box_name_of_program.setCurrentIndex(-1)
+        self.lbl_wrong_input.setText("")
 
     def handle_program_change(self, index):
         if index == 0:  # No item selected in the combobox

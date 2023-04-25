@@ -78,6 +78,7 @@ class UI_register(QMainWindow):
         self.txt_personal_id.clear()
         self.spin_box_year_of_study.setValue(0)
         self.combo_box_name_of_program.setCurrentIndex(-1)
+        self.lbl_wrong_input.setText("")
 
     def get_window_values(self):
         self.first_name = self.txt_first_name.toPlainText()
@@ -172,4 +173,7 @@ class UI_register(QMainWindow):
             self.wrong_inputs = False
         elif not self.personal_id.isdigit():
             self.lbl_wrong_input.setText("Personal ID must be numbers only!")
+            self.wrong_inputs = False
+        elif self.cntrl.check_personal_id_exists(self.personal_id):
+            self.lbl_wrong_input.setText("Personal is already taken. Please choose another one!")
             self.wrong_inputs = False
