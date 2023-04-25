@@ -147,7 +147,7 @@
        <string>the deadline for the next homework is at .....</string>
       </property>
      </widget>
-     <widget class="QListWidget" name="list_widget_1">
+     <widget class="QListWidget" name="list_widget_ts_homework">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -157,7 +157,7 @@
        </rect>
       </property>
      </widget>
-     <widget class="QListWidget" name="list_widget_2">
+     <widget class="QListWidget" name="list_widget_homework_detail">
       <property name="geometry">
        <rect>
         <x>25</x>

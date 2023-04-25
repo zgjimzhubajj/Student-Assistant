@@ -23,7 +23,6 @@ class UI_see_session_window(QMainWindow):
 
     def button_back_pushed(self):
         self.clear_window()
-
         self.closed.emit()
         self.close()
 

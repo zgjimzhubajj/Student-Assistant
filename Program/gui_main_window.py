@@ -1,8 +1,9 @@
-from PyQt5.QtWidgets import QMainWindow, QTabWidget, QPushButton, QWidget, QListView, QLabel, QListWidget
+from PyQt5.QtWidgets import *
 from PyQt5 import uic
-from PyQt5.QtCore import pyqtSignal
+from PyQt5.QtCore import *
 from gui_create_session_window import UI_create_session_window
 from gui_see_session_window import UI_see_session_window
+
 
 class UI_main_window(QMainWindow):
     closed = pyqtSignal()
@@ -12,59 +13,62 @@ class UI_main_window(QMainWindow):
         uic.loadUi("gui_main_window.ui", self)
         self.username = username
 
-        # buttons objects
-        # team session tab buttons
+    # buttons objects
+        # team session tab
         self.btn_log_out = self.findChild(QPushButton, "btn_log_out")
         self.btn_ts_create_session = self.findChild(QPushButton, "btn_ts_create_session")
         self.btn_ts_see_session = self.findChild(QPushButton, "btn_ts_see_session")
-        # time manegement tab buttons
+        # time manegement tab
 
-        # material tab buttons
+        # material tab
 
-        # buttons actions
-        # button actions for team session tab
+    # buttons actions
+        # team session tab
         self.btn_log_out.clicked.connect(self.button_log_out_pushed)
         self.btn_ts_create_session.clicked.connect(self.button_ts_create_session_pushed)
         self.btn_ts_see_session.clicked.connect(self.button_ts_see_session_pushed)
-        # time manegement tab buttons actions
-        
-        # material tab buttons actions
+        # time manegement tab
 
-        # label objects
-        # team session labels
+        # material tab
+
+    # label objects
+        # team session tab
         self.lbl_ts_time_left_for_next_homework_1 = self.findChild(QLabel, "lbl_ts_time_left_for_next_homework_1")
         self.lbl_ts_time_left_for_next_homework_2 = self.findChild(QLabel, "lbl_ts_time_left_for_next_homework_2")
         self.lbl_ts_time_left_for_next_homework_3 = self.findChild(QLabel, "lbl_ts_time_left_for_next_homework_3")
         self.lbl_ts_time_left_for_next_homework_4 = self.findChild(QLabel, "lbl_ts_time_left_for_next_homework_4")
         self.lbl_ts_time_left_for_next_homework_5 = self.findChild(QLabel, "lbl_ts_time_left_for_next_homework_5")
-        # time manegement tab labels
+        # time manegement tab
 
-        # material tab labels
+        # material tab
 
-        # tab window object
-        self.tab_main_window = self.findChild(QTabWidget, "tab_main_window")
-        self.tab_team_session = self.findChild(QWidget, "tab_team_session")
+    # list objects
+        # team session tab
+        self.list_widget_ts_homework = self.findChild(QListWidget, "list_widget_ts_homework")
+        self.list_widget_homework_detail = self.findChild(QListWidget, "list_widget_homework_detail")
+        # time management tab
 
-        # list objects
-        # list ogject for team session tab
-        self.list_widget_1 = self.findChild(QListWidget, "list_widget_1")
-        self.list_widget_2 = self.findChild(QListWidget, "list_widget_2")
-        # list ogject for time manegement tab
+        # material tab
 
-        # list ogject for material tab
-
-        # window settings when window open
-        # window setting for team session tab
+    # window settings when window open
+        # team session tab
         entries = ["a", "b"]
-        self.list_widget_2.addItems(entries)
-        self.list_widget_1.clear()
-        index_of_item_clicked = self.list_widget_1.currentRow()
-        store_item_taken_from_list = self.list_widget_1.takeItem(index_of_item_clicked) # this will take the item out of the list
-        # window setting for time manegement tab
+        self.list_widget_homework_detail.addItems(entries)
+        # time manegement tab
 
-        # window setting for material tab
+        # material tab
 
-# methods for buttons action for team session tab
+    # actions for list widget objects
+        # team session tab
+        self.list_widget_homework_detail.itemClicked.connect(self.text_clicked_item_homeworks)
+        self.list_widget_homework_detail.itemClicked.connect(self.index_clicked_item_homeworks)
+
+        # time manegement tab
+
+        # material tab
+
+# methods for buttons action
+    # team session tab
     def button_log_out_pushed(self):
         self.clear_window()
         self.closed.emit()  # emit the closed signal
@@ -72,22 +76,36 @@ class UI_main_window(QMainWindow):
 
     def button_ts_create_session_pushed(self):
         self.clear_window()
-
         self.create_session_window = UI_create_session_window(self)
         self.create_session_window.closed.connect(self.show_this_window)
-
         self.close()
         self.create_session_window.show()
 
     def button_ts_see_session_pushed(self):
         self.clear_window()
-
         self.see_session_window = UI_see_session_window(self)
         self.see_session_window.closed.connect(self.show_this_window)
-
         self.close()
         self.see_session_window.show()
 
+    # time manegement tab
+
+    # material tab
+
+# methods for list widget actions
+    # team session tab
+    def text_clicked_item_homeworks(self, item):
+        text = item.text()
+        self.lbl_ts_time_left_for_next_homework_1.setText(text)
+
+    def index_clicked_item_homeworks(self):
+        index = self.list_widget_homework_detail.currentRow()
+        print(index)
+    # time manegement tab
+
+    # material tab
+
+# methods for main window
     def show_this_window(self):
         self.show()
 
@@ -97,8 +115,3 @@ class UI_main_window(QMainWindow):
         self.lbl_ts_time_left_for_next_homework_3.setText("")
         self.lbl_ts_time_left_for_next_homework_4.setText("")
         self.lbl_ts_time_left_for_next_homework_5.setText("")
-# always use line edit and we use .text() to get the text and .setText() to set a text in it
-
-# methods for buttons action for time manegement tab
-
-# methods for buttons action for material tab

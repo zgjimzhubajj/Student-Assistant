@@ -30,9 +30,8 @@ class UI_create_session_window(QMainWindow):
 
     def button_back_pushed(self):
         self.clear_window()
-
-        self.closed.emit()  
-        self.close() 
+        self.closed.emit()
+        self.close()
 
     def button_add_course_pushed(self):
         pass

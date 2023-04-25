@@ -28,34 +28,23 @@ class Read_db:
 # gui_register methods
     def get_programs_names(self) -> list:
         self.open_db()
-
         self.mycursor.execute("SELECT program_name From program_ab_es;")
-
         self.myresult = self.mycursor.fetchall()
-
         # change myResults from a list of tuples to a list of strings
         string_list = []
         for item in self.myresult:
             string_list.append(str(item[0]))
-
         self.close_db()
         return string_list
 
     def check_user_name_exists(self, username):
         self.open_db()
-
-        self.mycursor.execute(
-            f"SELECT user_name From student_info Where user_name = '{username}';"
-        )
-
+        self.mycursor.execute(f"SELECT user_name From student_info Where user_name = '{username}';")
         self.myresult = self.mycursor.fetchall()
-
         username_list = []
         for item in self.myresult:
             username_list.append(str(item[0]))
-
         self.close_db()
-
         if username_list != []:
             return True
         else:
@@ -63,68 +52,38 @@ class Read_db:
 
     def check_personal_id_exists(self, personal_id):
         self.open_db()
-
-        self.mycursor.execute(
-            f"SELECT personal_id From student_info Where personal_id = '{personal_id}';"
-        )
-
+        self.mycursor.execute(f"SELECT personal_id From student_info Where personal_id = '{personal_id}';")
         self.myresult = self.mycursor.fetchall()
-
         personal_id_list = []
         for item in self.myresult:
             personal_id_list.append(str(item[0]))
-
         self.close_db()
         if personal_id_list != []:
             return personal_id_list[0]
 
 # gui_forgot_password methods
-    def retrieve_password(
-        self,
-        first_name,
-        last_name,
-        email,
-        username,
-        personal_id,
-        year_of_study,
-        name_of_program,
-    ):
+    def retrieve_password(self, first_name, last_name, email, username, personal_id, year_of_study, name_of_program):
         self.open_db()
-        self.mycursor.execute(
-            f"SELECT program_id From program_ab_es where program_name = '{name_of_program}';"
-        )
+        self.mycursor.execute(f"SELECT program_id From program_ab_es where program_name = '{name_of_program}';")
         self.myresult = self.mycursor.fetchall()
-
         # change myResults from a list of tuples to a list of strings
         string_list = []
         for item in self.myresult:
             string_list.append(str(item[0]))
         program_id = string_list[0]
-
-        self.mycursor.execute(
-            f"SELECT password FROM student_info WHERE personal_id = '{personal_id}' And first_name = '{first_name}' And last_name = '{last_name}' And user_name = '{username}' And email = '{email}' And year_of_study = '{year_of_study}' And program_id = '{program_id}';"
-        )
-
+        self.mycursor.execute(f"SELECT password FROM student_info WHERE personal_id = '{personal_id}' And first_name = '{first_name}' And last_name = '{last_name}' And user_name = '{username}' And email = '{email}' And year_of_study = '{year_of_study}' And program_id = '{program_id}';")
         self.myresult = self.mycursor.fetchall()
-
         password_list = []
         for item in self.myresult:
             password_list.append(str(item[0]))
-
         password = password_list[0]
-
         self.close_db()
-
         return password
 
 # gui_login methods
     def check_login_stats(self, username, password):
         self.open_db()
-
-        self.mycursor.execute(
-            f"SELECT * FROM student_info WHERE user_name = '{username}' AND password = '{password}';"
-        )
-
+        self.mycursor.execute(f"SELECT * FROM student_info WHERE user_name = '{username}' AND password = '{password}';")
         self.myresult = self.mycursor.fetchall()
         if self.myresult != []:
             self.close_db()
@@ -133,10 +92,9 @@ class Read_db:
             self.close_db()
             return False
 
-
 # gui_main_window methods
-# team_session tab methods
+    # team_session tab methods
 
-# time_manegment tab methods
+    # time_manegment tab methods
 
-# material tab methods
+    # material tab methods
