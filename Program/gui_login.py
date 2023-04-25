@@ -58,7 +58,7 @@ class UI_login(QMainWindow):
         self.clear_window()
         self.cntrl = Controller()
         if self.cntrl.check_login_stats(username, password):
-            self.main_window = UI_main_window(self)
+            self.main_window = UI_main_window(self, username)
             self.main_window.closed.connect(self.show_this_window)  # connect the closed signal to the showWindow method
             self.close()
             self.main_window.show()
