@@ -55,6 +55,7 @@ class UI_main_window(QMainWindow):
     # window settings when window open
         # team session tab
         self.list_widget_ts_homework.addItems(self.cntrl.get_course(username))
+        self.list_widget_homework_detail.clear()
         # time manegement tab
 
         # material tab
@@ -95,9 +96,12 @@ class UI_main_window(QMainWindow):
 # methods for list widget actions
     # team session tab
     def text_clicked_item_homeworks(self, item):
-        # homework_name = item.text()
-        # self.list_widget_homework_detail.addItems(self.cntrl.get_homework_detail(homework_name))
-        pass
+        self.list_widget_homework_detail.clear()
+        course_name = item.text()
+        homework_list = self.cntrl.get_homework_detail(course_name)
+        for homework in homework_list:
+            homework_details = "Homework name: " + homework[0] + " " + " Homework deadline: " + homework[1] + "/" + homework[2] + "/" + homework[3]
+            self.list_widget_homework_detail.addItem(homework_details)
 
     # time manegement tab
 
@@ -113,3 +117,4 @@ class UI_main_window(QMainWindow):
         self.lbl_ts_time_left_for_next_homework_3.setText("")
         self.lbl_ts_time_left_for_next_homework_4.setText("")
         self.lbl_ts_time_left_for_next_homework_5.setText("")
+        self.list_widget_homework_detail.clear()

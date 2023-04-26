@@ -1,4 +1,5 @@
 import mysql.connector
+import datetime
 
 
 class Read_db:
@@ -119,21 +120,35 @@ class Read_db:
         year_of_study_of_student = year_of_study[0]
         self.mycursor.execute(f"SELECT course_name FROM student_info JOIN student_course_ab_es ON student_info.personal_id = student_course_ab_es.personal_id JOIN course_ab_es ON student_course_ab_es.course_id = course_ab_es.course_id where student_info.user_name = '{username}' and course_ab_es.course_year = {year_of_study_of_student};")
         self.myresult = self.mycursor.fetchall()
-        homework_list = []
+        course_list = []
         for item in self.myresult:
-            homework_list.append(str(item[0]))
+            course_list.append(str(item[0]))
         self.close_db()
-        return homework_list
+        return course_list
 
-    # def get_homework_detail(self, homework_name):
-    #     self.open_db()
-    #     self.mycursor.execute(f"SELECT homework_name FROM student_info JOIN student_course_ab_es ON student_info.personal_id = student_course_ab_es.personal_id JOIN course_ab_es ON student_course_ab_es.course_id = course_ab_es.course_id JOIN homework_ab_es ON course_ab_es.course_id = homework_ab_es.course_id WHERE student_info.user_name = '{username}';")
-    #     self.myresult = self.mycursor.fetchall()
-    #     course_list = []
-    #     for item in self.myresult:
-    #         course_list.append(str(item[0]))
-    #     self.close_db()
-    #     return course_list
+    def get_homework_detail(self, course_name):
+        self.open_db()
+        self.mycursor.execute(f"select course_id from course_ab_es where course_name = '{course_name}';")
+        self.myresult = self.mycursor.fetchall()
+        course_list = []
+        for item in self.myresult:
+            course_list.append(str(item[0]))
+        course_id = course_list[0]
+        self.mycursor.execute(f"select homework_name, homework_dead_line from homework_ab_es where course_id = {course_id};")
+        self.myresult = self.mycursor.fetchall()
+        list_of_lists = []
+        for tup in self.myresult:
+            # Extract the relevant values from the tuple
+            str_val = tup[0]
+            year_val = str(tup[1].year)
+            month_val = str(tup[1].month)
+            day_val = str(tup[1].day)
+            # Create a new list with the extracted values
+            new_list = [str_val, year_val, month_val, day_val]
+            # Append the new list to the list of lists
+            list_of_lists.append(new_list)
+        self.close_db()
+        return list_of_lists
 
     # time_manegment tab methods
 

@@ -37,7 +37,7 @@ class Controller():
     def retrieve_password(self, first_name, last_name, email, username, personal_id, year_of_study, name_of_program):
         self.password = self.read_db.retrieve_password(first_name, last_name, email, username, personal_id, year_of_study, name_of_program)
         return self.password
-    
+
     def check_user_exists(self, first_name, last_name, email, username, name_of_program, personal_id, year_of_study):
         return self.read_db.check_user_exists(first_name, last_name, email, username, name_of_program, personal_id, year_of_study)
 
@@ -48,7 +48,7 @@ class Controller():
     def get_course(self, username):
         return self.read_db.get_course(username)
 
-    # def get_homework_detail(self, homework_name):
-    #     return self.read_db.get_homework_detail(homework_name)
+    def get_homework_detail(self, course_name):
+        return self.read_db.get_homework_detail(course_name)
 
     # material tab methods

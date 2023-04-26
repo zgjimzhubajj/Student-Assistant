@@ -135,7 +135,7 @@ class TestReadDb(unittest.TestCase):
     def test_retrieve_password(self):
         read_db = Read_db()
         write_db = Write_db()
-        first_name = "test" 
+        first_name = "test"
         last_name = "test"
         email = "test@test.test"
         password = "test"
@@ -151,33 +151,35 @@ class TestReadDb(unittest.TestCase):
         write_db.mycursor.execute(f"DELETE FROM student_info WHERE personal_id = '{personal_id}';")
         write_db.mydb.commit()
         write_db.close_db()
-        
-    # def test_check_user_exists(self):
-    #     read_db = Read_db()
-    #     write_db = Write_db()
-    #     first_name = "test"
-    #     last_name = "test"
-    #     email = "test@test.test"
-    #     password = "test"
-    #     username = "test"
-    #     personal_id = "9999999999"
-    #     year_of_study = "1"
-    #     name_of_program = "Medicine"
-    #     write_db.insert_student_info(first_name, last_name, email, username, password, personal_id, year_of_study, name_of_program)
-    #     self.assertEqual(read_db.check_user_exists(first_name, last_name, email, username, name_of_program, personal_id, year_of_study),True)
-    #     write_db.mycursor.execute(f"Select * from student_course_ab_es where personal_id = '{personal_id}';")
-    #     myresult = write_db.mycursor.fetchall()
-    #     expected_result = True
-    #     if myresult == []:
-    #         expected_result = False
-    #     self.assertEqual(expected_result, True)
-    #     write_db.open_db()
-    #     write_db.mycursor.execute(f"DELETE FROM student_course_ab_es WHERE personal_id = '{personal_id}';")
-    #     write_db.mydb.commit()
-    #     write_db.mycursor.execute(f"DELETE FROM student_info WHERE personal_id = '{personal_id}';")
-    #     write_db.mydb.commit()
-    #     write_db.close_db()
-        
+
+    def test_check_user_exists(self):
+        read_db = Read_db()
+        write_db = Write_db()
+        first_name = "test"
+        last_name = "test"
+        email = "test@test.test"
+        username = "test"
+        name_of_program = "Medicine"
+        personal_id = "9999999999"
+        year_of_study = "1"
+        password = "test"
+        write_db.insert_student_info(first_name, last_name, email, username, password, personal_id, year_of_study, name_of_program)
+        self.assertEqual(read_db.check_user_exists(first_name, last_name, email, username, name_of_program, personal_id, year_of_study), True)
+        read_db.open_db()
+        read_db.mycursor.execute(f"select * from student_course_ab_es where personal_id = '{personal_id}';")
+        myresult = read_db.mycursor.fetchall()
+        expected_result = True
+        if myresult == []:
+            expected_result = False
+        self.assertEqual(expected_result, True)
+        write_db.open_db()
+        write_db.mycursor.execute(f"DELETE FROM student_course_ab_es WHERE personal_id = '{personal_id}';")
+        write_db.mydb.commit()
+        write_db.mycursor.execute(f"DELETE FROM student_info WHERE personal_id = '{personal_id}';")
+        write_db.mydb.commit()
+        write_db.close_db()
+        read_db.close_db()
+
 
 
 # # gui_login methods
@@ -196,6 +198,51 @@ class TestReadDb(unittest.TestCase):
         name_of_program = "Medicine"
         write_db.insert_student_info(first_name, last_name, email, username, password, personal_id, year_of_study, name_of_program)
         self.assertEqual(read_db.check_login_stats(username, password), True)
+        write_db.open_db()
+        write_db.mycursor.execute(f"DELETE FROM student_course_ab_es WHERE personal_id = '{personal_id}';")
+        write_db.mydb.commit()
+        write_db.mycursor.execute(f"DELETE FROM student_info WHERE personal_id = '{personal_id}';")
+        write_db.mydb.commit()
+        write_db.close_db()
+
+#gui_main_window methods
+    # team session tab
+    def test_get_homework_detail(self):
+        read_db = Read_db()
+        write_db = Write_db()
+        first_name = "test"
+        last_name = "test"
+        email = "test@test.test"
+        password = "test"
+        username = "test"
+        personal_id = "9999999999"
+        year_of_study = "1"
+        name_of_program = "Medicine"
+        write_db.insert_student_info(first_name, last_name, email, username, password, personal_id, year_of_study, name_of_program)
+        expected_list = [['homework6', '2023', '5', '20']]
+        self.assertEqual(read_db.get_homework_detail("anatomy"), expected_list)
+        write_db.open_db()
+        write_db.mycursor.execute(f"DELETE FROM student_course_ab_es WHERE personal_id = '{personal_id}';")
+        write_db.mydb.commit()
+        write_db.mycursor.execute(f"DELETE FROM student_info WHERE personal_id = '{personal_id}';")
+        write_db.mydb.commit()
+        write_db.close_db()
+
+    def test_get_course(self):
+        read_db = Read_db()
+        read_db = Read_db()
+        write_db = Write_db()
+        first_name = "test"
+        last_name = "test"
+        email = "test@test.test"
+        password = "test"
+        username = "test"
+        personal_id = "9999999999"
+        year_of_study = "1"
+        name_of_program = "Medicine"
+        write_db.insert_student_info(first_name, last_name, email, username, password, personal_id, year_of_study, name_of_program)
+        expected_list = ['anatomy']
+        self.assertEqual(read_db.get_course(username), expected_list)
         write_db.open_db()
         write_db.mycursor.execute(f"DELETE FROM student_course_ab_es WHERE personal_id = '{personal_id}';")
         write_db.mydb.commit()
