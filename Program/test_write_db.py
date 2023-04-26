@@ -1,7 +1,7 @@
 """Test the Write_db class in the model_write_db file."""
 import mysql.connector
 
-from unittest.mock import MagicMock, Mock
+from unittest.mock import MagicMock
 import unittest
 from model_write_db import Write_db
 
@@ -36,9 +36,28 @@ class TestWriteDb(unittest.TestCase):
 
         mock_cursor.close.assert_called_once()
         mock_db.close.assert_called_once()
+        
 # gui_register methods
     def test_insert_student_info(self):
-        pass
+        write_db = Write_db()
+        first_name = "test"
+        last_name = "test"
+        email = "test@test.test"
+        password = "test"
+        username = "test"
+        personal_id = "9999999999"
+        year_of_study = 1
+        name_of_program = "Medicine"
+        write_db.insert_student_info(first_name, last_name, email, username, password, personal_id, year_of_study, name_of_program)
+        write_db.open_db()
+        write_db.mycursor.execute(f"SELECT * FROM student_info WHERE personal_id = '{personal_id}' And first_name = '{first_name}' And last_name = '{last_name}' And user_name = '{username}' And email = '{email}' And year_of_study = '{year_of_study}' And program_name = '{name_of_program}';")
+        myresult = write_db.mycursor.fetchall()
+        print(myresult)
+        myresult_expected = [("9999999999", "test", "test", "test", "test", "test@test.test", "Medicine", 1)]
+        self.assertEqual(myresult, myresult_expected)
+        write_db.mycursor.execute(f"DELETE FROM student_info WHERE personal_id = '{personal_id}';")
+        write_db.mydb.commit()
+        write_db.close_db()
 
     # def tearDown(self):
     #     self.db = None

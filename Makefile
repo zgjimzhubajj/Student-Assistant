@@ -49,6 +49,7 @@ coverage-read:
 	coverage run Program/test_read_db.py  
 	coverage html
 	coverage report -m
+	
 coverage-write:
 	@$(call MESSAGE,$@) 
 	coverage run Program/test_write_db.py
