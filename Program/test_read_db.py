@@ -109,7 +109,7 @@ class TestReadDb(unittest.TestCase):
         # Add a new user with the username 'testuser'
         read_db.open_db()
         read_db.mycursor.execute(
-            "INSERT INTO student_info (first_name, last_name, user_name, email, password, personal_id, year_of_study, program_id) VALUES ('Test', 'User', 'testuser', 'testuser@test.com', 'testpassword', '123456789', '1', '1');"
+            "INSERT INTO student_info (first_name, last_name, user_name, email, password, personal_id, year_of_study, program_name) VALUES ('Test', 'User', 'testuser', 'testuser@test.com', 'testpassword', '123456789', '1', 'Medicine');"
         )
         read_db.mydb.commit()
         read_db.close_db()
@@ -146,7 +146,7 @@ class TestReadDb(unittest.TestCase):
         # Add a new user with the personal ID '1234567892'
         read_db.open_db()
         read_db.mycursor.execute(
-            "INSERT INTO student_info (first_name, last_name, user_name, email, password, personal_id, year_of_study, program_id) VALUES ('Test', 'User', 'testuser', 'testuser@test.com', 'testpassword', '6565656565', '1', '1');"
+            "INSERT INTO student_info (first_name, last_name, user_name, email, password, personal_id, year_of_study, program_name) VALUES ('Test', 'User', 'testuser', 'testuser@test.com', 'testpassword', '6565656565', '1', 'Medicine');"
         )
         read_db.mydb.commit()
         read_db.close_db()
