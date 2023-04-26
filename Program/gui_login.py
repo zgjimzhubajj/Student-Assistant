@@ -58,7 +58,7 @@ class UI_login(QMainWindow):
             self.close()
             self.main_window.show()
         else:
-            self.lbl_wrong_input.setText("Wong name or password!")
+            self.lbl_wrong_input.setText("Wrong name or password!")
 
     def show_this_window(self):
         self.show()

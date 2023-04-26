@@ -170,6 +170,6 @@ class UI_register(QMainWindow):
         elif not self.personal_id.isdigit():
             self.lbl_wrong_input.setText("Personal ID must be numbers only!")
             self.wrong_inputs = False
-        # elif self.cntrl.check_personal_id_exists(self.personal_id):
-        #     self.lbl_wrong_input.setText("Personal is already taken. Please choose another one!")
-        #     self.wrong_inputs = False
+        elif self.cntrl.check_personal_id_exists(self.personal_id):
+            self.lbl_wrong_input.setText("Personal is already taken. Please choose another one!")
+            self.wrong_inputs = False

@@ -37,16 +37,16 @@ class Write_db():
 
         self.mycursor.execute(f"SELECT course_id From course_ab_es where program_id = '{program_id}';")
         self.myresult = self.mycursor.fetchall()
-        string_list = []
+        course_id_list = []
         for item in self.myresult:
-            string_list.append(str(item[0]))
-        course_id = str(string_list[0])
+            course_id_list.append(str(item[0]))
 
         self.mycursor.execute(f"INSERT INTO student_info (personal_id, first_name, last_name, user_name, password, program_name, year_of_study, email) Values('{personal_id}', '{first_name}', '{last_name}', '{username}', '{password}', '{name_of_program}', '{year_of_study}', '{email}')")
         self.mydb.commit()
-        self.mycursor.execute(f"INSERT INTO student_course_ab_es (personal_id, course_id) Values('{personal_id}', '{course_id}')")
-        # commit the changes to the database
-        self.mydb.commit()
+        for course_id in course_id_list:
+            self.mycursor.execute(f"INSERT INTO student_course_ab_es (personal_id, course_id) Values({personal_id}, {course_id})")
+            # commit the changes to the database
+            self.mydb.commit()
         self.close_db()
 
 # gui_main_window methods

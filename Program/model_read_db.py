@@ -50,16 +50,18 @@ class Read_db:
         else:
             return False
 
-    # def check_personal_id_exists(self, personal_id):
-    #     self.open_db()
-    #     self.mycursor.execute(f"SELECT personal_id From student_info Where personal_id = '{personal_id}';")
-    #     self.myresult = self.mycursor.fetchall()
-    #     personal_id_list = []
-    #     for item in self.myresult:
-    #         personal_id_list.append(str(item[0]))
-    #     self.close_db()
-    #     if personal_id_list != []:
-    #         return personal_id_list[0]
+    def check_personal_id_exists(self, personal_id):
+        self.open_db()
+        self.mycursor.execute(f"SELECT personal_id From student_info Where personal_id = '{personal_id}';")
+        self.myresult = self.mycursor.fetchall()
+        personal_id_list = []
+        for item in self.myresult:
+            personal_id_list.append(str(item[0]))
+        self.close_db()
+        if personal_id_list != []:
+            return True
+        else:
+            return False
 
 # gui_forgot_password methods
     def retrieve_password(self, first_name, last_name, email, username, personal_id, year_of_study, name_of_program):
@@ -80,6 +82,19 @@ class Read_db:
         self.close_db()
         return password
 
+    def check_user_exists(self, first_name, last_name, email, username, name_of_program, personal_id, year_of_study):
+        self.open_db()
+        self.mycursor.execute(f"SELECT * From student_info Where first_name = '{first_name}' and last_name = '{last_name}' and email = '{email}' and user_name = '{username}' and program_name = '{name_of_program}' and year_of_study = '{year_of_study}' and personal_id = '{personal_id}';")
+        self.myresult = self.mycursor.fetchall()
+        user_list = []
+        for item in self.myresult:
+            user_list.append(str(item[0]))
+        self.close_db()
+        if user_list != []:
+            return True
+        else:
+            return False
+
 # gui_login methods
     def check_login_stats(self, username, password):
         self.open_db()
@@ -96,13 +111,29 @@ class Read_db:
     # team_session tab methods
     def get_course(self, username):
         self.open_db()
-        self.mycursor.execute(f"SELECT homework_name FROM student_info JOIN student_course_ab_es ON student_info.personal_id = student_course_ab_es.personal_id JOIN course_ab_es ON student_course_ab_es.course_id = course_ab_es.course_id JOIN homework_ab_es ON course_ab_es.course_id = homework_ab_es.course_id WHERE student_info.user_name = '{username}';")
+        self.mycursor.execute(f"SELECT year_of_study From student_info where user_name = '{username}';")
         self.myresult = self.mycursor.fetchall()
-        course_list = []
+        year_of_study = []
         for item in self.myresult:
-            course_list.append(str(item[0]))
+            year_of_study.append(str(item[0]))
+        year_of_study_of_student = year_of_study[0]
+        self.mycursor.execute(f"SELECT course_name FROM student_info JOIN student_course_ab_es ON student_info.personal_id = student_course_ab_es.personal_id JOIN course_ab_es ON student_course_ab_es.course_id = course_ab_es.course_id where student_info.user_name = '{username}' and course_ab_es.course_year = {year_of_study_of_student};")
+        self.myresult = self.mycursor.fetchall()
+        homework_list = []
+        for item in self.myresult:
+            homework_list.append(str(item[0]))
         self.close_db()
-        return course_list
+        return homework_list
+
+    # def get_homework_detail(self, homework_name):
+    #     self.open_db()
+    #     self.mycursor.execute(f"SELECT homework_name FROM student_info JOIN student_course_ab_es ON student_info.personal_id = student_course_ab_es.personal_id JOIN course_ab_es ON student_course_ab_es.course_id = course_ab_es.course_id JOIN homework_ab_es ON course_ab_es.course_id = homework_ab_es.course_id WHERE student_info.user_name = '{username}';")
+    #     self.myresult = self.mycursor.fetchall()
+    #     course_list = []
+    #     for item in self.myresult:
+    #         course_list.append(str(item[0]))
+    #     self.close_db()
+    #     return course_list
 
     # time_manegment tab methods
 

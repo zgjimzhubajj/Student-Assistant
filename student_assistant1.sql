@@ -39,7 +39,7 @@ CREATE TABLE `course_ab_es` (
 
 LOCK TABLES `course_ab_es` WRITE;
 /*!40000 ALTER TABLE `course_ab_es` DISABLE KEYS */;
-INSERT INTO `course_ab_es` VALUES (1,'java',1,1),(2,'python',1,1),(3,'agile',1,1),(4,'networking',2,1),(5,'security',3,1),(6,'anatomy',1,1),(7,'phisiology',2,1),(8,'pharmacology',3,1),(9,'radiology',4,1),(10,'surgery',5,2);
+INSERT INTO `course_ab_es` VALUES (1,'java',1,2),(2,'python',1,2),(3,'agile',1,2),(4,'networking',2,2),(5,'security',3,2),(6,'anatomy',1,1),(7,'phisiology',2,1),(8,'pharmacology',3,1),(9,'radiology',4,1),(10,'surgery',5,1);
 /*!40000 ALTER TABLE `course_ab_es` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -96,7 +96,7 @@ CREATE TABLE `homework_ab_es` (
 
 LOCK TABLES `homework_ab_es` WRITE;
 /*!40000 ALTER TABLE `homework_ab_es` DISABLE KEYS */;
-INSERT INTO `homework_ab_es` VALUES (1,'homework1','2023-05-15',1),(2,'homework2','2022-11-30',2),(3,'homework3','2023-04-30',3),(4,'homework4','2023-04-30',4),(5,'homework5','2023-04-30',5),(6,'homework6','2023-04-30',6),(7,'homework7','2023-04-30',7),(8,'homework8','2023-04-30',8),(9,'homework9','2023-04-30',9),(10,'homework10','2023-06-30',10);
+INSERT INTO `homework_ab_es` VALUES (1,'homework1','2023-05-15',1),(2,'homework2','2023-05-16',2),(3,'homework3','2023-05-17',3),(4,'homework4','2023-05-18',4),(5,'homework5','2023-05-19',5),(6,'homework6','2023-05-20',6),(7,'homework7','2023-05-21',7),(8,'homework8','2023-05-22',8),(9,'homework9','2023-05-23',9),(10,'homework10','2023-05-24',10);
 /*!40000 ALTER TABLE `homework_ab_es` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -270,4 +270,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-26 17:37:14
+-- Dump completed on 2023-04-26 20:26:11

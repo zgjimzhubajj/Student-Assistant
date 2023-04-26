@@ -22,9 +22,9 @@ class Controller():
         else:
             return False
 
-    # def check_personal_id_exists(self, personal_id):
-    #     personal_id = self.read_db.check_personal_id_exists(personal_id)
-    #     return personal_id
+    def check_personal_id_exists(self, personal_id):
+        personal_id = self.read_db.check_personal_id_exists(personal_id)
+        return personal_id
 
 # gui_login window methods
     def check_login_stats(self, username, password):
@@ -37,6 +37,9 @@ class Controller():
     def retrieve_password(self, first_name, last_name, email, username, personal_id, year_of_study, name_of_program):
         self.password = self.read_db.retrieve_password(first_name, last_name, email, username, personal_id, year_of_study, name_of_program)
         return self.password
+    
+    def check_user_exists(self, first_name, last_name, email, username, name_of_program, personal_id, year_of_study):
+        return self.read_db.check_user_exists(first_name, last_name, email, username, name_of_program, personal_id, year_of_study)
 
 # gui_main_window methods
     # time_management tab methods
@@ -44,5 +47,8 @@ class Controller():
     # team_session tab methods
     def get_course(self, username):
         return self.read_db.get_course(username)
+
+    # def get_homework_detail(self, homework_name):
+    #     return self.read_db.get_homework_detail(homework_name)
 
     # material tab methods
