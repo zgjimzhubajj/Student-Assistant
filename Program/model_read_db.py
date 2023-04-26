@@ -94,6 +94,15 @@ class Read_db:
 
 # gui_main_window methods
     # team_session tab methods
+    def get_course(self, username):
+        self.open_db()
+        self.mycursor.execute(f"SELECT homework_name FROM student_info JOIN student_course_ab_es ON student_info.personal_id = student_course_ab_es.personal_id JOIN course_ab_es ON student_course_ab_es.course_id = course_ab_es.course_id JOIN homework_ab_es ON course_ab_es.course_id = homework_ab_es.course_id WHERE student_info.user_name = '{username}';")
+        self.myresult = self.mycursor.fetchall()
+        course_list = []
+        for item in self.myresult:
+            course_list.append(str(item[0]))
+        self.close_db()
+        return course_list
 
     # time_manegment tab methods
 

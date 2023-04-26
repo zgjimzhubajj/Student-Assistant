@@ -39,6 +39,10 @@ class Controller():
         return self.password
 
 # gui_main_window methods
-    # tab_time_management methods
+    # time_management tab methods
 
-    # tab_team_session methods
+    # team_session tab methods
+    def get_course(self, username):
+        return self.read_db.get_course(username)
+
+    # material tab methods

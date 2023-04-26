@@ -3,6 +3,7 @@ from PyQt5 import uic
 from PyQt5.QtCore import *
 from gui_create_session_window import UI_create_session_window
 from gui_see_session_window import UI_see_session_window
+from controller import Controller
 
 
 class UI_main_window(QMainWindow):
@@ -12,6 +13,7 @@ class UI_main_window(QMainWindow):
         super(UI_main_window, self).__init__(parent)
         uic.loadUi("gui_main_window.ui", self)
         self.username = username
+        self.cntrl = Controller()
 
     # buttons objects
         # team session tab
@@ -53,7 +55,7 @@ class UI_main_window(QMainWindow):
     # window settings when window open
         # team session tab
         entries = ["a", "b"]
-        self.list_widget_homework_detail.addItems(entries)
+        self.list_widget_homework_detail.addItems(self.cntrl.get_course(username))
         # time manegement tab
 
         # material tab
