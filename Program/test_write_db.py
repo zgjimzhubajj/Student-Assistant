@@ -36,7 +36,7 @@ class TestWriteDb(unittest.TestCase):
 
         mock_cursor.close.assert_called_once()
         mock_db.close.assert_called_once()
-        
+
 # gui_register methods
     def test_insert_student_info(self):
         write_db = Write_db()
