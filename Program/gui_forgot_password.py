@@ -54,8 +54,8 @@ class UI_forgot_password(QMainWindow):
         self.check_input()
         if self.wrong_inputs:
             password = self.cntrl.retrieve_password(self.first_name, self.last_name, self.email, self.username, self.personal_id, self.year_of_study, self.name_of_program)
+            print(password)
             self.lbl_wrong_input.setText(password)
-            self.clear_window()
 
     def clear_window(self):
         self.txt_first_name.clear()
@@ -141,3 +141,6 @@ class UI_forgot_password(QMainWindow):
         elif not self.personal_id.isdigit():
             self.lbl_wrong_input.setText("Personal ID must be numbers only!")
             self.wrong_inputs = False
+        # elif self.cntrl.check_personal_id_exists(self.personal_id):
+        #     self.lbl_wrong_input.setText("There is a problem with personal_id!")
+        #     self.wrong_inputs = False

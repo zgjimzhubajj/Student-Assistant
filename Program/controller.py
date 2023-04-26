@@ -22,9 +22,9 @@ class Controller():
         else:
             return False
 
-    def check_personal_id_exists(self, personal_id):
-        personal_id = self.read_db.check_personal_id_exists(personal_id)
-        return personal_id
+    # def check_personal_id_exists(self, personal_id):
+    #     personal_id = self.read_db.check_personal_id_exists(personal_id)
+    #     return personal_id
 
 # gui_login window methods
     def check_login_stats(self, username, password):

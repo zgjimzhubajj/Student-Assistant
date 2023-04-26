@@ -50,16 +50,16 @@ class Read_db:
         else:
             return False
 
-    def check_personal_id_exists(self, personal_id):
-        self.open_db()
-        self.mycursor.execute(f"SELECT personal_id From student_info Where personal_id = '{personal_id}';")
-        self.myresult = self.mycursor.fetchall()
-        personal_id_list = []
-        for item in self.myresult:
-            personal_id_list.append(str(item[0]))
-        self.close_db()
-        if personal_id_list != []:
-            return personal_id_list[0]
+    # def check_personal_id_exists(self, personal_id):
+    #     self.open_db()
+    #     self.mycursor.execute(f"SELECT personal_id From student_info Where personal_id = '{personal_id}';")
+    #     self.myresult = self.mycursor.fetchall()
+    #     personal_id_list = []
+    #     for item in self.myresult:
+    #         personal_id_list.append(str(item[0]))
+    #     self.close_db()
+    #     if personal_id_list != []:
+    #         return personal_id_list[0]
 
 # gui_forgot_password methods
     def retrieve_password(self, first_name, last_name, email, username, personal_id, year_of_study, name_of_program):
