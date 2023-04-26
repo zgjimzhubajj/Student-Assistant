@@ -13,6 +13,10 @@ install-requirements: check-venv
 	$(PYTHON) -m pip install --upgrade -q pip
 	$(PYTHON) -m pip install -r requirements.txt
 
+install-mysql: check-venv
+	$(PYTHON) -m pip install --upgrade -q pip
+	$(PYTHON) -m pip install mysql-connector-python
+
 install-toml: check-venv
 	$(PYTHON) -m pip install --upgrade -q pip
 	$(PYTHON) -m pip install .
