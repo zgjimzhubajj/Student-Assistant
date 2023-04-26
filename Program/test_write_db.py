@@ -52,8 +52,14 @@ class TestWriteDb(unittest.TestCase):
         write_db.open_db()
         write_db.mycursor.execute(f"SELECT * FROM student_info WHERE personal_id = '{personal_id}' And first_name = '{first_name}' And last_name = '{last_name}' And user_name = '{username}' And email = '{email}' And year_of_study = '{year_of_study}' And program_name = '{name_of_program}';")
         myresult = write_db.mycursor.fetchall()
-        print(myresult)
         myresult_expected = [("9999999999", "test", "test", "test", "test", "test@test.test", "Medicine", 1)]
+        self.assertEqual(myresult, myresult_expected)
+        write_db.mycursor.execute(f"Select * From student_course_ab_es Where personal_id = '{personal_id}';")
+        myresult2 = write_db.mycursor.fetchall()
+        myresult2_expected = [('9999999999', 6), ('9999999999', 7), ('9999999999', 8), ('9999999999', 9), ('9999999999', 10)]
+        self.assertEqual(myresult2, myresult2_expected)
+        write_db.mycursor.execute(f"DELETE FROM student_course_ab_es WHERE personal_id = '{personal_id}';")
+        write_db.mydb.commit()
         self.assertEqual(myresult, myresult_expected)
         write_db.mycursor.execute(f"DELETE FROM student_info WHERE personal_id = '{personal_id}';")
         write_db.mydb.commit()
