@@ -1,5 +1,5 @@
 .venv
-__pycache__
+Program\__pycache__
 build
 dist
 *.egg-info
