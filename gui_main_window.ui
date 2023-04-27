@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>841</width>
-    <height>561</height>
+    <width>878</width>
+    <height>725</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,19 +17,156 @@
    <widget class="QTabWidget" name="tab_main_window">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
+      <x>20</x>
+      <y>10</y>
       <width>841</width>
-      <height>411</height>
+      <height>601</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab_team_session">
      <attribute name="title">
       <string>Team Session</string>
      </attribute>
+     <widget class="QPushButton" name="btn_ts_create_session">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>191</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Create a session</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_ts_see_session">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>110</y>
+        <width>191</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>See sessions</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbl_ts_time_left_for_next_homework_2">
+      <property name="geometry">
+       <rect>
+        <x>290</x>
+        <y>50</y>
+        <width>481</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>the deadline for the next homework is at .....</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbl_ts_list_widget">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>200</y>
+        <width>261</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Courses</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbl_list_view">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>380</y>
+        <width>321</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Homework details</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbl_ts_time_left_for_next_homework_3">
+      <property name="geometry">
+       <rect>
+        <x>290</x>
+        <y>90</y>
+        <width>481</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>the deadline for the next homework is at .....</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbl_ts_time_left_for_next_homework_4">
+      <property name="geometry">
+       <rect>
+        <x>290</x>
+        <y>130</y>
+        <width>481</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>the deadline for the next homework is at .....</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbl_ts_time_left_for_next_homework_5">
+      <property name="geometry">
+       <rect>
+        <x>290</x>
+        <y>170</y>
+        <width>481</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>the deadline for the next homework is at .....</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbl_ts_time_left_for_next_homework_1">
+      <property name="geometry">
+       <rect>
+        <x>290</x>
+        <y>10</y>
+        <width>481</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>the deadline for the next homework is at .....</string>
+      </property>
+     </widget>
+     <widget class="QListWidget" name="list_widget_ts_homework">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>230</y>
+        <width>771</width>
+        <height>131</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QListWidget" name="list_widget_homework_detail">
+      <property name="geometry">
+       <rect>
+        <x>25</x>
+        <y>411</y>
+        <width>761</width>
+        <height>151</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_time_management">
      <attribute name="title">
@@ -45,8 +182,8 @@
    <widget class="QPushButton" name="btn_log_out">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>450</y>
+      <x>350</x>
+      <y>640</y>
       <width>111</width>
       <height>24</height>
      </rect>
@@ -61,7 +198,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>841</width>
+     <width>878</width>
      <height>22</height>
     </rect>
    </property>

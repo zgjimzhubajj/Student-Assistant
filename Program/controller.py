@@ -21,7 +21,7 @@ class Controller():
             return True
         else:
             return False
-        
+
     def check_personal_id_exists(self, personal_id):
         personal_id = self.read_db.check_personal_id_exists(personal_id)
         return personal_id
@@ -38,7 +38,17 @@ class Controller():
         self.password = self.read_db.retrieve_password(first_name, last_name, email, username, personal_id, year_of_study, name_of_program)
         return self.password
 
-# gui_main_window methods
-    # tab_time_management methods
+    def check_user_exists(self, first_name, last_name, email, username, name_of_program, personal_id, year_of_study):
+        return self.read_db.check_user_exists(first_name, last_name, email, username, name_of_program, personal_id, year_of_study)
 
-    # tab_team_session methods
+# gui_main_window methods
+    # time_management tab methods
+
+    # team_session tab methods
+    def get_course(self, username):
+        return self.read_db.get_course(username)
+
+    def get_homework_detail(self, course_name):
+        return self.read_db.get_homework_detail(course_name)
+
+    # material tab methods

@@ -31,24 +31,19 @@ class UI_login(QMainWindow):
 
         # when window open settings for combobox and spinbox
         self.lbl_wrong_input.setStyleSheet("color: red")
-
         self.show()
 
     def button_register_pushed(self):
         self.clear_window()
-
         self.register_window = UI_register(self)
         self.register_window.closed.connect(self.show_this_window)  # connect the closed signal to the showWindow method
-
         self.close()
         self.register_window.show()
 
     def button_forgot_password_pushed(self):
         self.clear_window()
-
         forgot_password_window = UI_forgot_password(self)
         forgot_password_window.closed.connect(self.show_this_window)  # connect the closed signal to the showWindow method
-
         self.close()
         forgot_password_window.show()
 
@@ -58,12 +53,12 @@ class UI_login(QMainWindow):
         self.clear_window()
         self.cntrl = Controller()
         if self.cntrl.check_login_stats(username, password):
-            self.main_window = UI_main_window(self)
+            self.main_window = UI_main_window(self, username)
             self.main_window.closed.connect(self.show_this_window)  # connect the closed signal to the showWindow method
             self.close()
             self.main_window.show()
         else:
-            self.lbl_wrong_input.setText("Wong name or password!")
+            self.lbl_wrong_input.setText("Wrong name or password!")
 
     def show_this_window(self):
         self.show()

@@ -7,7 +7,6 @@ from controller import Controller
 class UI_forgot_password(QMainWindow):
     closed = pyqtSignal()
 
-
     def __init__(self, parent=None):
         super(UI_forgot_password, self).__init__(parent)
         uic.loadUi("gui_forgot_password.ui", self)
@@ -44,25 +43,18 @@ class UI_forgot_password(QMainWindow):
         self.combo_box_name_of_program.currentIndexChanged.connect(self.handle_program_change)
         self.lbl_wrong_input.setStyleSheet("color: red")
 
-
     def button_cancel_pushed(self):
         self.clear_window()
-
         self.closed.emit()  # emit the closed signal
         self.close()  # close the new window
 
     def button_ok_pushed(self):
         self.get_window_values()
         self.wrong_inputs = True
-
         self.check_input()
-
         if self.wrong_inputs:
             password = self.cntrl.retrieve_password(self.first_name, self.last_name, self.email, self.username, self.personal_id, self.year_of_study, self.name_of_program)
-
             self.lbl_wrong_input.setText(password)
-
-            self.clear_window()
 
     def clear_window(self):
         self.txt_first_name.clear()
@@ -133,9 +125,6 @@ class UI_forgot_password(QMainWindow):
         elif self.username.strip() == "":
             self.lbl_wrong_input.setText("You must write something as userName!")
             self.wrong_inputs = False
-        elif not self.cntrl.check_user_name_exists(self.username):
-            self.lbl_wrong_input.setText("Username doesn't exist in the database.")
-            self.wrong_inputs = False
         elif self.combo_box_name_of_program.currentText() == "":
             self.lbl_wrong_input.setText("You must choose a program!")
             self.wrong_inputs = False
@@ -147,4 +136,7 @@ class UI_forgot_password(QMainWindow):
             self.wrong_inputs = False
         elif not self.personal_id.isdigit():
             self.lbl_wrong_input.setText("Personal ID must be numbers only!")
+            self.wrong_inputs = False
+        elif not self.cntrl.check_user_exists(self.first_name, self.last_name, self.email, self.username, self.name_of_program, self.personal_id, self.year_of_study):
+            self.lbl_wrong_input.setText("Username doesn't exist in the database.")
             self.wrong_inputs = False

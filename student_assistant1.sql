@@ -39,7 +39,7 @@ CREATE TABLE `course_ab_es` (
 
 LOCK TABLES `course_ab_es` WRITE;
 /*!40000 ALTER TABLE `course_ab_es` DISABLE KEYS */;
-INSERT INTO `course_ab_es` VALUES (1,'java',1,2),(2,'python',1,2),(3,'networking',2,2),(4,'security',3,2),(5,'anatomy',1,1),(6,'phisiology',2,1),(7,'pharmacology',3,1),(8,'radiology',4,1),(9,'surgery',5,1),(10,'agile',1,2);
+INSERT INTO `course_ab_es` VALUES (1,'java',1,2),(2,'python',1,2),(3,'agile',1,2),(4,'networking',2,2),(5,'security',3,2),(6,'anatomy',1,1),(7,'phisiology',2,1),(8,'pharmacology',3,1),(9,'radiology',4,1),(10,'surgery',5,1);
 /*!40000 ALTER TABLE `course_ab_es` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -51,20 +51,15 @@ DROP TABLE IF EXISTS `finished_homework_ab_es`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `finished_homework_ab_es` (
-  `session_id` int DEFAULT NULL,
-  `personal_id` varchar(50) DEFAULT NULL,
-  `program_id` int NOT NULL,
-  `course_id` int NOT NULL,
+  `homework_stat_id` int NOT NULL AUTO_INCREMENT,
+  `homework_stat` tinyint(1) NOT NULL,
+  `personal_id` varchar(10) DEFAULT NULL,
   `homework_id` int NOT NULL,
-  `homework_finished_bool` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`homework_stat_id`),
   KEY `personal_id` (`personal_id`),
-  KEY `program_id` (`program_id`),
-  KEY `course_id` (`course_id`),
   KEY `homework_id` (`homework_id`),
   CONSTRAINT `finished_homework_ab_es_ibfk_1` FOREIGN KEY (`personal_id`) REFERENCES `student_info` (`personal_id`),
-  CONSTRAINT `finished_homework_ab_es_ibfk_2` FOREIGN KEY (`program_id`) REFERENCES `program_ab_es` (`program_id`),
-  CONSTRAINT `finished_homework_ab_es_ibfk_3` FOREIGN KEY (`course_id`) REFERENCES `course_ab_es` (`course_id`),
-  CONSTRAINT `finished_homework_ab_es_ibfk_4` FOREIGN KEY (`homework_id`) REFERENCES `homework_ab_es` (`homework_id`)
+  CONSTRAINT `finished_homework_ab_es_ibfk_2` FOREIGN KEY (`homework_id`) REFERENCES `homework_ab_es` (`homework_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -92,7 +87,7 @@ CREATE TABLE `homework_ab_es` (
   PRIMARY KEY (`homework_id`),
   KEY `course_id` (`course_id`),
   CONSTRAINT `homework_ab_es_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course_ab_es` (`course_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101,7 +96,7 @@ CREATE TABLE `homework_ab_es` (
 
 LOCK TABLES `homework_ab_es` WRITE;
 /*!40000 ALTER TABLE `homework_ab_es` DISABLE KEYS */;
-INSERT INTO `homework_ab_es` VALUES (1,'homework 1','2023-05-25',10);
+INSERT INTO `homework_ab_es` VALUES (1,'homework1','2023-05-15',1),(2,'homework2','2023-05-16',2),(3,'homework3','2023-05-17',3),(4,'homework4','2023-05-18',4),(5,'homework5','2023-05-19',5),(6,'homework6','2023-05-20',6),(7,'homework7','2023-05-21',7),(8,'homework8','2023-05-22',8),(9,'homework9','2023-05-23',9),(10,'homework10','2023-05-24',10);
 /*!40000 ALTER TABLE `homework_ab_es` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,20 +108,15 @@ DROP TABLE IF EXISTS `homework_notes_ab_es`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `homework_notes_ab_es` (
-  `session_id` int DEFAULT NULL,
-  `personal_id` varchar(50) DEFAULT NULL,
-  `program_id` int NOT NULL,
-  `course_id` int NOT NULL,
+  `note_id` int NOT NULL AUTO_INCREMENT,
+  `not_text` text NOT NULL,
+  `personal_id` varchar(10) NOT NULL,
   `homework_id` int NOT NULL,
-  `note` varchar(1000) DEFAULT NULL,
+  PRIMARY KEY (`note_id`),
   KEY `personal_id` (`personal_id`),
-  KEY `program_id` (`program_id`),
-  KEY `course_id` (`course_id`),
   KEY `homework_id` (`homework_id`),
   CONSTRAINT `homework_notes_ab_es_ibfk_1` FOREIGN KEY (`personal_id`) REFERENCES `student_info` (`personal_id`),
-  CONSTRAINT `homework_notes_ab_es_ibfk_2` FOREIGN KEY (`program_id`) REFERENCES `program_ab_es` (`program_id`),
-  CONSTRAINT `homework_notes_ab_es_ibfk_3` FOREIGN KEY (`course_id`) REFERENCES `course_ab_es` (`course_id`),
-  CONSTRAINT `homework_notes_ab_es_ibfk_4` FOREIGN KEY (`homework_id`) REFERENCES `homework_ab_es` (`homework_id`)
+  CONSTRAINT `homework_notes_ab_es_ibfk_2` FOREIGN KEY (`homework_id`) REFERENCES `homework_ab_es` (`homework_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -160,7 +150,7 @@ CREATE TABLE `program_ab_es` (
 
 LOCK TABLES `program_ab_es` WRITE;
 /*!40000 ALTER TABLE `program_ab_es` DISABLE KEYS */;
-INSERT INTO `program_ab_es` VALUES (1,'Medicine',5),(2,'programing',3);
+INSERT INTO `program_ab_es` VALUES (1,'Medicine',5),(2,'Programing',3);
 /*!40000 ALTER TABLE `program_ab_es` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -174,7 +164,10 @@ DROP TABLE IF EXISTS `session_ab_es`;
 CREATE TABLE `session_ab_es` (
   `session_id` int NOT NULL AUTO_INCREMENT,
   `session_name` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`session_id`)
+  `personal_id` varchar(10) NOT NULL,
+  PRIMARY KEY (`session_id`),
+  KEY `personal_id` (`personal_id`),
+  CONSTRAINT `session_ab_es_ibfk_1` FOREIGN KEY (`personal_id`) REFERENCES `student_info` (`personal_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -188,36 +181,29 @@ LOCK TABLES `session_ab_es` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `session_details_ab_es`
+-- Table structure for table `student_course_ab_es`
 --
 
-DROP TABLE IF EXISTS `session_details_ab_es`;
+DROP TABLE IF EXISTS `student_course_ab_es`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `session_details_ab_es` (
-  `session_id` int DEFAULT NULL,
-  `personal_id` varchar(50) DEFAULT NULL,
-  `program_id` int NOT NULL,
+CREATE TABLE `student_course_ab_es` (
+  `personal_id` varchar(10) NOT NULL,
   `course_id` int NOT NULL,
-  `homework_id` int NOT NULL,
-  KEY `personal_id` (`personal_id`),
-  KEY `program_id` (`program_id`),
+  PRIMARY KEY (`personal_id`,`course_id`),
   KEY `course_id` (`course_id`),
-  KEY `homework_id` (`homework_id`),
-  CONSTRAINT `session_details_ab_es_ibfk_1` FOREIGN KEY (`personal_id`) REFERENCES `student_info` (`personal_id`),
-  CONSTRAINT `session_details_ab_es_ibfk_2` FOREIGN KEY (`program_id`) REFERENCES `program_ab_es` (`program_id`),
-  CONSTRAINT `session_details_ab_es_ibfk_3` FOREIGN KEY (`course_id`) REFERENCES `course_ab_es` (`course_id`),
-  CONSTRAINT `session_details_ab_es_ibfk_4` FOREIGN KEY (`homework_id`) REFERENCES `homework_ab_es` (`homework_id`)
+  CONSTRAINT `student_course_ab_es_ibfk_1` FOREIGN KEY (`personal_id`) REFERENCES `student_info` (`personal_id`),
+  CONSTRAINT `student_course_ab_es_ibfk_2` FOREIGN KEY (`course_id`) REFERENCES `course_ab_es` (`course_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `session_details_ab_es`
+-- Dumping data for table `student_course_ab_es`
 --
 
-LOCK TABLES `session_details_ab_es` WRITE;
-/*!40000 ALTER TABLE `session_details_ab_es` DISABLE KEYS */;
-/*!40000 ALTER TABLE `session_details_ab_es` ENABLE KEYS */;
+LOCK TABLES `student_course_ab_es` WRITE;
+/*!40000 ALTER TABLE `student_course_ab_es` DISABLE KEYS */;
+/*!40000 ALTER TABLE `student_course_ab_es` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -234,11 +220,9 @@ CREATE TABLE `student_info` (
   `user_name` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `program_id` int NOT NULL,
+  `program_name` varchar(50) NOT NULL,
   `year_of_study` int NOT NULL,
-  PRIMARY KEY (`personal_id`),
-  KEY `program_id` (`program_id`),
-  CONSTRAINT `student_info_ibfk_1` FOREIGN KEY (`program_id`) REFERENCES `program_ab_es` (`program_id`)
+  PRIMARY KEY (`personal_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -248,8 +232,33 @@ CREATE TABLE `student_info` (
 
 LOCK TABLES `student_info` WRITE;
 /*!40000 ALTER TABLE `student_info` DISABLE KEYS */;
-INSERT INTO `student_info` VALUES ('1234567890','a','a','a','a','a@a.a',1,1);
 /*!40000 ALTER TABLE `student_info` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `student_session_ab_es`
+--
+
+DROP TABLE IF EXISTS `student_session_ab_es`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `student_session_ab_es` (
+  `personal_id` varchar(10) NOT NULL,
+  `session_id` int NOT NULL,
+  PRIMARY KEY (`personal_id`,`session_id`),
+  KEY `session_id` (`session_id`),
+  CONSTRAINT `student_session_ab_es_ibfk_1` FOREIGN KEY (`personal_id`) REFERENCES `student_info` (`personal_id`),
+  CONSTRAINT `student_session_ab_es_ibfk_2` FOREIGN KEY (`session_id`) REFERENCES `session_ab_es` (`session_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `student_session_ab_es`
+--
+
+LOCK TABLES `student_session_ab_es` WRITE;
+/*!40000 ALTER TABLE `student_session_ab_es` DISABLE KEYS */;
+/*!40000 ALTER TABLE `student_session_ab_es` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -261,4 +270,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-24 18:02:15
+-- Dump completed on 2023-04-26 20:26:11

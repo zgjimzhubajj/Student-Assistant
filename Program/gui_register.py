@@ -56,14 +56,10 @@ class UI_register(QMainWindow):
     def button_register_pushed(self):
         self.get_window_values()
         self.wrong_inputs = True
-
         self.check_input()
-
         if self.wrong_inputs:
             self.cntrl.register_student_in_database(self.first_name, self.last_name, self.email, self.username, self.password, self.personal_id, self.year_of_study, self.name_of_program)
-
             self.clear_window()
-
             self.closed.emit()  # emit the closed signal
             self.close()  # close the new window
 

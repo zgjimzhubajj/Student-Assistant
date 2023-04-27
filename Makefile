@@ -13,6 +13,10 @@ install-requirements: check-venv
 	$(PYTHON) -m pip install --upgrade -q pip
 	$(PYTHON) -m pip install -r requirements.txt
 
+install-mysql: check-venv
+	$(PYTHON) -m pip install --upgrade -q pip
+	$(PYTHON) -m pip install mysql-connector-python
+
 install-toml: check-venv
 	$(PYTHON) -m pip install --upgrade -q pip
 	$(PYTHON) -m pip install .
@@ -21,9 +25,6 @@ install-toml: check-venv
 build-toml: install-toml
 	$(PYTHON) -m pip install --upgrade -q pip
 	$(PYTHON) -m build
-
-run: check-venv
-	@$(PYTHON) Program/gui_login.py
 
 check-venv:
 	@if [ -z "$$(which python | grep -o .venv)" ]; then \
@@ -34,7 +35,8 @@ pylint: check-venv
 	@find Program/ -name '*.py' -print0 | xargs -0 pylint -d C0103 -rn
 
 test: check-venv
-	$(PYTHON) -m unittest discover -p 'test_*.py' -v -b
+	$(PYTHON) Program/test_read_db.py
+	$(PYTHON) Program/test_write_db.py
 
 flake8: check-venv
 	@$(call MESSAGE,$@)
@@ -46,9 +48,15 @@ clean:
 	rm -rf __pycache__
 	rm -rf htmlcov
 
-coverage:
+coverage-read:
 	@$(call MESSAGE,$@)
-	coverage run -m unittest discover
+	coverage run Program/test_read_db.py  
+	coverage html
+	coverage report -m
+	
+coverage-write:
+	@$(call MESSAGE,$@) 
+	coverage run Program/test_write_db.py
 	coverage html
 	coverage report -m
 
