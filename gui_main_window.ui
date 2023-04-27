@@ -79,7 +79,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>list widget. list of homeworks that this student has</string>
+       <string>Courses</string>
       </property>
      </widget>
      <widget class="QLabel" name="lbl_list_view">
@@ -92,7 +92,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>list view. list of homeworks that this student has with his group</string>
+       <string>Homework details</string>
       </property>
      </widget>
      <widget class="QLabel" name="lbl_ts_time_left_for_next_homework_3">
@@ -199,7 +199,7 @@
      <x>0</x>
      <y>0</y>
      <width>878</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
