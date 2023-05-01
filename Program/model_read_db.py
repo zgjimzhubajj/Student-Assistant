@@ -150,6 +150,21 @@ class Read_db:
         self.close_db()
         return list_of_lists
 
-    # time_manegment tab methods
+    # Time_management tab methods
+    def get_first_name(self, username):
+        self.open_db()
+        self.mycursor.execute(f"SELECT first_name FROM student_info WHERE user_name = '{username}';")
+        self.myresult = self.mycursor.fetchall()
+        list_of_first_name = []
+        for item in self.myresult:
+            list_of_first_name.append(item[0])
+        self.close_db()
+        return list_of_first_name[0]
+
+    def get_homeworks(self, username):
+        list_courses = self.get_course(username)
+        for course in list_courses:
+            return self.get_homework_detail(course)
+
 
     # material tab methods

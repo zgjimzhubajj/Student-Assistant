@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab_team_session">
      <attribute name="title">
@@ -172,6 +172,99 @@
      <attribute name="title">
       <string>Time Management</string>
      </attribute>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>350</y>
+        <width>191</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Start Pomodoro</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>410</y>
+        <width>191</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Pomodoro settings</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbl_tm_welcome">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>111</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Welcome</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbl_tm_course_task_date">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>70</y>
+        <width>261</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Course                          Task                     Date</string>
+      </property>
+     </widget>
+     <widget class="QListWidget" name="list_widget_tm_example">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>100</y>
+        <width>256</width>
+        <height>111</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbl_tm_upcoming_events">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>111</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Upcoming events</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_material">
      <attribute name="title">
@@ -182,8 +275,8 @@
    <widget class="QPushButton" name="btn_log_out">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>640</y>
+      <x>370</x>
+      <y>630</y>
       <width>111</width>
       <height>24</height>
      </rect>
@@ -199,7 +292,7 @@
      <x>0</x>
      <y>0</y>
      <width>878</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

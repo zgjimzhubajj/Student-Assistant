@@ -43,6 +43,11 @@ class Controller():
 
 # gui_main_window methods
     # time_management tab methods
+    def get_first_name(self, username):
+        return self.read_db.get_first_name(username)
+    
+    def get_homeworks(self, username):
+        return self.read_db.get_homeworks(username)
 
     # team_session tab methods
     def get_course(self, username):

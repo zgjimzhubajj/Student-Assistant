@@ -40,7 +40,9 @@ class UI_main_window(QMainWindow):
         self.lbl_ts_time_left_for_next_homework_3 = self.findChild(QLabel, "lbl_ts_time_left_for_next_homework_3")
         self.lbl_ts_time_left_for_next_homework_4 = self.findChild(QLabel, "lbl_ts_time_left_for_next_homework_4")
         self.lbl_ts_time_left_for_next_homework_5 = self.findChild(QLabel, "lbl_ts_time_left_for_next_homework_5")
-        # time manegement tab
+        # Time management tab
+        self.lbl_tm_welcome = self.findChild(QLabel, "lbl_tm_welcome")
+
 
         # material tab
 
@@ -49,6 +51,7 @@ class UI_main_window(QMainWindow):
         self.list_widget_ts_homework = self.findChild(QListWidget, "list_widget_ts_homework")
         self.list_widget_homework_detail = self.findChild(QListWidget, "list_widget_homework_detail")
         # time management tab
+        self.list_widget_tm_example = self.findChild(QListWidget, "list_widget_tm_example")
 
         # material tab
 
@@ -57,6 +60,14 @@ class UI_main_window(QMainWindow):
         self.list_widget_ts_homework.addItems(self.cntrl.get_course(username))
         self.list_widget_homework_detail.clear()
         # time manegement tab
+
+        self.lbl_tm_welcome.setText(f"Welcome {self.cntrl.get_first_name(self.username).capitalize()}!\nHow would you like to organize your day?")
+        self.lbl_tm_welcome.adjustSize()
+
+        for loop in range(3):
+            for homework in self.cntrl.get_homeworks(self.username):                                # year(str)                 # month(str)          # day(str) Convert to int to compare
+                homework_details = "                                 " + homework[0] + "       " + homework[1] + "-" + homework[2] + "-" + homework[3]
+                self.list_widget_tm_example.addItem(homework_details)
 
         # material tab
 
@@ -103,7 +114,7 @@ class UI_main_window(QMainWindow):
             homework_details = "Homework name: " + homework[0] + " " + " Homework deadline: " + homework[1] + "/" + homework[2] + "/" + homework[3]
             self.list_widget_homework_detail.addItem(homework_details)
 
-    # time manegement tab
+    # Time management tab
 
     # material tab
 
