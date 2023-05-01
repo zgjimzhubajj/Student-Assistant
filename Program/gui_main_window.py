@@ -64,11 +64,6 @@ class UI_main_window(QMainWindow):
         self.lbl_tm_welcome.setText(f"Welcome {self.cntrl.get_first_name(self.username).capitalize()}!\nHow would you like to organize your day?")
         self.lbl_tm_welcome.adjustSize()
 
-        for loop in range(3):
-            for homework in self.cntrl.get_homeworks(self.username):                                # year(str)                 # month(str)          # day(str) Convert to int to compare
-                homework_details = "                                 " + homework[0] + "       " + homework[1] + "-" + homework[2] + "-" + homework[3]
-                self.list_widget_tm_example.addItem(homework_details)
-
         # material tab
 
     # actions for list widget objects
@@ -76,6 +71,15 @@ class UI_main_window(QMainWindow):
         self.list_widget_ts_homework.itemClicked.connect(self.text_clicked_item_homeworks)
 
         # time manegement tab
+
+        # all_homeworks_list = self.cntrl.get_homeworks(self.username)
+        # new_list = []
+        # for homework in all_homeworks_list:
+        # #compare the time with the homework[2], homework[3], homework[4]
+        #     if > 14:
+        #     new_list.append(homework)
+        
+        self.list_widget_tm_example.addItems(self.cntrl.get_homeworks(self.username))
 
         # material tab
 

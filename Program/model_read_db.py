@@ -163,8 +163,14 @@ class Read_db:
 
     def get_homeworks(self, username):
         list_courses = self.get_course(username)
+        list_of_homeworks = []
         for course in list_courses:
-            return self.get_homework_detail(course)
+            line_in_example_list = f"{course}"
+            for homework in self.get_homework_detail(course):
+                line_in_example_list = line_in_example_list + "       " + homework[0] + "       " + homework[1] + "-" + homework[2] + "-" + homework[3]
+                list_of_homeworks.append(line_in_example_list)
+        return list_of_homeworks
+
 
 
     # material tab methods
