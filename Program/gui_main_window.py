@@ -4,6 +4,7 @@ from PyQt5.QtCore import *
 from gui_create_session_window import UI_create_session_window
 from gui_see_session_window import UI_see_session_window
 from controller import Controller
+import datetime
 
 
 class UI_main_window(QMainWindow):
@@ -43,6 +44,11 @@ class UI_main_window(QMainWindow):
         # Time management tab
         self.lbl_tm_welcome = self.findChild(QLabel, "lbl_tm_welcome")
 
+        self.lbl_tm_reminder_message = self.findChild(QLabel, "lbl_tm_reminder_message")
+        self.lbl_tm_reminder_course = self.findChild(QLabel, "lbl_tm_reminder_course")
+        self.lbl_tm_reminder_task = self.findChild(QLabel, "lbl_tm_reminder_task")
+        self.lbl_tm_reminder_date = self.findChild(QLabel, "lbl_tm_reminder_date")
+
 
         # material tab
 
@@ -64,6 +70,10 @@ class UI_main_window(QMainWindow):
         self.lbl_tm_welcome.setText(f"Welcome {self.cntrl.get_first_name(self.username).capitalize()}!\nHow would you like to organize your day?")
         self.lbl_tm_welcome.adjustSize()
 
+        self.reminder_of_upcoming_homeworks()
+        self.lbl_tm_reminder_message.adjustSize()
+
+
         # material tab
 
     # actions for list widget objects
@@ -72,14 +82,6 @@ class UI_main_window(QMainWindow):
 
         # time manegement tab
 
-        # all_homeworks_list = self.cntrl.get_homeworks(self.username)
-        # new_list = []
-        # for homework in all_homeworks_list:
-        # #compare the time with the homework[2], homework[3], homework[4]
-        #     if > 14:
-        #     new_list.append(homework)
-        
-        self.list_widget_tm_example.addItems(self.cntrl.get_homeworks(self.username))
 
         # material tab
 
@@ -133,3 +135,40 @@ class UI_main_window(QMainWindow):
         self.lbl_ts_time_left_for_next_homework_4.setText("")
         self.lbl_ts_time_left_for_next_homework_5.setText("")
         self.list_widget_homework_detail.clear()
+
+    def reminder_of_upcoming_homeworks(self):
+        """
+        Update the labels displaying the upcoming homeworks for the logged-in user.
+
+        Only showing those due in 14 days or less. Uses a QTimer to refresh the labels
+        every minute.
+        """
+        upcoming_homeworks = self.cntrl.get_homeworks(self.username)
+        course = []
+        task = []
+        date = []
+        for homework in upcoming_homeworks:
+            data = homework.split(" ")
+            due_date = datetime.datetime.strptime(data[2], '%Y-%m-%d').date()
+            days_until_due = (due_date - datetime.date.today()).days
+            if days_until_due <= 14:
+                course.append(data[0])
+                task.append(data[1])
+                date.append(data[2])
+
+        string_course = "\n".join(course)
+        string_task = "\n".join(task)
+        string_date = "\n".join(date)
+
+        self.lbl_tm_reminder_course.setText(f"{string_course}")
+        self.lbl_tm_reminder_task.setText(f"{string_task}")
+        self.lbl_tm_reminder_date.setText(f"{string_date}")
+
+        self.lbl_tm_reminder_course.adjustSize()
+        self.lbl_tm_reminder_task.adjustSize()
+        self.lbl_tm_reminder_date.adjustSize()
+
+        # Create a QTimer to update the labels every minute
+        timer = QTimer(self)
+        timer.timeout.connect(self.reminder_of_upcoming_homeworks)
+        timer.start(60000)  # 60000 milliseconds = 1 minute

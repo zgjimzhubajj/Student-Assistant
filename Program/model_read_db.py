@@ -167,7 +167,7 @@ class Read_db:
         for course in list_courses:
             line_in_example_list = f"{course}"
             for homework in self.get_homework_detail(course):
-                line_in_example_list = line_in_example_list + "       " + homework[0] + "       " + homework[1] + "-" + homework[2] + "-" + homework[3]
+                line_in_example_list = line_in_example_list + " " + homework[0] + " " + homework[1] + "-" + homework[2] + "-" + homework[3]
                 list_of_homeworks.append(line_in_example_list)
         return list_of_homeworks
 
