@@ -23,6 +23,10 @@ class UI_main_window(QMainWindow):
         self.btn_ts_see_session = self.findChild(QPushButton, "btn_ts_see_session")
         # time manegement tab
 
+        self.btn_tm_add_activity = self.findChild(QPushButton, "btn_tm_add_activity")
+        self.btn_tm_remove_activity = self.findChild(QPushButton, "btn_tm_remove_activity")
+
+
         # material tab
 
     # buttons actions
@@ -30,7 +34,11 @@ class UI_main_window(QMainWindow):
         self.btn_log_out.clicked.connect(self.button_log_out_pushed)
         self.btn_ts_create_session.clicked.connect(self.button_ts_create_session_pushed)
         self.btn_ts_see_session.clicked.connect(self.button_ts_see_session_pushed)
-        # time manegement tab
+
+        # Time management tab
+
+        self.btn_tm_add_activity.clicked.connect(self.open_time_schedule_dialog)
+        self.btn_tm_remove_activity.clicked.connect(self.remove_activity_from_time_schedule)
 
         # material tab
 
@@ -57,7 +65,7 @@ class UI_main_window(QMainWindow):
         self.list_widget_ts_homework = self.findChild(QListWidget, "list_widget_ts_homework")
         self.list_widget_homework_detail = self.findChild(QListWidget, "list_widget_homework_detail")
         # time management tab
-        self.list_widget_tm_example = self.findChild(QListWidget, "list_widget_tm_example")
+        self.list_widget_tm_time_schedule = self.findChild(QListWidget, "list_widget_tm_time_schedule")
 
         # material tab
 
@@ -81,7 +89,6 @@ class UI_main_window(QMainWindow):
         self.list_widget_ts_homework.itemClicked.connect(self.text_clicked_item_homeworks)
 
         # time manegement tab
-
 
         # material tab
 
@@ -122,6 +129,17 @@ class UI_main_window(QMainWindow):
 
     # Time management tab
 
+    def add_activity_to_time_schedule(self, item_text):
+        self.list_widget_tm_time_schedule.addItem(item_text)
+
+    def remove_activity_from_time_schedule(self):
+        selected_items = self.list_widget_tm_time_schedule.selectedItems()
+        if not selected_items:
+            return
+
+        for item in selected_items:
+            self.list_widget_tm_time_schedule.takeItem(self.list_widget_tm_time_schedule.row(item))
+
     # material tab
 
 # methods for main window
@@ -141,7 +159,7 @@ class UI_main_window(QMainWindow):
         Update the labels displaying the upcoming homeworks for the logged-in user.
 
         Only showing those due in 14 days or less. Uses a QTimer to refresh the labels
-        every minute.
+        once every minute.
         """
         upcoming_homeworks = self.cntrl.get_homeworks(self.username)
         course = []
@@ -172,3 +190,53 @@ class UI_main_window(QMainWindow):
         timer = QTimer(self)
         timer.timeout.connect(self.reminder_of_upcoming_homeworks)
         timer.start(60000)  # 60000 milliseconds = 1 minute
+
+    def open_time_schedule_dialog(self):
+        """
+        Open a dialog window to allow the user to add a new activity to the schedule.
+
+        The dialog window contains line edit fields for the start time, end time, and activity,
+        as well as "OK" and "Close" buttons. If the user clicks "OK", the new activity is added
+        to the list widget. If the user clicks "Close", the dialog window is hidden and control
+        returns to the main window.
+        """
+        dialog = QDialog()
+        dialog.setWindowTitle("Add Activity")
+
+        # Create line edit fields for start time, end time, and activity
+        start_time_label = QLabel("Start time:", dialog)
+        start_time_edit = QLineEdit(dialog)
+        end_time_label = QLabel("End time:", dialog)
+        end_time_edit = QLineEdit(dialog)
+        activity_label = QLabel("Activity:", dialog)
+        activity_edit = QLineEdit(dialog)
+        # Create "OK" and "Cancel" buttons
+        ok_button = QPushButton("OK", dialog)
+        close_button = QPushButton("Close", dialog)
+
+        # Add the line edit fields and buttons to the dialog layout
+        layout = QVBoxLayout()
+        layout.addWidget(start_time_label)
+        layout.addWidget(start_time_edit)
+        layout.addWidget(end_time_label)
+        layout.addWidget(end_time_edit)
+        layout.addWidget(activity_label)
+        layout.addWidget(activity_edit)
+        layout.addWidget(ok_button)
+        layout.addWidget(close_button)
+        dialog.setLayout(layout)
+
+        # Connect the "OK" and "Close" buttons to their respective methods
+        ok_button.clicked.connect(lambda: self.add_activity_to_time_schedule(f"{start_time_edit.text()} - {end_time_edit.text()}: {activity_edit.text()}"))
+        close_button.clicked.connect(dialog.hide)
+
+        # Show the dialog and wait for the user to close it
+        if dialog.exec_() == QDialog.Accepted:
+            # If the user clicked "OK", add the new activity to the list widget
+            start_time = start_time_edit.text()
+            end_time = end_time_edit.text()
+            activity = activity_edit.text()
+            item_text = f"{start_time} - {end_time}: {activity}"
+            self.list_widget_tm_time_schedule.addItem(item_text)
+        else:
+            pass

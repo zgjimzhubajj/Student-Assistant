@@ -294,6 +294,61 @@
        <string>TextLabel</string>
       </property>
      </widget>
+     <widget class="QListWidget" name="list_widget_tm_time_schedule">
+      <property name="geometry">
+       <rect>
+        <x>550</x>
+        <y>40</y>
+        <width>251</width>
+        <height>131</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_tm_add_activity">
+      <property name="geometry">
+       <rect>
+        <x>570</x>
+        <y>180</y>
+        <width>91</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Add</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>560</x>
+        <y>20</y>
+        <width>241</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Customize your time schedule for today</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_tm_remove_activity">
+      <property name="geometry">
+       <rect>
+        <x>670</x>
+        <y>180</y>
+        <width>91</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Remove</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_material">
      <attribute name="title">
