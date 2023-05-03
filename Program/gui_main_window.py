@@ -125,7 +125,13 @@ class UI_main_window(QMainWindow):
         self.list_widget_tm_time_schedule.addItem(item_text)
 
     def btn_tm_remove_activity_pushed(self):
-        pass
+        selected_items = self.list_widget_tm_time_schedule.selectedItems()
+        if not selected_items:
+            return
+
+        for item in selected_items:
+            self.list_widget_tm_time_schedule.takeItem(self.list_widget_tm_time_schedule.row(item))
+
     # material tab
 
 # methods for list widget actions

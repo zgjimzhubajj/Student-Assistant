@@ -67,7 +67,7 @@ class UI_dialog_window(QMainWindow):
         elif not self.start_time.isdigit():
             self.lbl_wrong_input.setText("Start time must be numbers only!")
             self.wrong_inputs = False
-        elif num_chars2 >= 2 or num_chars2 < 0:
+        elif num_chars2 >= 24 or num_chars2 < 0:
             self.lbl_wrong_input.setText("End time must be 1 to 2 integers!")
             self.wrong_inputs = False
         elif self.end_time.strip() == "":
