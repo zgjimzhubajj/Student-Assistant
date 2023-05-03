@@ -3,7 +3,7 @@ from PyQt5 import uic
 from PyQt5.QtCore import *
 from gui_create_session_window import UI_create_session_window
 from gui_see_session_window import UI_see_session_window
-from gui_dialog import UI_dialog_window
+from gui_time_schedule_dialog import UI_dialog_window
 from controller import Controller
 import datetime
 
@@ -115,7 +115,6 @@ class UI_main_window(QMainWindow):
 
     # time manegement tab
     def btn_tm_add_activity_pushed(self):
-        self.clear_window()
         self.dialog = UI_dialog_window(self)
         self.dialog.closed.connect(self.show_this_window)
         self.close()

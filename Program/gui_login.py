@@ -25,6 +25,7 @@ class UI_login(QMainWindow):
         # label object
         self.lbl_wrong_input = self.findChild(QLabel, "lbl_wrong_input")
 
+
         # creating textFields objects so we can use them later in the button's actions
         self.txt_username = self.findChild(QTextEdit, "txt_username")
         self.txt_password = self.findChild(QTextEdit, "txt_password")

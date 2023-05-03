@@ -10,7 +10,7 @@ class UI_dialog_window(QMainWindow):
     def __init__(self, parent=None):
         super(UI_dialog_window, self).__init__(parent)
         self.main_window = parent
-        uic.loadUi("gui_dialog.ui", self)
+        uic.loadUi("gui_time_schedule_dialog.ui", self)
         
 
         # buttons object
@@ -23,6 +23,7 @@ class UI_dialog_window(QMainWindow):
 
         # label objects
         self.lbl_wrong_input = self.findChild(QLabel, "lbl_wrong_input")
+        self.lbl_wrong_input.setStyleSheet("color: red")
 
         # textfield objects
         self.txt_start_time = self.findChild(QLineEdit, "txt_start_time")
@@ -58,8 +59,8 @@ class UI_dialog_window(QMainWindow):
         self.activity = self.txt_activity.text()
         num_chars1 = len(self.start_time)
         num_chars2 = len(self.end_time)
-        if num_chars1 >= 24 or num_chars1 < 0:
-            self.lbl_wrong_input.setText("start time must be 1 to 2 integers!")
+        if num_chars1 > 2 or num_chars1 < 1:
+            self.lbl_wrong_input.setText("Start time must be 1 to 2 integers! Format: 0 or 00")
             self.wrong_inputs = False
         elif self.start_time.strip() == "":
             self.lbl_wrong_input.setText("You must write something as start time!")
@@ -67,8 +68,11 @@ class UI_dialog_window(QMainWindow):
         elif not self.start_time.isdigit():
             self.lbl_wrong_input.setText("Start time must be numbers only!")
             self.wrong_inputs = False
-        elif num_chars2 >= 24 or num_chars2 < 0:
-            self.lbl_wrong_input.setText("End time must be 1 to 2 integers!")
+        elif int(self.start_time) > 24 or int(self.start_time) < 0:
+            self.lbl_wrong_input.setText("Start time must be in range of 00 to 23! Format: 0 or 00")
+            self.wrong_inputs = False
+        elif num_chars2 > 2 or num_chars2 < 1:
+            self.lbl_wrong_input.setText("End time must be 1 to 2 integers! Format: 0 or 00")
             self.wrong_inputs = False
         elif self.end_time.strip() == "":
             self.lbl_wrong_input.setText("You must write something as end time!")
@@ -76,9 +80,12 @@ class UI_dialog_window(QMainWindow):
         elif not self.end_time.isdigit():
             self.lbl_wrong_input.setText("End time must be numbers only!")
             self.wrong_inputs = False
+        elif int(self.end_time) > 24 or int(self.end_time) < 0:
+            self.lbl_wrong_input.setText("End time must be in range of 00 to 23! Format: 0 or 00")
+            self.wrong_inputs = False            
         elif self.activity.strip() == "":
             self.lbl_wrong_input.setText("You must write something as activity!")
             self.wrong_inputs = False
-        elif self.start_time == self.end_time:
+        elif int(self.start_time) == int(self.end_time):
             self.lbl_wrong_input.setText("You must choose different hours for start and end time!")
             self.wrong_inputs = False
