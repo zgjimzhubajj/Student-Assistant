@@ -250,6 +250,51 @@ class TestReadDb(unittest.TestCase):
         write_db.mydb.commit()
         write_db.close_db()
 
+    # Time management tab
+    def test_get_first_name(self):
+        first_name = "a"
+        last_name = "a"
+        email = "a@a.a"
+        password = "a"
+        username = "a"
+        personal_id = "1234567890"
+        year_of_study = "1"
+        name_of_program = "Programing"
+        read_db = Read_db()
+        write_db = Write_db()
+        read_db.open_db()
+        write_db.insert_student_info(first_name, last_name, email, username, password, personal_id, year_of_study, name_of_program)
+        expected_first_name = "a"
+        self.assertEqual(read_db.get_first_name(username), expected_first_name)
+        write_db.open_db()
+        write_db.mycursor.execute(f"DELETE FROM student_course_ab_es WHERE personal_id = '{personal_id}';")
+        write_db.mydb.commit()
+        write_db.mycursor.execute(f"DELETE FROM student_info WHERE personal_id = '{personal_id}';")
+        write_db.mydb.commit()
+        write_db.close_db()
+
+    def test_get_homeworks(self):
+        first_name = "a"
+        last_name = "a"
+        email = "a@a.a"
+        password = "a"
+        username = "a"
+        personal_id = "1234567890"
+        year_of_study = "1"
+        name_of_program = "Programing"
+        read_db = Read_db()
+        write_db = Write_db()
+        read_db.open_db()
+        write_db.insert_student_info(first_name, last_name, email, username, password, personal_id, year_of_study, name_of_program)
+        expected_list = ['java homework1 2023-5-15', 'python homework2 2023-5-16', 'agile homework3 2023-5-17']
+        self.assertEqual(read_db.get_homeworks(username), expected_list)
+        write_db.open_db()
+        write_db.mycursor.execute(f"DELETE FROM student_course_ab_es WHERE personal_id = '{personal_id}';")
+        write_db.mydb.commit()
+        write_db.mycursor.execute(f"DELETE FROM student_info WHERE personal_id = '{personal_id}';")
+        write_db.mydb.commit()
+        write_db.close_db()
+
 
 if __name__ == "__main__":
     unittest.main()
