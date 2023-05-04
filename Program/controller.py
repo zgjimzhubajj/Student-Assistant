@@ -48,6 +48,12 @@ class Controller():
     
     def get_homeworks(self, username):
         return self.read_db.get_homeworks(username)
+    
+    def get_media_type_from_database(self):
+        return self.read_db.get_media_type_from_database()
+
+    def get_name_of_media(self,type_of_media):
+        return self.read_db.get_name_of_media(type_of_media)
 
     # team_session tab methods
     def get_course(self, username):
