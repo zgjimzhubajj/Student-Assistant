@@ -4,6 +4,8 @@ from PyQt5.QtCore import *
 from gui_create_session_window import UI_create_session_window
 from gui_see_session_window import UI_see_session_window
 from gui_time_schedule_dialog import UI_dialog_window
+from gui_pomodoro_settings import UI_pomodoro_settings
+from gui_pomodoro_session import UI_pomodoro_session
 from controller import Controller
 import datetime
 
@@ -26,7 +28,8 @@ class UI_main_window(QMainWindow):
         # time manegement tab
         self.btn_tm_add_activity = self.findChild(QPushButton, "btn_tm_add_activity")
         self.btn_tm_remove_activity = self.findChild(QPushButton, "btn_tm_remove_activity")
-
+        self.btn_tm_start_pomodoro = self.findChild(QPushButton, "btn_tm_start_pomodoro")
+        self.btn_tm_pomodoro_settings = self.findChild(QPushButton, "btn_tm_pomodoro_settings")
         # material tab
 
     # buttons actions
@@ -39,6 +42,8 @@ class UI_main_window(QMainWindow):
 
         self.btn_tm_add_activity.clicked.connect(self.btn_tm_add_activity_pushed)
         self.btn_tm_remove_activity.clicked.connect(self.btn_tm_remove_activity_pushed)
+        self.btn_tm_start_pomodoro.clicked.connect(self.btn_tm_start_pomodoro_pushed)
+        self.btn_tm_pomodoro_settings.clicked.connect(self.btn_tm_pomodoro_settings_pushed)
 
         # material tab
 
@@ -130,6 +135,18 @@ class UI_main_window(QMainWindow):
 
         for item in selected_items:
             self.list_widget_tm_time_schedule.takeItem(self.list_widget_tm_time_schedule.row(item))
+    
+    def btn_tm_start_pomodoro_pushed(self):
+        self.pomodoro_session = UI_pomodoro_session(self)
+        self.pomodoro_session.closed.connect(self.show_this_window)
+        self.close()
+        self.pomodoro_session.show()
+
+    def btn_tm_pomodoro_settings_pushed(self):
+        self.pomodoro_settings = UI_pomodoro_settings(self)
+        self.pomodoro_settings.closed.connect(self.show_this_window)
+        self.close()
+        self.pomodoro_settings.show()
 
     # material tab
 

@@ -172,7 +172,7 @@
      <attribute name="title">
       <string>Time Management</string>
      </attribute>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="btn_tm_start_pomodoro">
       <property name="geometry">
        <rect>
         <x>310</x>
@@ -185,7 +185,7 @@
        <string>Start Pomodoro</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="btn_tm_pomodoro_settings">
       <property name="geometry">
        <rect>
         <x>310</x>
