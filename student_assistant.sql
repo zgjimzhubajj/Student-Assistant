@@ -130,6 +130,58 @@ LOCK TABLES `homework_notes_ab_es` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `media_name_zgj`
+--
+
+DROP TABLE IF EXISTS `media_name_zgj`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `media_name_zgj` (
+  `media_name_id` int NOT NULL AUTO_INCREMENT,
+  `media_name` varchar(50) NOT NULL,
+  `media_link` varchar(300) DEFAULT NULL,
+  `media_id` int NOT NULL,
+  PRIMARY KEY (`media_name_id`),
+  KEY `media_id` (`media_id`),
+  CONSTRAINT `media_name_zgj_ibfk_1` FOREIGN KEY (`media_id`) REFERENCES `media_type_zgj` (`media_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `media_name_zgj`
+--
+
+LOCK TABLES `media_name_zgj` WRITE;
+/*!40000 ALTER TABLE `media_name_zgj` DISABLE KEYS */;
+INSERT INTO `media_name_zgj` VALUES (1,'Gangam style',NULL,1),(2,'Eminem I am not afraid',NULL,2);
+/*!40000 ALTER TABLE `media_name_zgj` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `media_type_zgj`
+--
+
+DROP TABLE IF EXISTS `media_type_zgj`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `media_type_zgj` (
+  `media_id` int NOT NULL AUTO_INCREMENT,
+  `media_name` varchar(50) NOT NULL,
+  PRIMARY KEY (`media_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `media_type_zgj`
+--
+
+LOCK TABLES `media_type_zgj` WRITE;
+/*!40000 ALTER TABLE `media_type_zgj` DISABLE KEYS */;
+INSERT INTO `media_type_zgj` VALUES (1,'video'),(2,'song');
+/*!40000 ALTER TABLE `media_type_zgj` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `pdf_files_mil`
 --
 
@@ -231,7 +283,7 @@ CREATE TABLE `student_course_ab_es` (
 
 LOCK TABLES `student_course_ab_es` WRITE;
 /*!40000 ALTER TABLE `student_course_ab_es` DISABLE KEYS */;
-INSERT INTO `student_course_ab_es` VALUES ('2345678901',1),('2345678901',2),('2345678901',3),('2345678901',4),('2345678901',5),('1234567890',6),('1234567890',7),('1234567890',8),('1234567890',9),('1234567890',10);
+INSERT INTO `student_course_ab_es` VALUES ('1234567890',1),('4545454545',1),('1234567890',2),('4545454545',2),('1234567890',3),('4545454545',3),('1234567890',4),('4545454545',4),('1234567890',5),('4545454545',5);
 /*!40000 ALTER TABLE `student_course_ab_es` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -261,7 +313,7 @@ CREATE TABLE `student_info` (
 
 LOCK TABLES `student_info` WRITE;
 /*!40000 ALTER TABLE `student_info` DISABLE KEYS */;
-INSERT INTO `student_info` VALUES ('0123456789','lik','oj','liko','Wle','je@gmail.com','Programing',1),('1234567890','bb','aa','kilo','lil','kd@gmail.com','Medicine',1),('2345678901','aa','bb','loki','lol','lkf@gmail.com','Programing',1);
+INSERT INTO `student_info` VALUES ('1234567890','a','a','a','a','a@a.a','Programing',1),('4545454545','a','a','g','g','a@.aa','Programing',1);
 /*!40000 ALTER TABLE `student_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -300,4 +352,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-05 13:17:15
+-- Dump completed on 2023-05-05 15:47:22
