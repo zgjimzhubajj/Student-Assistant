@@ -6,6 +6,7 @@ from gui_see_session_window import UI_see_session_window
 from gui_time_schedule_dialog import UI_dialog_window
 from gui_pomodoro_settings import UI_pomodoro_settings
 from gui_pomodoro_session import UI_pomodoro_session
+from gui_note_window import UI_note_window
 from controller import Controller
 import datetime
 
@@ -31,6 +32,8 @@ class UI_main_window(QMainWindow):
         self.btn_tm_start_pomodoro = self.findChild(QPushButton, "btn_tm_start_pomodoro")
         self.btn_tm_pomodoro_settings = self.findChild(QPushButton, "btn_tm_pomodoro_settings")
         # material tab
+        self.btn_m_select_lecture = self.findChild(QPushButton, "btn_m_select_lecture")
+        self.btn_m_add_note = self.findChild(QPushButton, "btn_m_add_note")
 
     # buttons actions
         # team session tab
@@ -46,6 +49,8 @@ class UI_main_window(QMainWindow):
         self.btn_tm_pomodoro_settings.clicked.connect(self.btn_tm_pomodoro_settings_pushed)
 
         # material tab
+        self.btn_m_select_lecture.clicked.connect(self.btn_m_select_lecture_pushed)
+        self.btn_m_add_note.clicked.connect(self.btn_m_add_note_pushed)
 
     # label objects
         # team session tab
@@ -62,8 +67,8 @@ class UI_main_window(QMainWindow):
         self.lbl_tm_reminder_task = self.findChild(QLabel, "lbl_tm_reminder_task")
         self.lbl_tm_reminder_date = self.findChild(QLabel, "lbl_tm_reminder_date")
 
-
         # material tab
+        self.lbl_m_note_text = self.findChild(QLabel, "lbl_m_note_text")
 
     # list objects
         # team session tab
@@ -73,6 +78,9 @@ class UI_main_window(QMainWindow):
         self.list_widget_tm_time_schedule = self.findChild(QListWidget, "list_widget_tm_time_schedule")
 
         # material tab
+        self.list_widget_m_courses = self.findChild(QListWidget, "list_widget_m_courses")
+        self.list_widget_m_lectures = self.findChild(QListWidget, "list_widget_m_lectures")
+        self.list_widget_m_notes = self.findChild(QListWidget, "list_widget_m_notes")
 
     # window settings when window open
         # team session tab
@@ -85,7 +93,6 @@ class UI_main_window(QMainWindow):
 
         self.reminder_of_upcoming_homeworks()
         self.lbl_tm_reminder_message.adjustSize()
-
 
         # material tab
 
@@ -124,7 +131,7 @@ class UI_main_window(QMainWindow):
         self.dialog.closed.connect(self.show_this_window)
         self.close()
         self.dialog.show()
-    
+
     def add_dialog(self, item_text):
         self.list_widget_tm_time_schedule.addItem(item_text)
 
@@ -135,7 +142,7 @@ class UI_main_window(QMainWindow):
 
         for item in selected_items:
             self.list_widget_tm_time_schedule.takeItem(self.list_widget_tm_time_schedule.row(item))
-    
+
     def btn_tm_start_pomodoro_pushed(self):
         self.pomodoro_session = UI_pomodoro_session(self)
         self.pomodoro_session.closed.connect(self.show_this_window)
@@ -149,6 +156,16 @@ class UI_main_window(QMainWindow):
         self.pomodoro_settings.show()
 
     # material tab
+    def btn_m_select_lecture_pushed(self):
+        pass
+
+    def btn_m_add_note_pushed(self):
+        self.note_window = UI_note_window(self)
+        self.note_window.closed.connect(self.show_this_window)
+        self.close()
+        self.note_window.show()
+
+
 
 # methods for list widget actions
     # team session tab
