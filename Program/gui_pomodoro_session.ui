@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>730</height>
+    <height>833</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,9 +17,9 @@
    <widget class="QListWidget" name="list_widget_name_of_media">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>280</y>
-      <width>256</width>
+      <x>190</x>
+      <y>370</y>
+      <width>531</width>
       <height>192</height>
      </rect>
     </property>
@@ -27,11 +27,16 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>340</y>
-      <width>111</width>
+      <x>20</x>
+      <y>430</y>
+      <width>151</width>
       <height>51</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>List of videos or songs</string>
@@ -41,22 +46,27 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>80</y>
-      <width>141</width>
+      <y>120</y>
+      <width>181</width>
       <height>61</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="text">
-     <string>erea where the video or song will be played</string>
+     <string>Video or Song will be shown</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_pause">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>580</y>
-      <width>75</width>
-      <height>23</height>
+      <x>30</x>
+      <y>710</y>
+      <width>141</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
@@ -66,10 +76,10 @@
    <widget class="QPushButton" name="btn_resume">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>580</y>
-      <width>75</width>
-      <height>23</height>
+      <x>200</x>
+      <y>710</y>
+      <width>141</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
@@ -79,10 +89,10 @@
    <widget class="QPushButton" name="btn_end_session">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>580</y>
-      <width>75</width>
-      <height>23</height>
+      <x>370</x>
+      <y>710</y>
+      <width>141</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
@@ -92,37 +102,37 @@
    <widget class="QLabel" name="lbl_backwards_counter">
     <property name="geometry">
      <rect>
-      <x>560</x>
-      <y>580</y>
-      <width>201</width>
+      <x>590</x>
+      <y>720</y>
+      <width>231</width>
       <height>71</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="text">
-     <string>counter backwords</string>
+     <string>Counter Backwards</string>
     </property>
    </widget>
    <widget class="QLabel" name="lbl_study_break_condition">
     <property name="geometry">
      <rect>
       <x>590</x>
-      <y>480</y>
-      <width>151</width>
+      <y>640</y>
+      <width>171</width>
       <height>51</height>
      </rect>
     </property>
-    <property name="text">
-     <string>study time / break time</string>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
     </property>
-   </widget>
-   <widget class="QMdiArea" name="mdiArea">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>60</y>
-      <width>361</width>
-      <height>160</height>
-     </rect>
+    <property name="text">
+     <string>Study time / Break time</string>
     </property>
    </widget>
   </widget>
