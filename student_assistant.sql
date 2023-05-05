@@ -130,55 +130,31 @@ LOCK TABLES `homework_notes_ab_es` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `media_name_zgj`
+-- Table structure for table `pdf_files_mil`
 --
 
-DROP TABLE IF EXISTS `media_name_zgj`;
+DROP TABLE IF EXISTS `pdf_files_mil`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `media_name_zgj` (
-  `media_name_id` int NOT NULL AUTO_INCREMENT,
-  `media_name` varchar(50) NOT NULL,
-  `media_link` varchar(300) DEFAULT NULL,
-  `media_id` int NOT NULL,
-  PRIMARY KEY (`media_name_id`),
-  KEY `media_id` (`media_id`),
-  CONSTRAINT `media_name_zgj_ibfk_1` FOREIGN KEY (`media_id`) REFERENCES `media_type_zgj` (`media_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `pdf_files_mil` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `file_name` varchar(255) NOT NULL,
+  `file_data` longblob NOT NULL,
+  `course_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `course_id` (`course_id`),
+  CONSTRAINT `pdf_files_mil_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course_ab_es` (`course_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `media_name_zgj`
+-- Dumping data for table `pdf_files_mil`
 --
 
-LOCK TABLES `media_name_zgj` WRITE;
-/*!40000 ALTER TABLE `media_name_zgj` DISABLE KEYS */;
-INSERT INTO `media_name_zgj` VALUES (1,'Gangam style',NULL,1),(2,'Eminem I am not afraid',NULL,2);
-/*!40000 ALTER TABLE `media_name_zgj` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `media_type_zgj`
---
-
-DROP TABLE IF EXISTS `media_type_zgj`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `media_type_zgj` (
-  `media_id` int NOT NULL AUTO_INCREMENT,
-  `media_name` varchar(50) NOT NULL,
-  PRIMARY KEY (`media_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `media_type_zgj`
---
-
-LOCK TABLES `media_type_zgj` WRITE;
-/*!40000 ALTER TABLE `media_type_zgj` DISABLE KEYS */;
-INSERT INTO `media_type_zgj` VALUES (1,'video'),(2,'song');
-/*!40000 ALTER TABLE `media_type_zgj` ENABLE KEYS */;
+LOCK TABLES `pdf_files_mil` WRITE;
+/*!40000 ALTER TABLE `pdf_files_mil` DISABLE KEYS */;
+INSERT INTO `pdf_files_mil` VALUES (1,'Lecture1_java.pdf',_binary '%PDF-1.4\n%\Ó\ë\é\á\n1 0 obj\n<</Title (Lecture1_java)\n/Producer (Skia/PDF m114 Google Docs Renderer)>>\nendobj\n3 0 obj\n<</ca 1\n/BM /Normal>>\nendobj\n4 0 obj\n<</Length 84>> stream\n1 0 0 -1 0 792 cm\nq\n.75 0 0 .75 0 0 cm\n1 1 1 RG 1 1 1 rg\n/G3 gs\n0 0 816 1056 re\nf\nQ\n\nendstream\nendobj\n2 0 obj\n<</Type /Page\n/Resources <</ProcSet [/PDF /Text /ImageB /ImageC /ImageI]\n/ExtGState <</G3 3 0 R>>>>\n/MediaBox [0 0 612 792]\n/Contents 4 0 R\n/StructParents 0\n/Parent 5 0 R>>\nendobj\n5 0 obj\n<</Type /Pages\n/Count 1\n/Kids [2 0 R]>>\nendobj\n6 0 obj\n<</Type /Catalog\n/Pages 5 0 R>>\nendobj\nxref\n0 7\n0000000000 65535 f \n0000000015 00000 n \n0000000273 00000 n \n0000000104 00000 n \n0000000141 00000 n \n0000000461 00000 n \n0000000516 00000 n \ntrailer\n<</Size 7\n/Root 6 0 R\n/Info 1 0 R>>\nstartxref\n563\n%%EOF\n',1),(2,'Lecture1_python.pdf',_binary '%PDF-1.4\n%\Ó\ë\é\á\n1 0 obj\n<</Title (Lecture1_python)\n/Producer (Skia/PDF m114 Google Docs Renderer)>>\nendobj\n3 0 obj\n<</ca 1\n/BM /Normal>>\nendobj\n4 0 obj\n<</Length 84>> stream\n1 0 0 -1 0 792 cm\nq\n.75 0 0 .75 0 0 cm\n1 1 1 RG 1 1 1 rg\n/G3 gs\n0 0 816 1056 re\nf\nQ\n\nendstream\nendobj\n2 0 obj\n<</Type /Page\n/Resources <</ProcSet [/PDF /Text /ImageB /ImageC /ImageI]\n/ExtGState <</G3 3 0 R>>>>\n/MediaBox [0 0 612 792]\n/Contents 4 0 R\n/StructParents 0\n/Parent 5 0 R>>\nendobj\n5 0 obj\n<</Type /Pages\n/Count 1\n/Kids [2 0 R]>>\nendobj\n6 0 obj\n<</Type /Catalog\n/Pages 5 0 R>>\nendobj\nxref\n0 7\n0000000000 65535 f \n0000000015 00000 n \n0000000275 00000 n \n0000000106 00000 n \n0000000143 00000 n \n0000000463 00000 n \n0000000518 00000 n \ntrailer\n<</Size 7\n/Root 6 0 R\n/Info 1 0 R>>\nstartxref\n565\n%%EOF\n',2),(3,'Lecture1_agile.pdf',_binary '%PDF-1.4\n%\Ó\ë\é\á\n1 0 obj\n<</Title (Lecture1_agile)\n/Producer (Skia/PDF m114 Google Docs Renderer)>>\nendobj\n3 0 obj\n<</ca 1\n/BM /Normal>>\nendobj\n4 0 obj\n<</Length 84>> stream\n1 0 0 -1 0 792 cm\nq\n.75 0 0 .75 0 0 cm\n1 1 1 RG 1 1 1 rg\n/G3 gs\n0 0 816 1056 re\nf\nQ\n\nendstream\nendobj\n2 0 obj\n<</Type /Page\n/Resources <</ProcSet [/PDF /Text /ImageB /ImageC /ImageI]\n/ExtGState <</G3 3 0 R>>>>\n/MediaBox [0 0 612 792]\n/Contents 4 0 R\n/StructParents 0\n/Parent 5 0 R>>\nendobj\n5 0 obj\n<</Type /Pages\n/Count 1\n/Kids [2 0 R]>>\nendobj\n6 0 obj\n<</Type /Catalog\n/Pages 5 0 R>>\nendobj\nxref\n0 7\n0000000000 65535 f \n0000000015 00000 n \n0000000274 00000 n \n0000000105 00000 n \n0000000142 00000 n \n0000000462 00000 n \n0000000517 00000 n \ntrailer\n<</Size 7\n/Root 6 0 R\n/Info 1 0 R>>\nstartxref\n564\n%%EOF\n',3),(4,'Lecture1_networking.pdf',_binary '%PDF-1.4\n%\Ó\ë\é\á\n1 0 obj\n<</Title (Lecture1_networking)\n/Producer (Skia/PDF m114 Google Docs Renderer)>>\nendobj\n3 0 obj\n<</ca 1\n/BM /Normal>>\nendobj\n4 0 obj\n<</Length 84>> stream\n1 0 0 -1 0 792 cm\nq\n.75 0 0 .75 0 0 cm\n1 1 1 RG 1 1 1 rg\n/G3 gs\n0 0 816 1056 re\nf\nQ\n\nendstream\nendobj\n2 0 obj\n<</Type /Page\n/Resources <</ProcSet [/PDF /Text /ImageB /ImageC /ImageI]\n/ExtGState <</G3 3 0 R>>>>\n/MediaBox [0 0 612 792]\n/Contents 4 0 R\n/StructParents 0\n/Parent 5 0 R>>\nendobj\n5 0 obj\n<</Type /Pages\n/Count 1\n/Kids [2 0 R]>>\nendobj\n6 0 obj\n<</Type /Catalog\n/Pages 5 0 R>>\nendobj\nxref\n0 7\n0000000000 65535 f \n0000000015 00000 n \n0000000279 00000 n \n0000000110 00000 n \n0000000147 00000 n \n0000000467 00000 n \n0000000522 00000 n \ntrailer\n<</Size 7\n/Root 6 0 R\n/Info 1 0 R>>\nstartxref\n569\n%%EOF\n',4),(5,'Lecture1_security.pdf',_binary '%PDF-1.4\n%\Ó\ë\é\á\n1 0 obj\n<</Title (Lecture1_security)\n/Producer (Skia/PDF m114 Google Docs Renderer)>>\nendobj\n3 0 obj\n<</ca 1\n/BM /Normal>>\nendobj\n4 0 obj\n<</Length 84>> stream\n1 0 0 -1 0 792 cm\nq\n.75 0 0 .75 0 0 cm\n1 1 1 RG 1 1 1 rg\n/G3 gs\n0 0 816 1056 re\nf\nQ\n\nendstream\nendobj\n2 0 obj\n<</Type /Page\n/Resources <</ProcSet [/PDF /Text /ImageB /ImageC /ImageI]\n/ExtGState <</G3 3 0 R>>>>\n/MediaBox [0 0 612 792]\n/Contents 4 0 R\n/StructParents 0\n/Parent 5 0 R>>\nendobj\n5 0 obj\n<</Type /Pages\n/Count 1\n/Kids [2 0 R]>>\nendobj\n6 0 obj\n<</Type /Catalog\n/Pages 5 0 R>>\nendobj\nxref\n0 7\n0000000000 65535 f \n0000000015 00000 n \n0000000277 00000 n \n0000000108 00000 n \n0000000145 00000 n \n0000000465 00000 n \n0000000520 00000 n \ntrailer\n<</Size 7\n/Root 6 0 R\n/Info 1 0 R>>\nstartxref\n567\n%%EOF\n',5),(6,'Lecture1_anatomy.pdf',_binary '%PDF-1.4\n%\Ó\ë\é\á\n1 0 obj\n<</Title (Lecture1_anatomy)\n/Producer (Skia/PDF m114 Google Docs Renderer)>>\nendobj\n3 0 obj\n<</ca 1\n/BM /Normal>>\nendobj\n4 0 obj\n<</Length 84>> stream\n1 0 0 -1 0 792 cm\nq\n.75 0 0 .75 0 0 cm\n1 1 1 RG 1 1 1 rg\n/G3 gs\n0 0 816 1056 re\nf\nQ\n\nendstream\nendobj\n2 0 obj\n<</Type /Page\n/Resources <</ProcSet [/PDF /Text /ImageB /ImageC /ImageI]\n/ExtGState <</G3 3 0 R>>>>\n/MediaBox [0 0 612 792]\n/Contents 4 0 R\n/StructParents 0\n/Parent 5 0 R>>\nendobj\n5 0 obj\n<</Type /Pages\n/Count 1\n/Kids [2 0 R]>>\nendobj\n6 0 obj\n<</Type /Catalog\n/Pages 5 0 R>>\nendobj\nxref\n0 7\n0000000000 65535 f \n0000000015 00000 n \n0000000276 00000 n \n0000000107 00000 n \n0000000144 00000 n \n0000000464 00000 n \n0000000519 00000 n \ntrailer\n<</Size 7\n/Root 6 0 R\n/Info 1 0 R>>\nstartxref\n566\n%%EOF\n',6),(7,'Lecture1_phisiology.pdf',_binary '%PDF-1.4\n%\Ó\ë\é\á\n1 0 obj\n<</Title (Lecture1_phisiology)\n/Producer (Skia/PDF m114 Google Docs Renderer)>>\nendobj\n3 0 obj\n<</ca 1\n/BM /Normal>>\nendobj\n4 0 obj\n<</Length 84>> stream\n1 0 0 -1 0 792 cm\nq\n.75 0 0 .75 0 0 cm\n1 1 1 RG 1 1 1 rg\n/G3 gs\n0 0 816 1056 re\nf\nQ\n\nendstream\nendobj\n2 0 obj\n<</Type /Page\n/Resources <</ProcSet [/PDF /Text /ImageB /ImageC /ImageI]\n/ExtGState <</G3 3 0 R>>>>\n/MediaBox [0 0 612 792]\n/Contents 4 0 R\n/StructParents 0\n/Parent 5 0 R>>\nendobj\n5 0 obj\n<</Type /Pages\n/Count 1\n/Kids [2 0 R]>>\nendobj\n6 0 obj\n<</Type /Catalog\n/Pages 5 0 R>>\nendobj\nxref\n0 7\n0000000000 65535 f \n0000000015 00000 n \n0000000279 00000 n \n0000000110 00000 n \n0000000147 00000 n \n0000000467 00000 n \n0000000522 00000 n \ntrailer\n<</Size 7\n/Root 6 0 R\n/Info 1 0 R>>\nstartxref\n569\n%%EOF\n',7),(8,'Lecture1_pharmacology.pdf',_binary '%PDF-1.4\n%\Ó\ë\é\á\n1 0 obj\n<</Title (Lecture1_pharmacology)\n/Producer (Skia/PDF m114 Google Docs Renderer)>>\nendobj\n3 0 obj\n<</ca 1\n/BM /Normal>>\nendobj\n4 0 obj\n<</Length 84>> stream\n1 0 0 -1 0 792 cm\nq\n.75 0 0 .75 0 0 cm\n1 1 1 RG 1 1 1 rg\n/G3 gs\n0 0 816 1056 re\nf\nQ\n\nendstream\nendobj\n2 0 obj\n<</Type /Page\n/Resources <</ProcSet [/PDF /Text /ImageB /ImageC /ImageI]\n/ExtGState <</G3 3 0 R>>>>\n/MediaBox [0 0 612 792]\n/Contents 4 0 R\n/StructParents 0\n/Parent 5 0 R>>\nendobj\n5 0 obj\n<</Type /Pages\n/Count 1\n/Kids [2 0 R]>>\nendobj\n6 0 obj\n<</Type /Catalog\n/Pages 5 0 R>>\nendobj\nxref\n0 7\n0000000000 65535 f \n0000000015 00000 n \n0000000281 00000 n \n0000000112 00000 n \n0000000149 00000 n \n0000000469 00000 n \n0000000524 00000 n \ntrailer\n<</Size 7\n/Root 6 0 R\n/Info 1 0 R>>\nstartxref\n571\n%%EOF\n',8),(9,'Lecture1_radiology.pdf',_binary '%PDF-1.4\n%\Ó\ë\é\á\n1 0 obj\n<</Title (Lecture1_radiology)\n/Producer (Skia/PDF m114 Google Docs Renderer)>>\nendobj\n3 0 obj\n<</ca 1\n/BM /Normal>>\nendobj\n4 0 obj\n<</Length 84>> stream\n1 0 0 -1 0 792 cm\nq\n.75 0 0 .75 0 0 cm\n1 1 1 RG 1 1 1 rg\n/G3 gs\n0 0 816 1056 re\nf\nQ\n\nendstream\nendobj\n2 0 obj\n<</Type /Page\n/Resources <</ProcSet [/PDF /Text /ImageB /ImageC /ImageI]\n/ExtGState <</G3 3 0 R>>>>\n/MediaBox [0 0 612 792]\n/Contents 4 0 R\n/StructParents 0\n/Parent 5 0 R>>\nendobj\n5 0 obj\n<</Type /Pages\n/Count 1\n/Kids [2 0 R]>>\nendobj\n6 0 obj\n<</Type /Catalog\n/Pages 5 0 R>>\nendobj\nxref\n0 7\n0000000000 65535 f \n0000000015 00000 n \n0000000278 00000 n \n0000000109 00000 n \n0000000146 00000 n \n0000000466 00000 n \n0000000521 00000 n \ntrailer\n<</Size 7\n/Root 6 0 R\n/Info 1 0 R>>\nstartxref\n568\n%%EOF\n',9),(10,'Lecture1_surgery.pdf',_binary '%PDF-1.4\n%\Ó\ë\é\á\n1 0 obj\n<</Title (Lecture1_surgery)\n/Producer (Skia/PDF m114 Google Docs Renderer)>>\nendobj\n3 0 obj\n<</ca 1\n/BM /Normal>>\nendobj\n4 0 obj\n<</Length 84>> stream\n1 0 0 -1 0 792 cm\nq\n.75 0 0 .75 0 0 cm\n1 1 1 RG 1 1 1 rg\n/G3 gs\n0 0 816 1056 re\nf\nQ\n\nendstream\nendobj\n2 0 obj\n<</Type /Page\n/Resources <</ProcSet [/PDF /Text /ImageB /ImageC /ImageI]\n/ExtGState <</G3 3 0 R>>>>\n/MediaBox [0 0 612 792]\n/Contents 4 0 R\n/StructParents 0\n/Parent 5 0 R>>\nendobj\n5 0 obj\n<</Type /Pages\n/Count 1\n/Kids [2 0 R]>>\nendobj\n6 0 obj\n<</Type /Catalog\n/Pages 5 0 R>>\nendobj\nxref\n0 7\n0000000000 65535 f \n0000000015 00000 n \n0000000276 00000 n \n0000000107 00000 n \n0000000144 00000 n \n0000000464 00000 n \n0000000519 00000 n \ntrailer\n<</Size 7\n/Root 6 0 R\n/Info 1 0 R>>\nstartxref\n566\n%%EOF\n',10);
+/*!40000 ALTER TABLE `pdf_files_mil` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -255,7 +231,7 @@ CREATE TABLE `student_course_ab_es` (
 
 LOCK TABLES `student_course_ab_es` WRITE;
 /*!40000 ALTER TABLE `student_course_ab_es` DISABLE KEYS */;
-INSERT INTO `student_course_ab_es` VALUES ('4545454545',1),('4545454545',2),('4545454545',3),('4545454545',4),('4545454545',5);
+INSERT INTO `student_course_ab_es` VALUES ('2345678901',1),('2345678901',2),('2345678901',3),('2345678901',4),('2345678901',5),('1234567890',6),('1234567890',7),('1234567890',8),('1234567890',9),('1234567890',10);
 /*!40000 ALTER TABLE `student_course_ab_es` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -285,7 +261,7 @@ CREATE TABLE `student_info` (
 
 LOCK TABLES `student_info` WRITE;
 /*!40000 ALTER TABLE `student_info` DISABLE KEYS */;
-INSERT INTO `student_info` VALUES ('4545454545','a','a','g','g','a@.aa','Programing',1);
+INSERT INTO `student_info` VALUES ('0123456789','lik','oj','liko','Wle','je@gmail.com','Programing',1),('1234567890','bb','aa','kilo','lil','kd@gmail.com','Medicine',1),('2345678901','aa','bb','loki','lol','lkf@gmail.com','Programing',1);
 /*!40000 ALTER TABLE `student_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -324,4 +300,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-05  0:26:56
+-- Dump completed on 2023-05-05 13:17:15
