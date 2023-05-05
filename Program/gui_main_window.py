@@ -95,6 +95,9 @@ class UI_main_window(QMainWindow):
         self.lbl_tm_reminder_message.adjustSize()
 
         # material tab
+        self.list_widget_m_courses.addItems(self.cntrl.get_course(username))
+        self.course_name_m_course = ""
+        self.lecture_name = ""
 
     # actions for list widget objects
         # team session tab
@@ -103,6 +106,8 @@ class UI_main_window(QMainWindow):
         # time manegement tab
 
         # material tab
+        self.list_widget_m_courses.itemClicked.connect(self.text_clicked_item_courses)
+        self.list_widget_m_lectures.itemClicked.connect(self.text_clicked_item_lecture)
 
 # methods for buttons action
     # team session tab
@@ -157,15 +162,17 @@ class UI_main_window(QMainWindow):
 
     # material tab
     def btn_m_select_lecture_pushed(self):
-        pass
+        if self.course_name_m_course == "" or self.lecture_name == "":
+            pass
+        else:
+            lecture_record = self.cntrl.get_lecture(self.course_name_m_course, self.lecture_name)
+            self.cntrl.open_lecture(lecture_record)
 
     def btn_m_add_note_pushed(self):
         self.note_window = UI_note_window(self)
         self.note_window.closed.connect(self.show_this_window)
         self.close()
         self.note_window.show()
-
-
 
 # methods for list widget actions
     # team session tab
@@ -180,6 +187,15 @@ class UI_main_window(QMainWindow):
     # Time management tab
 
     # material tab
+    def text_clicked_item_courses(self, item):
+        self.list_widget_m_lectures.clear()
+        self.course_name_m_course = item.text()
+        lecture_list = self.cntrl.get_lecture_detail(self.course_name_m_course)
+        for lecture in lecture_list:
+            self.list_widget_m_lectures.addItem(lecture)
+
+    def text_clicked_item_lecture(self, item):
+        self.lecture_name = item.text()
 
 # methods for main window
     def show_this_window(self):

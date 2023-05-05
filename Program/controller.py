@@ -1,11 +1,12 @@
 from model_read_db import Read_db
 from model_write_db import Write_db
-
+from model_open_pdf import Open_pdf
 
 class Controller():
     def __init__(self):
         self.read_db = Read_db()
         self.write_db = Write_db()
+        self.open_pdf = Open_pdf()
 
 # gui_register window methods
     def get_programs_info_from_database(self): # to fill the combo box
@@ -45,10 +46,10 @@ class Controller():
     # time_management tab methods
     def get_first_name(self, username):
         return self.read_db.get_first_name(username)
-    
+
     def get_homeworks(self, username):
         return self.read_db.get_homeworks(username)
-    
+
     def get_media_type_from_database(self):
         return self.read_db.get_media_type_from_database()
 
@@ -63,3 +64,11 @@ class Controller():
         return self.read_db.get_homework_detail(course_name)
 
     # material tab methods
+    def get_lecture_detail(self, course_name):
+        return self.read_db.get_lecture_detail(course_name)
+
+    def get_lecture(self, course_name_m_course, lecture_name):
+        return self.read_db.get_lecture(course_name_m_course, lecture_name)
+
+    def open_lecture(self, lecture_record):
+        self.open_pdf.open_lecture(lecture_record)

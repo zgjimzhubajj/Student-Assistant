@@ -170,7 +170,7 @@ class Read_db:
                 line_in_example_list = line_in_example_list + " " + homework[0] + " " + homework[1] + "-" + homework[2] + "-" + homework[3]
                 list_of_homeworks.append(line_in_example_list)
         return list_of_homeworks
-    
+    # not tested yet#############
     def get_media_type_from_database(self):
         self.open_db()
         self.mycursor.execute("SELECT media_name FROM media_type_zgj")
@@ -181,7 +181,8 @@ class Read_db:
         self.close_db()
         list_media_type.insert(0, "")
         return list_media_type
-    
+
+    # not tested yet#############
     def get_name_of_media(self, type_of_media):
         self.open_db()
         self.mycursor.execute(f"SELECT media_id FROM media_type_zgj where media_name = '{type_of_media}';")
@@ -195,8 +196,44 @@ class Read_db:
         for item in self.myresult:
             list_media_name.append(item[0])
         self.close_db()  
-        return list_media_name      
+        return list_media_name
 
 
 
     # material tab methods
+    # not tested yet#############
+    def get_lecture_detail(self, course_name):
+        self.open_db()
+        self.mycursor.execute(f"select course_id from course_ab_es where course_name = '{course_name}';")
+        self.myresult = self.mycursor.fetchall()
+        course_list = []
+        for item in self.myresult:
+            course_list.append(str(item[0]))
+        course_id = course_list[0]
+        self.mycursor.execute(f"select file_name from pdf_files_mil where course_id = {course_id};")
+        self.myresult = self.mycursor.fetchall()
+        list_of_lists = []
+        for tup in self.myresult:
+            list_of_lists.append(tup[0])
+        self.close_db()
+        return list_of_lists
+    #not tested yet########
+    def get_lecture(self, course_name_m_course, lecture_name):
+        self.open_db()
+        self.mycursor.execute(f"select course_id from course_ab_es where course_name = '{course_name_m_course}';")
+        self.myresult = self.mycursor.fetchall()
+        course_list = []
+        for item in self.myresult:
+            course_list.append(item[0])
+        course_id = course_list[0]
+        self.mycursor.execute(f"select id from pdf_files_mil where course_id = {course_id} and file_name = '{lecture_name}';")#it might show error here because i didnt serround course_id with single coutation
+        self.myresult = self.mycursor.fetchall()
+        id_list = []
+        for item in self.myresult:
+            id_list.append(str(item[0]))
+        id = id_list[0]
+        # Retrieve the binary data and file name from the MySQL table
+        sql_query = "SELECT file_name, file_data FROM pdf_files_mil WHERE id = %s"
+        self.mycursor.execute(sql_query, (id,))
+        record = self.mycursor.fetchone()
+        return record
