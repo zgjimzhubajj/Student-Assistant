@@ -72,3 +72,15 @@ class Controller():
 
     def open_lecture(self, lecture_record):
         self.open_pdf.open_lecture(lecture_record)
+
+    def get_notes(self, username):
+        return self.read_db.get_notes(username)
+
+    def add_new_note_to_db(self, note_name, note_data, username):
+        self.write_db.add_new_note_to_db(note_name, note_data, username)
+
+    def check_if_note_name_exist(self, note_name, username):
+        return self.read_db.check_if_note_name_exist(note_name, username)
+
+    def get_note_data(self, note_name, username):
+        return self.read_db.get_note_data(note_name, username)

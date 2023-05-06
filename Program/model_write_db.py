@@ -21,11 +21,13 @@ class Write_db():
                 print(err)
         else:
             self.mycursor = self.mydb.cursor()
+
     def close_db(self):
         self.mycursor.close()
         self.mydb.close()
 
 # gui_register methods
+    # not tested yet#############
     def insert_student_info(self, first_name, last_name, email, username, password, personal_id, year_of_study, name_of_program):
         self.open_db()
         self.mycursor.execute(f"SELECT program_id From program_ab_es where program_name = '{name_of_program}';")
@@ -55,3 +57,15 @@ class Write_db():
     # time_manegment tab methods
 
     # material tab methods
+
+    # not tested yet#############
+    def add_new_note_to_db(self, note_name, note_data, username):
+        self.open_db()
+        self.mycursor.execute(f"SELECT personal_id From student_info Where user_name = '{username}';")
+        self.myresult = self.mycursor.fetchall()
+        personal_id_list = []
+        for item in self.myresult:
+            personal_id_list.append(item[0])
+        self.mycursor.execute(f"INSERT INTO notes_mil (note_name, note_data, personal_id) Values('{note_name}', '{note_data}', {personal_id_list[0]})")
+        self.mydb.commit()
+        self.close_db()

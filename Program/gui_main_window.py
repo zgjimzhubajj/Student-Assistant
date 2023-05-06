@@ -95,7 +95,9 @@ class UI_main_window(QMainWindow):
         self.lbl_tm_reminder_message.adjustSize()
 
         # material tab
+        self.lbl_m_note_text.setText("")
         self.list_widget_m_courses.addItems(self.cntrl.get_course(username))
+        self.list_widget_m_notes.addItems(self.cntrl.get_notes(username))
         self.course_name_m_course = ""
         self.lecture_name = ""
 
@@ -108,6 +110,7 @@ class UI_main_window(QMainWindow):
         # material tab
         self.list_widget_m_courses.itemClicked.connect(self.text_clicked_item_courses)
         self.list_widget_m_lectures.itemClicked.connect(self.text_clicked_item_lecture)
+        self.list_widget_m_notes.itemClicked.connect(self.text_clicked_item_note)
 
 # methods for buttons action
     # team session tab
@@ -197,6 +200,9 @@ class UI_main_window(QMainWindow):
     def text_clicked_item_lecture(self, item):
         self.lecture_name = item.text()
 
+    def text_clicked_item_note(self, item):
+        self.lbl_m_note_text.setText(self.cntrl.get_note_data(item.text(), self.username))
+
 # methods for main window
     def show_this_window(self):
         self.show()
@@ -209,6 +215,7 @@ class UI_main_window(QMainWindow):
         self.lbl_ts_time_left_for_next_homework_5.setText("")
         self.list_widget_homework_detail.clear()
         self.list_widget_tm_time_schedule.clear()
+
 
     def reminder_of_upcoming_homeworks(self):
         """

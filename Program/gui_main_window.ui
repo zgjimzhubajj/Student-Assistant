@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tab_team_session">
      <attribute name="title">
@@ -372,7 +372,7 @@
        <rect>
         <x>310</x>
         <y>300</y>
-        <width>75</width>
+        <width>81</width>
         <height>23</height>
        </rect>
       </property>
@@ -405,8 +405,8 @@
        <rect>
         <x>10</x>
         <y>60</y>
-        <width>47</width>
-        <height>14</height>
+        <width>81</width>
+        <height>16</height>
        </rect>
       </property>
       <property name="text">
@@ -418,8 +418,8 @@
        <rect>
         <x>290</x>
         <y>60</y>
-        <width>47</width>
-        <height>14</height>
+        <width>91</width>
+        <height>16</height>
        </rect>
       </property>
       <property name="text">
@@ -446,7 +446,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string/>
       </property>
      </widget>
     </widget>

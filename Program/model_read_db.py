@@ -237,3 +237,55 @@ class Read_db:
         self.mycursor.execute(sql_query, (id,))
         record = self.mycursor.fetchone()
         return record
+
+    # not tested yet#############
+    def get_notes(self, username):
+        self.open_db()
+        self.mycursor.execute(f"SELECT personal_id From student_info Where user_name = '{username}';")
+        self.myresult = self.mycursor.fetchall()
+        personal_id_list = []
+        for item in self.myresult:
+            personal_id_list.append(item[0])
+        self.mycursor.execute(f"SELECT note_name From notes_mil Where personal_id = {personal_id_list[0]};")
+        self.myresult = self.mycursor.fetchall()
+        note_name_list = []
+        for item in self.myresult:
+            note_name_list.append(str(item[0]))
+        self.close_db()
+        return note_name_list
+
+    # not tested yet#############
+    def check_if_note_name_exist(self, note_name, username):
+        self.open_db()
+        self.mycursor.execute(f"SELECT personal_id From student_info Where user_name = '{username}';")
+        self.myresult = self.mycursor.fetchall()
+        personal_id_list = []
+        for item in self.myresult:
+            personal_id_list.append(item[0])
+
+        self.mycursor.execute(f"SELECT note_name From notes_mil Where personal_id = {personal_id_list[0]};")
+        self.myresult = self.mycursor.fetchall()
+        note_name_list = []
+        for item in self.myresult:
+            note_name_list.append(str(item[0]))
+        if note_name in note_name_list:
+            self.close_db()
+            return True
+        else:
+            self.close_db()
+            return False
+    # not tested yet#############
+    def get_note_data(self, note_name, username):
+        self.open_db()
+        self.mycursor.execute(f"SELECT personal_id From student_info Where user_name = '{username}';")
+        self.myresult = self.mycursor.fetchall()
+        personal_id_list = []
+        for item in self.myresult:
+            personal_id_list.append(item[0])
+        self.mycursor.execute(f"SELECT note_data From notes_mil Where personal_id = {personal_id_list[0]} and note_name = '{note_name}';")
+        self.myresult = self.mycursor.fetchall()
+        note_data_list = []
+        for item in self.myresult:
+            note_data_list.append(str(item[0]))
+        self.close_db()
+        return note_data_list[0]
