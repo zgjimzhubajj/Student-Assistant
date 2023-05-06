@@ -182,6 +182,32 @@ INSERT INTO `media_type_zgj` VALUES (1,'video'),(2,'song');
 UNLOCK TABLES;
 
 --
+-- Table structure for table `notes_mil`
+--
+
+DROP TABLE IF EXISTS `notes_mil`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `notes_mil` (
+  `note_id` int NOT NULL AUTO_INCREMENT,
+  `note_name` varchar(255) NOT NULL,
+  `note_data` varchar(1000) NOT NULL,
+  `personal_id` int NOT NULL,
+  PRIMARY KEY (`note_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `notes_mil`
+--
+
+LOCK TABLES `notes_mil` WRITE;
+/*!40000 ALTER TABLE `notes_mil` DISABLE KEYS */;
+INSERT INTO `notes_mil` VALUES (1,'note_1','hello',1234567890),(2,'note_2','Lecture2',1234567890),(3,'note3','hi',1234567890),(4,'note4','lecture4',1234567890);
+/*!40000 ALTER TABLE `notes_mil` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `pdf_files_mil`
 --
 
@@ -352,4 +378,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-05 15:47:22
+-- Dump completed on 2023-05-06 13:34:26
