@@ -6,9 +6,13 @@ from PyQt5.QtCore import pyqtSignal
 class UI_pomodoro_session(QMainWindow):
     closed = pyqtSignal()
 
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, type_of_pomodoro = None, type_of_media = None, number_of_sessions = None, list_of_media_name = None):
         super(UI_pomodoro_session, self).__init__(parent)
         uic.loadUi("gui_pomodoro_session.ui", self)
+        self.type_of_pomodoro = type_of_pomodoro
+        self.type_of_media = type_of_media
+        self.number_of_sessions = number_of_sessions
+        self.list_of_media_name = list_of_media_name
 
         # buttons object
         self.btn_pause = self.findChild(QPushButton, "btn_pause")

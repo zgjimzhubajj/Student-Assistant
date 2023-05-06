@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QMainWindow, QPushButton, QComboBox, QListWidget, QSpinBox
+from PyQt5.QtWidgets import QMainWindow, QPushButton, QComboBox, QListWidget, QSpinBox, QLabel
 from PyQt5 import uic
 from PyQt5.QtCore import pyqtSignal
 from controller import Controller
@@ -30,6 +30,10 @@ class UI_pomodoro_settings(QMainWindow):
         # spinBox object
         self.spin_box_number_of_sessions = self.findChild(QSpinBox, "spin_box_number_of_sessions")
 
+        # label objects
+        self.lbl_wrong_inputs = self.findChild(QLabel, "lbl_wrong_inputs")
+        self.lbl_wrong_inputs.setStyleSheet("color: red")
+
         # when window open settings for combobox and spinbox
         self.combo_box_type_of_pomodoro.addItems(self.add_pomodoro_type())
         self.combo_box_type_of_media.addItems(self.cntrl.get_media_type_from_database())
@@ -41,9 +45,24 @@ class UI_pomodoro_settings(QMainWindow):
         self.close()
 
     def button_save_pushed(self):
-        self.clear_window()
-        self.closed.emit()
-        self.close()
+        # Check if combo boxes are at index 0
+        if self.combo_box_type_of_pomodoro.currentIndex() == 0:
+            # Display error message
+            self.lbl_wrong_inputs.setText("Please select a type of Pomodoro")
+        elif self.combo_box_type_of_media.currentIndex() == 0:
+            # Display error message
+            self.lbl_wrong_inputs.setText("Please select a type of Media")
+        elif self.spin_box_number_of_sessions.value() == 0:
+            # Display error message
+            self.lbl_wrong_inputs.setText("Please select how many session you want")
+        else:
+            self.type_of_pomodoro = self.combo_box_type_of_pomodoro.currentIndex()
+            self.type_of_media = self.combo_box_type_of_media.currentIndex()
+            self.number_of_sessions = self.spin_box_number_of_sessions.value()
+            self.parent().store_pomodoro_settings(self.type_of_pomodoro, self.type_of_media, self.number_of_sessions, self.list_of_media_name)
+            self.clear_window()
+            self.closed.emit()
+            self.close()
 
     def add_pomodoro_type(self):
         pomodoro_type = ["","5 min Break, 25 min Study","10 min Break, 50 min Study"]
@@ -55,13 +74,17 @@ class UI_pomodoro_settings(QMainWindow):
         else:
             self.list_widget_name_of_media.clear()
             if self.combo_box_type_of_media.currentText() == "Video":
-                self.list_widget_name_of_media.addItems(self.cntrl.get_name_of_media(self.combo_box_type_of_media.currentText()))
+                self.list_of_media_name = self.cntrl.get_name_of_media(self.combo_box_type_of_media.currentText())
+                self.list_widget_name_of_media.addItems(self.list_of_media_name)
                 
             else:
-                self.list_widget_name_of_media.addItems(self.cntrl.get_name_of_media(self.combo_box_type_of_media.currentText()))
+                self.list_of_media_name = self.cntrl.get_name_of_media(self.combo_box_type_of_media.currentText())
+                self.list_widget_name_of_media.addItems(self.list_of_media_name)
+            
 
     def clear_window(self):
         self.combo_box_type_of_pomodoro.setCurrentIndex(0)
         self.combo_box_type_of_media.setCurrentIndex(0)
         self.list_widget_name_of_media.clear()
         self.spin_box_number_of_sessions.setValue(0)
+        #get the lbl object put i up then add it here on clear window

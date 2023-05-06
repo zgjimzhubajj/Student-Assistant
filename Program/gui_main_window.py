@@ -152,10 +152,16 @@ class UI_main_window(QMainWindow):
             self.list_widget_tm_time_schedule.takeItem(self.list_widget_tm_time_schedule.row(item))
 
     def btn_tm_start_pomodoro_pushed(self):
-        self.pomodoro_session = UI_pomodoro_session(self)
+        self.pomodoro_session = UI_pomodoro_session(self, self.type_of_pomodoro, self.type_of_media, self.number_of_sessions, self.list_of_media_name)
         self.pomodoro_session.closed.connect(self.show_this_window)
         self.close()
         self.pomodoro_session.show()
+        
+    def store_pomodoro_settings(self, type_of_pomodoro, type_of_media, number_of_sessions, list_of_media_name):
+        self.type_of_pomodoro = type_of_pomodoro
+        self.type_of_media = type_of_media
+        self.number_of_sessions = number_of_sessions
+        self.list_of_media_name = list_of_media_name
 
     def btn_tm_pomodoro_settings_pushed(self):
         self.pomodoro_settings = UI_pomodoro_settings(self)
