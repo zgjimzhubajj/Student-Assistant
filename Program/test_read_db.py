@@ -14,6 +14,7 @@ class TestReadDb(unittest.TestCase):
     def setUp(self):
         """Set up the test case."""
         self.read_db = Read_db()
+        self.write_db = Write_db()
 
     # 2---------------------------------------------------------------------------------------------
     def test_init(self):
@@ -252,48 +253,72 @@ class TestReadDb(unittest.TestCase):
 
     # Time management tab
     def test_get_first_name(self):
-        first_name = "a"
-        last_name = "a"
-        email = "a@a.a"
-        password = "a"
-        username = "a"
-        personal_id = "1234567890"
-        year_of_study = "1"
-        name_of_program = "Programing"
-        read_db = Read_db()
-        write_db = Write_db()
-        read_db.open_db()
-        write_db.insert_student_info(first_name, last_name, email, username, password, personal_id, year_of_study, name_of_program)
+        self.create_user()
         expected_first_name = "a"
-        self.assertEqual(read_db.get_first_name(username), expected_first_name)
-        write_db.open_db()
-        write_db.mycursor.execute(f"DELETE FROM student_course_ab_es WHERE personal_id = '{personal_id}';")
-        write_db.mydb.commit()
-        write_db.mycursor.execute(f"DELETE FROM student_info WHERE personal_id = '{personal_id}';")
-        write_db.mydb.commit()
-        write_db.close_db()
+        self.assertEqual(self.read_db.get_first_name(self.username), expected_first_name)
+        self.delete_user()
 
     def test_get_homeworks(self):
-        first_name = "a"
-        last_name = "a"
-        email = "a@a.a"
-        password = "a"
-        username = "a"
-        personal_id = "1234567890"
-        year_of_study = "1"
-        name_of_program = "Programing"
-        read_db = Read_db()
-        write_db = Write_db()
-        read_db.open_db()
-        write_db.insert_student_info(first_name, last_name, email, username, password, personal_id, year_of_study, name_of_program)
+        self.create_user()
         expected_list = ['java homework1 2023-5-15', 'python homework2 2023-5-16', 'agile homework3 2023-5-17']
-        self.assertEqual(read_db.get_homeworks(username), expected_list)
-        write_db.open_db()
-        write_db.mycursor.execute(f"DELETE FROM student_course_ab_es WHERE personal_id = '{personal_id}';")
-        write_db.mydb.commit()
-        write_db.mycursor.execute(f"DELETE FROM student_info WHERE personal_id = '{personal_id}';")
-        write_db.mydb.commit()
-        write_db.close_db()
+        self.assertEqual(self.read_db.get_homeworks(self.username), expected_list)
+        self.delete_user()
+
+    # material tab methods
+    def test_get_lecture_detail(self):
+        self.create_user()
+        expected_list = ['Lecture1_java.pdf']
+        self.assertEqual(self.read_db.get_lecture_detail("java"), expected_list)
+        expected_list2 = ['Lecture1_surgery.pdf']
+        self.assertEqual(self.read_db.get_lecture_detail("surgery"), expected_list2)
+        self.delete_user()
+
+    #############not finished
+    def test_get_lecture(self):
+        pass
+
+    def test_get_notes(self):
+        self.create_user()
+        expected_list = []
+        self.assertEqual(self.read_db.get_notes("a"), expected_list)
+        self.delete_user()
+
+    def test_check_if_note_name_exist(self):
+        self.create_user()
+        self.assertEqual(self.read_db.check_if_note_name_exist("", "a"), False)
+        self.delete_user()
+
+    def test_get_note_data(self):
+        self.create_user()
+        note_name = "note1"
+        note_data = "note1_data"
+        self.write_db.add_new_note_to_db(note_name, note_data, "a")
+        expected_note_data = 'note1_data'
+        self.assertEqual(self.read_db.get_note_data("note1", "a"), expected_note_data)
+        self.write_db.open_db()
+        self.write_db.mycursor.execute("DELETE FROM notes_mil WHERE note_name = 'note1';")
+        self.write_db.mydb.commit()
+        self.write_db.close_db()
+        self.delete_user()
+
+    def create_user(self):
+        self.first_name = "a"
+        self.last_name = "a"
+        self.email = "a@a.a"
+        self.password = "a"
+        self.username = "a"
+        self.personal_id = "1234567890"
+        self.year_of_study = "1"
+        self.name_of_program = "Programing"
+        self.write_db.insert_student_info(self.first_name, self.last_name, self.email, self.username, self.password, self.personal_id, self.year_of_study, self.name_of_program)
+
+    def delete_user(self):
+        self.write_db.open_db()
+        self.write_db.mycursor.execute(f"DELETE FROM student_course_ab_es WHERE personal_id = '{self.personal_id}';")
+        self.write_db.mydb.commit()
+        self.write_db.mycursor.execute(f"DELETE FROM student_info WHERE personal_id = '{self.personal_id}';")
+        self.write_db.mydb.commit()
+        self.write_db.close_db()
 
 
 if __name__ == "__main__":

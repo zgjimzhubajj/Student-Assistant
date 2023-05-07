@@ -4,13 +4,14 @@ import mysql.connector
 from unittest.mock import MagicMock
 import unittest
 from model_write_db import Write_db
+from model_read_db import Read_db
 
 
 class TestWriteDb(unittest.TestCase):
     def setUp(self):
         """Set up the test case."""
         self.write_db = Write_db()
-        self.db = Write_db()
+        self.read_db = Read_db()
 
     def test_init(self):
         """Test the __init__ method."""
@@ -37,7 +38,7 @@ class TestWriteDb(unittest.TestCase):
         mock_cursor.close.assert_called_once()
         mock_db.close.assert_called_once()
 
-# gui_register methods
+# gui_register test methods
     def test_insert_student_info(self):
         write_db = Write_db()
         first_name = "test"
@@ -65,6 +66,33 @@ class TestWriteDb(unittest.TestCase):
         write_db.mydb.commit()
         write_db.close_db()
 
+# gui_main_window test methods
+    # material_tab
+    def test_add_new_note_to_db(self):
+        self.first_name = "a"
+        self.last_name = "a"
+        self.email = "a@a.a"
+        self.password = "a"
+        self.username = "a"
+        self.personal_id = "1234567890"
+        self.year_of_study = "1"
+        self.name_of_program = "Programing"
+        self.write_db.insert_student_info(self.first_name, self.last_name, self.email, self.username, self.password, self.personal_id, self.year_of_study, self.name_of_program)
+        note_name = "note1"
+        note_data = "note1_data"
+        self.write_db.add_new_note_to_db(note_name, note_data, "a")
+        expected_note_data = 'note1_data'
+        self.assertEqual(self.read_db.get_note_data("note1", "a"), expected_note_data)
+        self.write_db.open_db()
+        self.write_db.mycursor.execute("DELETE FROM notes_mil WHERE note_name = 'note1';")
+        self.write_db.mydb.commit()
+        self.write_db.close_db()
+        self.write_db.open_db()
+        self.write_db.mycursor.execute(f"DELETE FROM student_course_ab_es WHERE personal_id = '{self.personal_id}';")
+        self.write_db.mydb.commit()
+        self.write_db.mycursor.execute(f"DELETE FROM student_info WHERE personal_id = '{self.personal_id}';")
+        self.write_db.mydb.commit()
+        self.write_db.close_db()
     # def tearDown(self):
     #     self.db = None
 
