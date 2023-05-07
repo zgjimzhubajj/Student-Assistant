@@ -14,41 +14,13 @@
    <string>pomodoro session</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QListWidget" name="list_widget_name_of_media">
-    <property name="geometry">
-     <rect>
-      <x>190</x>
-      <y>370</y>
-      <width>531</width>
-      <height>192</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>430</y>
-      <width>151</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>11</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>List of videos or songs</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="lbl_image">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>120</y>
-      <width>181</width>
-      <height>61</height>
+      <y>0</y>
+      <width>781</width>
+      <height>571</height>
      </rect>
     </property>
     <property name="font">
@@ -57,82 +29,61 @@
      </font>
     </property>
     <property name="text">
-     <string>Video or Song will be shown</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btn_pause">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>710</y>
-      <width>141</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Pause</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btn_resume">
-    <property name="geometry">
-     <rect>
-      <x>200</x>
-      <y>710</y>
-      <width>141</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Resume</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_end_session">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>710</y>
-      <width>141</width>
-      <height>41</height>
+      <x>80</x>
+      <y>670</y>
+      <width>261</width>
+      <height>81</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
     <property name="text">
-     <string>End session</string>
+     <string>End Session</string>
     </property>
    </widget>
    <widget class="QLabel" name="lbl_backwards_counter">
     <property name="geometry">
      <rect>
-      <x>590</x>
-      <y>720</y>
-      <width>231</width>
-      <height>71</height>
+      <x>430</x>
+      <y>680</y>
+      <width>261</width>
+      <height>81</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>11</pointsize>
+      <pointsize>48</pointsize>
      </font>
     </property>
     <property name="text">
-     <string>Counter Backwards</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="lbl_study_break_condition">
     <property name="geometry">
      <rect>
-      <x>590</x>
-      <y>640</y>
-      <width>171</width>
+      <x>460</x>
+      <y>590</y>
+      <width>331</width>
       <height>51</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>11</pointsize>
+      <pointsize>14</pointsize>
      </font>
     </property>
     <property name="text">
-     <string>Study time / Break time</string>
+     <string/>
     </property>
    </widget>
   </widget>

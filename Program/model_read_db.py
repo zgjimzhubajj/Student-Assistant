@@ -170,35 +170,6 @@ class Read_db:
                 line_in_example_list = line_in_example_list + " " + homework[0] + " " + homework[1] + "-" + homework[2] + "-" + homework[3]
                 list_of_homeworks.append(line_in_example_list)
         return list_of_homeworks
-    # not tested yet#############
-    def get_media_type_from_database(self):
-        self.open_db()
-        self.mycursor.execute("SELECT media_name FROM media_type_zgj")
-        self.myresult = self.mycursor.fetchall()
-        list_media_type = []
-        for item in self.myresult:
-            list_media_type.append(item[0])
-        self.close_db()
-        list_media_type.insert(0, "")
-        return list_media_type
-
-    # not tested yet#############
-    def get_name_of_media(self, type_of_media):
-        self.open_db()
-        self.mycursor.execute(f"SELECT media_id FROM media_type_zgj where media_name = '{type_of_media}';")
-        self.myresult = self.mycursor.fetchall()
-        list_media_id = []
-        for item in self.myresult:
-            list_media_id.append(str(item[0]))
-        self.mycursor.execute(f"SELECT media_name FROM media_name_zgj where media_id = {list_media_id[0]};")
-        self.myresult = self.mycursor.fetchall()
-        list_media_name = []
-        for item in self.myresult:
-            list_media_name.append(item[0])
-        self.close_db()  
-        return list_media_name
-
-
 
     # material tab methods
     # not tested yet#############

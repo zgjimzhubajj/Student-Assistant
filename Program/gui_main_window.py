@@ -90,6 +90,13 @@ class UI_main_window(QMainWindow):
 
         self.lbl_tm_welcome.setText(f"Welcome {self.cntrl.get_first_name(self.username).capitalize()}!\nHow would you like to organize your day?")
         self.lbl_tm_welcome.adjustSize()
+        self.btn_pomodoro_settings_pushed = False
+        if not self.btn_pomodoro_settings_pushed:
+            print(self.btn_pomodoro_settings_pushed)
+            self.btn_tm_start_pomodoro.setEnabled(False)
+        else:
+            print(self.btn_pomodoro_settings_pushed)
+            self.btn_tm_start_pomodoro.setEnabled(True)
 
         self.reminder_of_upcoming_homeworks()
         self.lbl_tm_reminder_message.adjustSize()
@@ -152,16 +159,14 @@ class UI_main_window(QMainWindow):
             self.list_widget_tm_time_schedule.takeItem(self.list_widget_tm_time_schedule.row(item))
 
     def btn_tm_start_pomodoro_pushed(self):
-        self.pomodoro_session = UI_pomodoro_session(self, self.type_of_pomodoro, self.type_of_media, self.number_of_sessions, self.list_of_media_name)
+        self.pomodoro_session = UI_pomodoro_session(self, self.type_of_pomodoro, self.number_of_sessions)
         self.pomodoro_session.closed.connect(self.show_this_window)
         self.close()
         self.pomodoro_session.show()
         
-    def store_pomodoro_settings(self, type_of_pomodoro, type_of_media, number_of_sessions, list_of_media_name):
+    def store_pomodoro_settings(self, type_of_pomodoro, number_of_sessions):
         self.type_of_pomodoro = type_of_pomodoro
-        self.type_of_media = type_of_media
         self.number_of_sessions = number_of_sessions
-        self.list_of_media_name = list_of_media_name
 
     def btn_tm_pomodoro_settings_pushed(self):
         self.pomodoro_settings = UI_pomodoro_settings(self)
@@ -221,6 +226,7 @@ class UI_main_window(QMainWindow):
         self.lbl_ts_time_left_for_next_homework_5.setText("")
         self.list_widget_homework_detail.clear()
         self.list_widget_tm_time_schedule.clear()
+        self.btn_tm_start_pomodoro.setEnabled(False)
 
 
     def reminder_of_upcoming_homeworks(self):

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>779</width>
-    <height>708</height>
+    <width>852</width>
+    <height>745</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,122 +17,66 @@
    <widget class="QComboBox" name="combo_box_type_of_pomodoro">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>40</y>
-      <width>141</width>
-      <height>41</height>
+      <x>310</x>
+      <y>70</y>
+      <width>181</width>
+      <height>51</height>
      </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>440</x>
-      <y>40</y>
-      <width>111</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>11</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Type of Media</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_4">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>280</y>
-      <width>101</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>11</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Name of Media</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>40</y>
-      <width>131</width>
-      <height>41</height>
+      <x>290</x>
+      <y>0</y>
+      <width>231</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>11</pointsize>
+      <pointsize>20</pointsize>
      </font>
     </property>
     <property name="text">
      <string>Type of Pomodoro</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="combo_box_type_of_media">
-    <property name="geometry">
-     <rect>
-      <x>570</x>
-      <y>40</y>
-      <width>141</width>
-      <height>41</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QListWidget" name="list_widget_name_of_media">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>200</y>
-      <width>541</width>
-      <height>192</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>500</y>
-      <width>141</width>
-      <height>41</height>
+      <x>240</x>
+      <y>200</y>
+      <width>341</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>11</pointsize>
+      <pointsize>20</pointsize>
      </font>
     </property>
     <property name="text">
-     <string>Number of Sessions</string>
+     <string>Choose Number of Sessions</string>
     </property>
    </widget>
    <widget class="QSpinBox" name="spin_box_number_of_sessions">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>500</y>
-      <width>141</width>
-      <height>41</height>
+      <x>310</x>
+      <y>280</y>
+      <width>201</width>
+      <height>71</height>
      </rect>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_save">
     <property name="geometry">
      <rect>
-      <x>570</x>
-      <y>580</y>
-      <width>141</width>
-      <height>41</height>
+      <x>560</x>
+      <y>510</y>
+      <width>201</width>
+      <height>91</height>
      </rect>
     </property>
     <property name="font">
@@ -147,10 +91,10 @@
    <widget class="QPushButton" name="btn_cancel">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>580</y>
-      <width>141</width>
-      <height>41</height>
+      <x>60</x>
+      <y>510</y>
+      <width>201</width>
+      <height>91</height>
      </rect>
     </property>
     <property name="font">
@@ -186,7 +130,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>779</width>
+     <width>852</width>
      <height>21</height>
     </rect>
    </property>

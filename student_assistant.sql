@@ -130,58 +130,6 @@ LOCK TABLES `homework_notes_ab_es` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `media_name_zgj`
---
-
-DROP TABLE IF EXISTS `media_name_zgj`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `media_name_zgj` (
-  `media_name_id` int NOT NULL AUTO_INCREMENT,
-  `media_name` varchar(50) NOT NULL,
-  `media_link` varchar(300) DEFAULT NULL,
-  `media_id` int NOT NULL,
-  PRIMARY KEY (`media_name_id`),
-  KEY `media_id` (`media_id`),
-  CONSTRAINT `media_name_zgj_ibfk_1` FOREIGN KEY (`media_id`) REFERENCES `media_type_zgj` (`media_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `media_name_zgj`
---
-
-LOCK TABLES `media_name_zgj` WRITE;
-/*!40000 ALTER TABLE `media_name_zgj` DISABLE KEYS */;
-INSERT INTO `media_name_zgj` VALUES (1,'Gangam style',NULL,1),(2,'Eminem I am not afraid',NULL,2);
-/*!40000 ALTER TABLE `media_name_zgj` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `media_type_zgj`
---
-
-DROP TABLE IF EXISTS `media_type_zgj`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `media_type_zgj` (
-  `media_id` int NOT NULL AUTO_INCREMENT,
-  `media_name` varchar(50) NOT NULL,
-  PRIMARY KEY (`media_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `media_type_zgj`
---
-
-LOCK TABLES `media_type_zgj` WRITE;
-/*!40000 ALTER TABLE `media_type_zgj` DISABLE KEYS */;
-INSERT INTO `media_type_zgj` VALUES (1,'video'),(2,'song');
-/*!40000 ALTER TABLE `media_type_zgj` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `notes_mil`
 --
 
@@ -194,7 +142,7 @@ CREATE TABLE `notes_mil` (
   `note_data` varchar(1000) NOT NULL,
   `personal_id` int NOT NULL,
   PRIMARY KEY (`note_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -203,7 +151,7 @@ CREATE TABLE `notes_mil` (
 
 LOCK TABLES `notes_mil` WRITE;
 /*!40000 ALTER TABLE `notes_mil` DISABLE KEYS */;
-INSERT INTO `notes_mil` VALUES (1,'note_1','hello',1234567890),(2,'note_2','Lecture2',1234567890),(3,'note3','hi',1234567890),(4,'note4','lecture4',1234567890);
+INSERT INTO `notes_mil` VALUES (1,'note_1','hello',1234567890),(2,'note_2','Lecture2',1234567890),(3,'note3','hi',1234567890),(4,'note4','lecture4',1234567890),(5,'z','hiiiiiiiiiiiiiiiiiiii',1234567890);
 /*!40000 ALTER TABLE `notes_mil` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -378,4 +326,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-06 13:34:26
+-- Dump completed on 2023-05-07 20:09:06
