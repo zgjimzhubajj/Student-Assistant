@@ -15,20 +15,9 @@ class UI_pomodoro_session(QMainWindow):
         self.number_of_sessions = number_of_sessions
         self.is_break = False
 
-        # buttons object
         self.btn_end_session = self.findChild(QPushButton, "btn_end_session")
 
-        # buttons actions
         self.btn_end_session.clicked.connect(self.button_end_session_pushed)
-
-        # Set up the timer with a 1-second interval
-        self.timer = QTimer(self)
-        self.timer.setInterval(1000)
-        self.timer.timeout.connect(self.update_timer)
-        
-        # Start the timer
-        self.remaining_time = 30 if self.type_of_pomodoro == 2 else 15 # 50 or 25 minutes in seconds
-        self.timer.start()
 
         # Add an image to the GUI
         if self.type_of_pomodoro == 1:
@@ -39,36 +28,59 @@ class UI_pomodoro_session(QMainWindow):
             self.lbl_image.setPixmap(pixmap)
 
         # label objects
-        self.lbl_study_break_condition = self.findChild(QLabel, "lbl_study_break_condition")
         self.lbl_backwards_counter = self.findChild(QLabel, "lbl_backwards_counter")
         self.lbl_image = self.findChild(QLabel, 'lbl_image')
 
+        # Set up the timer with a 1-second interval
+        self.timer = QTimer(self)
+        self.timer.setInterval(1000)
+        self.timer.timeout.connect(self.update_timer)
+
+        # Set initial values for the countdown and loops
+        self.remaining_time = 1500 if self.type_of_pomodoro == 1 else 3000
+        self.is_break = False
+        self.loop_count = 0
+
+        # Start the timer
+        self.timer.start()
+
+    def update_timer(self):
+        # Decrement the remaining time
+        self.remaining_time -= 1
+
+        # Convert the remaining time to minutes and seconds
+        minutes = self.remaining_time // 60
+        seconds = self.remaining_time % 60
+
+        # Update the text of the label with the current remaining time
+        self.lbl_backwards_counter.setText(f"{minutes:02d}:{seconds:02d}")
+
+        # Check if the countdown has reached 0
+        if self.remaining_time == 0:
+            # Toggle the is_break flag and reset the remaining time
+            self.is_break = not self.is_break
+            if self.is_break:
+                self.remaining_time = 300 if self.type_of_pomodoro == 1 else 600
+                QMessageBox.information(self, "Break Time", "It's time for a break")
+            else:
+                self.remaining_time = 1500 if self.type_of_pomodoro == 1 else 3000
+
+            # Increment the loop count if it's not a break
+            if not self.is_break:
+                self.loop_count += 1
+
+            # Stop the timer if the loop count reached 2
+            if self.loop_count == self.number_of_sessions:
+                self.timer.stop()
+                QMessageBox.information(self, "Session ended", "Please press end session button to go back to main window")
+
+
     def button_end_session_pushed(self):
+        self.timer.stop()
         self.parent().btn_tm_start_pomodoro.setEnabled(False)
         self.clear_window()
         self.closed.emit()
         self.close()
 
-    def update_timer(self):
-        # Decrement the remaining time
-        self.remaining_time -= 1
-        
-        # Convert the remaining time to minutes and seconds
-        minutes = self.remaining_time // 60
-        seconds = self.remaining_time % 60
-        
-        # Update the text of the label with the current remaining time
-        self.lbl_backwards_counter.setText(f"{minutes:02d}:{seconds:02d}")
-        
-        # Show a popup message when it's time for a break
-        if self.remaining_time == 0:
-            QMessageBox.information(self, "Break Time", "It's time for a break!")
-            self.remaining_time = 6 if self.type_of_pomodoro == 2 else 3 # 10 or 5 minutes in seconds
-            self.lbl_backwards_counter.setText("10:00" if self.type_of_pomodoro == 2 else "05:00")
-            
-            # Start and the timer for the break
-            self.timer.start()
-
     def clear_window(self):
-        self.lbl_study_break_condition.setText("")
         self.lbl_backwards_counter.setText("")
