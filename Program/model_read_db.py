@@ -172,7 +172,7 @@ class Read_db:
         return list_of_homeworks
 
     # material tab methods
-    # not tested yet#############
+
     def get_lecture_detail(self, course_name):
         self.open_db()
         self.mycursor.execute(f"select course_id from course_ab_es where course_name = '{course_name}';")
@@ -209,7 +209,6 @@ class Read_db:
         record = self.mycursor.fetchone()
         return record
 
-    # not tested yet#############
     def get_notes(self, username):
         self.open_db()
         self.mycursor.execute(f"SELECT personal_id From student_info Where user_name = '{username}';")
@@ -225,7 +224,6 @@ class Read_db:
         self.close_db()
         return note_name_list
 
-    # not tested yet#############
     def check_if_note_name_exist(self, note_name, username):
         self.open_db()
         self.mycursor.execute(f"SELECT personal_id From student_info Where user_name = '{username}';")
@@ -245,7 +243,7 @@ class Read_db:
         else:
             self.close_db()
             return False
-    # not tested yet#############
+
     def get_note_data(self, note_name, username):
         self.open_db()
         self.mycursor.execute(f"SELECT personal_id From student_info Where user_name = '{username}';")

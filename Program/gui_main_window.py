@@ -72,7 +72,7 @@ class UI_main_window(QMainWindow):
 
     # list objects
         # team session tab
-        self.list_widget_ts_homework = self.findChild(QListWidget, "list_widget_ts_homework")
+        self.list_widget_ts_courses = self.findChild(QListWidget, "list_widget_ts_homework")
         self.list_widget_homework_detail = self.findChild(QListWidget, "list_widget_homework_detail")
         # time management tab
         self.list_widget_tm_time_schedule = self.findChild(QListWidget, "list_widget_tm_time_schedule")
@@ -84,7 +84,7 @@ class UI_main_window(QMainWindow):
 
     # window settings when window open
         # team session tab
-        self.list_widget_ts_homework.addItems(self.cntrl.get_course(username))
+        self.list_widget_ts_courses.addItems(self.cntrl.get_course(username))
         self.list_widget_homework_detail.clear()
         # time manegement tab
 
@@ -110,7 +110,7 @@ class UI_main_window(QMainWindow):
 
     # actions for list widget objects
         # team session tab
-        self.list_widget_ts_homework.itemClicked.connect(self.text_clicked_item_homeworks)
+        self.list_widget_ts_courses.itemClicked.connect(self.text_clicked_item_homeworks)
 
         # time manegement tab
 

@@ -273,9 +273,22 @@ class TestReadDb(unittest.TestCase):
         self.assertEqual(self.read_db.get_lecture_detail("surgery"), expected_list2)
         self.delete_user()
 
-    #############not finished
     def test_get_lecture(self):
-        pass
+        # Add sample data to the database, assuming the tables are already set up.
+        course_name = "java"
+        lecture_name = "Lecture1_java.pdf"
+
+        # Call the method and get the result
+        read_db = Read_db()
+        result = read_db.get_lecture(course_name, lecture_name)
+        empty_result = True
+        if not result:
+            pass
+        else:
+            empty_result = False
+
+        # Assertions
+        self.assertEqual(empty_result, False)
 
     def test_get_notes(self):
         self.create_user()
