@@ -68,18 +68,19 @@
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="lbl_study_break_condition">
+   <widget class="QLabel" name="lbl_number_of_sessoins">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>590</y>
+      <x>410</x>
+      <y>610</y>
       <width>331</width>
       <height>51</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>14</pointsize>
+      <family>MS Sans Serif</family>
+      <pointsize>15</pointsize>
      </font>
     </property>
     <property name="text">

@@ -14,6 +14,7 @@ class UI_pomodoro_session(QMainWindow):
         self.type_of_pomodoro = type_of_pomodoro
         self.number_of_sessions = number_of_sessions
         self.is_break = False
+        self.number_of_sessions1 = self.number_of_sessions
 
         self.btn_end_session = self.findChild(QPushButton, "btn_end_session")
 
@@ -23,12 +24,15 @@ class UI_pomodoro_session(QMainWindow):
         if self.type_of_pomodoro == 1:
             pixmap = QPixmap('study.png')
             self.lbl_image.setPixmap(pixmap)
+            self.lbl_image.adjustSize()
         else:
             pixmap = QPixmap('studies.png')
             self.lbl_image.setPixmap(pixmap)
+            self.lbl_image.adjustSize()
 
         # label objects
         self.lbl_backwards_counter = self.findChild(QLabel, "lbl_backwards_counter")
+        self.lbl_number_of_sessoins = self.findChild(QLabel, "lbl_number_of_sessoins")
         self.lbl_image = self.findChild(QLabel, 'lbl_image')
 
         # Set up the timer with a 1-second interval
@@ -45,6 +49,7 @@ class UI_pomodoro_session(QMainWindow):
         self.timer.start()
 
     def update_timer(self):
+        self.lbl_number_of_sessoins.setText(f"This is Session number: {self.number_of_sessions1}")
         # Decrement the remaining time
         self.remaining_time -= 1
 
@@ -68,6 +73,7 @@ class UI_pomodoro_session(QMainWindow):
             # Increment the loop count if it's not a break
             if not self.is_break:
                 self.loop_count += 1
+                self.number_of_sessions1 = self.number_of_sessions1 - self.loop_count
 
             # Stop the timer if the loop count reached 2
             if self.loop_count == self.number_of_sessions:
