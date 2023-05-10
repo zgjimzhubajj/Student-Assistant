@@ -24,11 +24,9 @@ class UI_pomodoro_session(QMainWindow):
         if self.type_of_pomodoro == 1:
             pixmap = QPixmap('study.png')
             self.lbl_image.setPixmap(pixmap)
-            self.lbl_image.adjustSize()
         else:
             pixmap = QPixmap('studies.png')
             self.lbl_image.setPixmap(pixmap)
-            self.lbl_image.adjustSize()
 
         # label objects
         self.lbl_backwards_counter = self.findChild(QLabel, "lbl_backwards_counter")
