@@ -150,6 +150,126 @@ class Read_db:
         self.close_db()
         return list_of_lists
 
+################ not tested yet
+    def get_students(self, user_name):
+        self.open_db()
+        self.mycursor.execute(f"select program_name, year_of_study from student_info where user_name = '{user_name}';")
+        self.myresult = self.mycursor.fetchall()
+        program_year_list = []
+        for item in self.myresult:
+            program_year_list.append(str(item[0]))
+            program_year_list.append(str(item[1]))
+        program = program_year_list[0]
+        year = program_year_list[1]
+        self.mycursor.execute(f"select first_name, last_name, personal_id from student_info where program_name = '{program}' and year_of_study = '{year}';")
+        self.myresult = self.mycursor.fetchall()
+        student_list = []
+        tuple = ()
+        for item in self.myresult:
+            student_name = item[0] + " " + item[1]
+            student_personal_id = item[2]
+            tuple = (student_name, student_personal_id)
+            student_list.append(tuple)
+        self.close_db()
+        return student_list
+
+    ################ not tested yet
+    def get_first_name_last_name(self, user_name):
+        self.open_db()
+        self.mycursor.execute(f"select first_name, last_name from student_info where user_name = '{user_name}';")
+        self.myresult = self.mycursor.fetchall()
+        user_list = []
+        for item in self.myresult:
+            user_list.append(str(item[0]))
+            user_list.append(str(item[1]))
+        first_name = user_list[0]
+        last_name = user_list[1]
+        self.close_db()
+        return first_name, last_name
+
+################### not tested yet
+    def check_session_name(self, session_name, user_name):
+        self.open_db()
+        self.mycursor.execute(f"SELECT personal_id From student_info where user_name = '{user_name}';")
+        self.myresult = self.mycursor.fetchall()
+        personal_id_list = []
+        for item in self.myresult:
+            personal_id_list.append(str(item[0]))
+        self.mycursor.execute(f"select session_name from session_ab_es where session_name = '{session_name}' and personal_id = '{personal_id_list[0]}';")
+        self.myresult = self.mycursor.fetchall()
+        session_name_list = []
+        for item in self.myresult:
+            session_name_list.append(str(item[0]))
+        self.close_db()
+        if session_name_list != []:
+            return True
+        else:
+            return False
+
+    ###################### not tested yet
+    def check_session_members(self, student_session_list, user_name):
+        list_exist = False
+        session_id_list = self.get_session_ids(user_name)
+        if session_id_list == []:
+            return False
+        else:
+            self.open_db()
+            for session_id in session_id_list:
+                self.mycursor.execute(f"SELECT personal_id From student_session_ab_es where session_id = '{session_id}';")
+                self.myresult = self.mycursor.fetchall()
+                personal_id_list_db = []
+                for item in self.myresult:
+                    personal_id_list_db.append(str(item[0]))
+                personal_id_list_prog = []
+                for tuple in student_session_list:
+                    personal_id_list_prog.append(str(tuple[1]))
+                set1 = set(personal_id_list_db)
+                set2 = set(personal_id_list_prog)
+                if set1 == set2:
+                    self.close_db()
+                    list_exist = True
+                    return list_exist
+                else:
+                    self.close_db()
+                    return list_exist
+
+################not tested yet
+    def get_session_ids(self, user_name):
+        self.open_db()
+        self.mycursor.execute(f"SELECT personal_id From student_info where user_name = '{user_name}';")
+        self.myresult = self.mycursor.fetchall()
+        personal_id_list = []
+        for item in self.myresult:
+            personal_id_list.append(str(item[0]))
+        self.mycursor.execute(f"SELECT session_id From session_ab_es where personal_id = '{personal_id_list[0]}';")
+        self.myresult = self.mycursor.fetchall()
+        session_id_list = []
+        for item in self.myresult:
+            session_id_list.append(str(item[0]))
+        self.close_db()
+        if session_id_list == []:
+            return []
+        else:
+            return session_id_list
+    
+    def get_session_id(self, session_name, user_name):
+        self.open_db()
+        self.mycursor.execute(f"SELECT personal_id From student_info where user_name = '{user_name}';")
+        self.myresult = self.mycursor.fetchall()
+        personal_id_list = []
+        for item in self.myresult:
+            personal_id_list.append(str(item[0]))
+        self.mycursor.execute(f"SELECT session_id From session_ab_es where personal_id = '{personal_id_list[0]}' and session_name = '{session_name}';")
+        self.myresult = self.mycursor.fetchall()
+        session_id_list = []
+        for item in self.myresult:
+            session_id_list.append(str(item[0]))
+        self.close_db()
+        if session_id_list == []:
+            return []
+        else:
+            return session_id_list
+
     # Time_management tab methods
     def get_first_name(self, username):
         self.open_db()
@@ -188,7 +308,7 @@ class Read_db:
             list_of_lists.append(tup[0])
         self.close_db()
         return list_of_lists
-    #not tested yet########
+
     def get_lecture(self, course_name_m_course, lecture_name):
         self.open_db()
         self.mycursor.execute(f"select course_id from course_ab_es where course_name = '{course_name_m_course}';")

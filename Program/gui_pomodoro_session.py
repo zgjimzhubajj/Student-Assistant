@@ -47,7 +47,7 @@ class UI_pomodoro_session(QMainWindow):
         self.timer.start()
 
     def update_timer(self):
-        self.lbl_number_of_sessoins.setText(f"This is Session number: {self.number_of_sessions1}")
+        self.lbl_number_of_sessoins.setText(f"Sessions you have left: {self.number_of_sessions1}")
         # Decrement the remaining time
         self.remaining_time -= 1
 

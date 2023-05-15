@@ -27,7 +27,6 @@ class Write_db():
         self.mydb.close()
 
 # gui_register methods
-    # not tested yet#############
     def insert_student_info(self, first_name, last_name, email, username, password, personal_id, year_of_study, name_of_program):
         self.open_db()
         self.mycursor.execute(f"SELECT program_id From program_ab_es where program_name = '{name_of_program}';")
@@ -53,12 +52,29 @@ class Write_db():
 
 # gui_main_window methods
     # team_session tab methods
+    ####################not tested yet
+    def store_session(self, session_name, user_name):
+        self.open_db()
+        self.mycursor.execute(f"SELECT personal_id From student_info where user_name = '{user_name}';")
+        self.myresult = self.mycursor.fetchall()
+        personal_id_list = []
+        for item in self.myresult:
+            personal_id_list.append(str(item[0]))
+        self.mycursor.execute(f"INSERT INTO session_ab_es (session_name, personal_id) Values('{session_name}', '{personal_id_list[0]}')")
+        self.mydb.commit()
+        self.close_db()
+
+####################not tested yet
+    def store_students_in_session(self, student_session_list, session_id):
+        self.open_db()
+        for tuple in student_session_list:
+            self.mycursor.execute(f"INSERT INTO student_session_ab_es (session_id, personal_id) Values('{session_id[0]}', '{tuple[1]}')")
+            self.mydb.commit()
+        self.close_db()
 
     # time_manegment tab methods
 
     # material tab methods
-
-    # not tested yet#############
     def add_new_note_to_db(self, note_name, note_data, username):
         self.open_db()
         self.mycursor.execute(f"SELECT personal_id From student_info Where user_name = '{username}';")

@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.33, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
 --
 -- Host: localhost    Database: student_assistant
 -- ------------------------------------------------------
--- Server version	8.0.33
+-- Server version	8.0.32
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -101,35 +101,6 @@ INSERT INTO `homework_ab_es` VALUES (1,'homework1','2023-05-15',1),(2,'homework2
 UNLOCK TABLES;
 
 --
--- Table structure for table `homework_notes_ab_es`
---
-
-DROP TABLE IF EXISTS `homework_notes_ab_es`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `homework_notes_ab_es` (
-  `note_id` int NOT NULL AUTO_INCREMENT,
-  `not_text` text NOT NULL,
-  `personal_id` varchar(10) NOT NULL,
-  `homework_id` int NOT NULL,
-  PRIMARY KEY (`note_id`),
-  KEY `personal_id` (`personal_id`),
-  KEY `homework_id` (`homework_id`),
-  CONSTRAINT `homework_notes_ab_es_ibfk_1` FOREIGN KEY (`personal_id`) REFERENCES `student_info` (`personal_id`),
-  CONSTRAINT `homework_notes_ab_es_ibfk_2` FOREIGN KEY (`homework_id`) REFERENCES `homework_ab_es` (`homework_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `homework_notes_ab_es`
---
-
-LOCK TABLES `homework_notes_ab_es` WRITE;
-/*!40000 ALTER TABLE `homework_notes_ab_es` DISABLE KEYS */;
-/*!40000 ALTER TABLE `homework_notes_ab_es` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `notes_mil`
 --
 
@@ -142,7 +113,7 @@ CREATE TABLE `notes_mil` (
   `note_data` varchar(1000) NOT NULL,
   `personal_id` int NOT NULL,
   PRIMARY KEY (`note_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,7 +122,6 @@ CREATE TABLE `notes_mil` (
 
 LOCK TABLES `notes_mil` WRITE;
 /*!40000 ALTER TABLE `notes_mil` DISABLE KEYS */;
-INSERT INTO `notes_mil` VALUES (1,'note_1','hello',1234567890),(2,'note_2','Lecture2',1234567890),(3,'note3','hi',1234567890),(4,'note4','lecture4',1234567890),(5,'z','hiiiiiiiiiiiiiiiiiiii',1234567890);
 /*!40000 ALTER TABLE `notes_mil` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -222,7 +192,7 @@ CREATE TABLE `session_ab_es` (
   PRIMARY KEY (`session_id`),
   KEY `personal_id` (`personal_id`),
   CONSTRAINT `session_ab_es_ibfk_1` FOREIGN KEY (`personal_id`) REFERENCES `student_info` (`personal_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -257,7 +227,7 @@ CREATE TABLE `student_course_ab_es` (
 
 LOCK TABLES `student_course_ab_es` WRITE;
 /*!40000 ALTER TABLE `student_course_ab_es` DISABLE KEYS */;
-INSERT INTO `student_course_ab_es` VALUES ('1234567890',1),('4545454545',1),('1234567890',2),('4545454545',2),('1234567890',3),('4545454545',3),('1234567890',4),('4545454545',4),('1234567890',5),('4545454545',5);
+INSERT INTO `student_course_ab_es` VALUES ('1234567892',6),('1234567892',7),('1234567892',8),('1234567892',9),('1234567892',10);
 /*!40000 ALTER TABLE `student_course_ab_es` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -287,7 +257,7 @@ CREATE TABLE `student_info` (
 
 LOCK TABLES `student_info` WRITE;
 /*!40000 ALTER TABLE `student_info` DISABLE KEYS */;
-INSERT INTO `student_info` VALUES ('1234567890','a','a','a','a','a@a.a','Programing',1),('4545454545','a','a','g','g','a@.aa','Programing',1);
+INSERT INTO `student_info` VALUES ('1234567892','c','c','c','c','c@c.c','Medicine',1);
 /*!40000 ALTER TABLE `student_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -326,4 +296,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-07 20:09:06
+-- Dump completed on 2023-05-15 22:03:18

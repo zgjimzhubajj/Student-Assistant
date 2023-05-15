@@ -57,6 +57,30 @@ class Controller():
     def get_homework_detail(self, course_name):
         return self.read_db.get_homework_detail(course_name)
 
+    def get_students(self, user_name):
+        student_list = self.read_db.get_students(user_name)
+        tuple = ("", 0)
+        student_list.insert(0, tuple)
+        return student_list
+
+    def get_first_name_last_name(self, user_name):
+        return self.read_db.get_first_name_last_name(user_name)
+
+    def check_session_name(self, session_name, user_name):
+        return self.read_db.check_session_name(session_name, user_name)
+    
+    def check_session_members(self, student_session_list, user_name):
+        return self.read_db.check_session_members(student_session_list, user_name)
+    
+    def store_session(self, session_name, user_name):
+        self.write_db.store_session(session_name, user_name)
+
+    def get_session_id(self, session_name, user_name):
+        return self.read_db.get_session_id(session_name, user_name)
+
+    def store_students_in_session(self, student_session_list, session_id):
+        self.write_db.store_students_in_session(student_session_list, session_id)
+
     # material tab methods
     def get_lecture_detail(self, course_name):
         return self.read_db.get_lecture_detail(course_name)

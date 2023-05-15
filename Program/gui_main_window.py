@@ -40,43 +40,31 @@ class UI_main_window(QMainWindow):
         self.btn_log_out.clicked.connect(self.button_log_out_pushed)
         self.btn_ts_create_session.clicked.connect(self.button_ts_create_session_pushed)
         self.btn_ts_see_session.clicked.connect(self.button_ts_see_session_pushed)
-
         # Time management tab
-
         self.btn_tm_add_activity.clicked.connect(self.btn_tm_add_activity_pushed)
         self.btn_tm_remove_activity.clicked.connect(self.btn_tm_remove_activity_pushed)
         self.btn_tm_start_pomodoro.clicked.connect(self.btn_tm_start_pomodoro_pushed)
         self.btn_tm_pomodoro_settings.clicked.connect(self.btn_tm_pomodoro_settings_pushed)
-
         # material tab
         self.btn_m_select_lecture.clicked.connect(self.btn_m_select_lecture_pushed)
         self.btn_m_add_note.clicked.connect(self.btn_m_add_note_pushed)
 
     # label objects
-        # team session tab
-        self.lbl_ts_time_left_for_next_homework_1 = self.findChild(QLabel, "lbl_ts_time_left_for_next_homework_1")
-        self.lbl_ts_time_left_for_next_homework_2 = self.findChild(QLabel, "lbl_ts_time_left_for_next_homework_2")
-        self.lbl_ts_time_left_for_next_homework_3 = self.findChild(QLabel, "lbl_ts_time_left_for_next_homework_3")
-        self.lbl_ts_time_left_for_next_homework_4 = self.findChild(QLabel, "lbl_ts_time_left_for_next_homework_4")
-        self.lbl_ts_time_left_for_next_homework_5 = self.findChild(QLabel, "lbl_ts_time_left_for_next_homework_5")
         # Time management tab
         self.lbl_tm_welcome = self.findChild(QLabel, "lbl_tm_welcome")
-
         self.lbl_tm_reminder_message = self.findChild(QLabel, "lbl_tm_reminder_message")
         self.lbl_tm_reminder_course = self.findChild(QLabel, "lbl_tm_reminder_course")
         self.lbl_tm_reminder_task = self.findChild(QLabel, "lbl_tm_reminder_task")
         self.lbl_tm_reminder_date = self.findChild(QLabel, "lbl_tm_reminder_date")
-
         # material tab
         self.lbl_m_note_text = self.findChild(QLabel, "lbl_m_note_text")
 
     # list objects
         # team session tab
-        self.list_widget_ts_courses = self.findChild(QListWidget, "list_widget_ts_homework")
+        self.list_widget_ts_courses = self.findChild(QListWidget, "list_widget_ts_courses")
         self.list_widget_homework_detail = self.findChild(QListWidget, "list_widget_homework_detail")
         # time management tab
         self.list_widget_tm_time_schedule = self.findChild(QListWidget, "list_widget_tm_time_schedule")
-
         # material tab
         self.list_widget_m_courses = self.findChild(QListWidget, "list_widget_m_courses")
         self.list_widget_m_lectures = self.findChild(QListWidget, "list_widget_m_lectures")
@@ -87,20 +75,16 @@ class UI_main_window(QMainWindow):
         self.list_widget_ts_courses.addItems(self.cntrl.get_course(username))
         self.list_widget_homework_detail.clear()
         # time manegement tab
-
         self.lbl_tm_welcome.setText(f"Welcome {self.cntrl.get_first_name(self.username).capitalize()}!\nHow would you like to organize your day?")
         self.lbl_tm_welcome.adjustSize()
         self.btn_pomodoro_settings_pushed = False
         if not self.btn_pomodoro_settings_pushed:
-            print(self.btn_pomodoro_settings_pushed)
             self.btn_tm_start_pomodoro.setEnabled(False)
         else:
-            print(self.btn_pomodoro_settings_pushed)
             self.btn_tm_start_pomodoro.setEnabled(True)
 
         self.reminder_of_upcoming_homeworks()
         self.lbl_tm_reminder_message.adjustSize()
-
         # material tab
         self.lbl_m_note_text.setText("")
         self.list_widget_m_courses.addItems(self.cntrl.get_course(username))
@@ -128,7 +112,7 @@ class UI_main_window(QMainWindow):
 
     def button_ts_create_session_pushed(self):
         self.clear_window()
-        self.create_session_window = UI_create_session_window(self)
+        self.create_session_window = UI_create_session_window(self, self.username)
         self.create_session_window.closed.connect(self.show_this_window)
         self.close()
         self.create_session_window.show()
@@ -163,7 +147,7 @@ class UI_main_window(QMainWindow):
         self.pomodoro_session.closed.connect(self.show_this_window)
         self.close()
         self.pomodoro_session.show()
-        
+
     def store_pomodoro_settings(self, type_of_pomodoro, number_of_sessions):
         self.type_of_pomodoro = type_of_pomodoro
         self.number_of_sessions = number_of_sessions
@@ -219,11 +203,6 @@ class UI_main_window(QMainWindow):
         self.show()
 
     def clear_window(self):
-        self.lbl_ts_time_left_for_next_homework_1.setText("")
-        self.lbl_ts_time_left_for_next_homework_2.setText("")
-        self.lbl_ts_time_left_for_next_homework_3.setText("")
-        self.lbl_ts_time_left_for_next_homework_4.setText("")
-        self.lbl_ts_time_left_for_next_homework_5.setText("")
         self.list_widget_homework_detail.clear()
         self.list_widget_tm_time_schedule.clear()
         self.btn_tm_start_pomodoro.setEnabled(False)

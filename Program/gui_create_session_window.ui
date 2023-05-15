@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>818</width>
-    <height>496</height>
+    <height>741</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,119 +17,135 @@
    <widget class="QComboBox" name="combo_box_student_name">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>190</y>
+      <x>250</x>
+      <y>110</y>
       <width>291</width>
       <height>41</height>
      </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btn_back">
-    <property name="geometry">
-     <rect>
-      <x>340</x>
-      <y>360</y>
-      <width>93</width>
-      <height>28</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Back</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="combo_box_name_course">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>120</y>
-      <width>291</width>
-      <height>41</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="combo_box_name_program">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>50</y>
-      <width>291</width>
-      <height>41</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>50</y>
-      <width>191</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Name of Program:</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>130</y>
-      <width>191</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Name of Course:</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>200</y>
-      <width>191</width>
-      <height>31</height>
+      <x>30</x>
+      <y>110</y>
+      <width>181</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
      <string>Name of Student:</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btn_add_course">
+   <widget class="QPushButton" name="btn_create_session">
     <property name="geometry">
      <rect>
-      <x>620</x>
-      <y>120</y>
+      <x>420</x>
+      <y>600</y>
       <width>151</width>
-      <height>34</height>
+      <height>51</height>
      </rect>
     </property>
     <property name="text">
-     <string>Add Course</string>
+     <string>Create session</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_add_student">
     <property name="geometry">
      <rect>
-      <x>620</x>
-      <y>190</y>
+      <x>570</x>
+      <y>113</y>
       <width>151</width>
-      <height>34</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
      <string>Add Student</string>
     </property>
    </widget>
-   <widget class="QListWidget" name="list_widget_added_info">
+   <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>280</y>
-      <width>256</width>
+      <x>30</x>
+      <y>30</y>
+      <width>161</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="text">
+     <string>Name of session</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="line_edit_name_of_session">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>30</y>
+      <width>291</width>
+      <height>41</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_session_info">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>240</y>
+      <width>761</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="list_widget_member_of_session">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>290</y>
+      <width>741</width>
+      <height>181</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_save_session_name">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>30</y>
+      <width>151</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Save name</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_wrong_inputs">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>500</y>
+      <width>751</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_back">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>600</y>
+      <width>151</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Back</string>
     </property>
    </widget>
   </widget>
@@ -139,7 +155,7 @@
      <x>0</x>
      <y>0</y>
      <width>818</width>
-     <height>31</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
