@@ -1,5 +1,6 @@
 import mysql.connector
 import datetime
+import copy
 
 
 class Read_db:
@@ -67,13 +68,6 @@ class Read_db:
 # gui_forgot_password methods
     def retrieve_password(self, first_name, last_name, email, username, personal_id, year_of_study, name_of_program):
         self.open_db()
-        # self.mycursor.execute(f"SELECT program_id From program_ab_es where program_name = '{name_of_program}';")
-        # self.myresult = self.mycursor.fetchall()
-        # # change myResults from a list of tuples to a list of strings
-        # string_list = []
-        # for item in self.myresult:
-        #     string_list.append(str(item[0]))
-        # program_id = string_list[0]
         self.mycursor.execute(f"SELECT password FROM student_info WHERE personal_id = '{personal_id}' And first_name = '{first_name}' And last_name = '{last_name}' And user_name = '{username}' And email = '{email}' And year_of_study = '{year_of_study}' And program_name = '{name_of_program}';")
         self.myresult = self.mycursor.fetchall()
         password_list = []
@@ -251,7 +245,7 @@ class Read_db:
             return []
         else:
             return session_id_list
-    
+
     def get_session_id(self, session_name, user_name):
         self.open_db()
         self.mycursor.execute(f"SELECT personal_id From student_info where user_name = '{user_name}';")
@@ -265,10 +259,115 @@ class Read_db:
         for item in self.myresult:
             session_id_list.append(str(item[0]))
         self.close_db()
-        if session_id_list == []:
-            return []
+        return session_id_list
+        # if session_id_list == []:
+        #     return []
+        # else:
+        #     return session_id_list
+
+    ######### not tested yet
+    def get_sessions_names(self, user_name):
+        self.open_db()
+        self.mycursor.execute(f"SELECT personal_id From student_info where user_name = '{user_name}';")
+        self.myresult = self.mycursor.fetchall()
+        personal_id_list = []
+        for item in self.myresult:
+            personal_id_list.append(str(item[0]))
+        self.mycursor.execute(f"SELECT session_name From session_ab_es where personal_id = '{personal_id_list[0]}';")
+        self.myresult = self.mycursor.fetchall()
+        session_name_list = []
+        for item in self.myresult:
+            session_name_list.append(str(item[0]))
+        self.close_db()
+        return session_name_list
+
+    ########### not tested yet
+    def get_homeworks_names(self, user_name):
+        self.open_db()
+        self.mycursor.execute(f"SELECT homework_ab_es.homework_name, homework_ab_es.homework_id, homework_ab_es.course_id FROM student_info JOIN student_course_ab_es ON student_info.personal_id = student_course_ab_es.personal_id JOIN course_ab_es ON student_course_ab_es.course_id = course_ab_es.course_id JOIN homework_ab_es ON course_ab_es.course_id = homework_ab_es.course_id WHERE student_info.user_name = '{user_name[0]}';")
+        self.myresult = self.mycursor.fetchall()
+        self.close_db()
+        return self.myresult
+
+    ######### not tested yet
+    def get_students_session(self, session_name, user_name):
+        session_id_list = self.get_session_id(session_name, user_name)
+        self.open_db()
+        session_id = session_id_list[0]
+        self.mycursor.execute(f"SELECT personal_id From student_session_ab_es where session_id = '{session_id}';")
+        self.myresult = self.mycursor.fetchall()
+        student_id_list = []
+        for item in self.myresult:
+            student_id_list.append(str(item[0]))
+        student_name_list = []
+        for id in student_id_list:
+            self.mycursor.execute(f"SELECT first_name, last_name, personal_id From student_info where personal_id = '{id}';")
+            self.myresult = self.mycursor.fetchall()
+            for tuple in self.myresult:
+                first_name = tuple[0]
+                last_name = tuple[1]
+                personal_id = tuple[2]
+                name = first_name + " " + last_name
+                student_name_list.append((name, personal_id))
+        self.close_db()
+        return student_name_list
+
+    ############# not tested yet
+    def check_if_homework_finished(self, homeworks_tuple_list, personal_id):
+        homeworks_tuple_list_new = homeworks_tuple_list
+        self.open_db()
+        self.mycursor.execute(f"SELECT homework_id From finished_homework_ab_es where personal_id = '{personal_id}';")
+        self.myresult = self.mycursor.fetchall()
+        index_list_of_deletion = []
+        homework_id_list = []
+        for item in self.myresult:
+            homework_id_list.append(item[0])
+        for index, tuple in enumerate(homeworks_tuple_list_new):
+            for homework_id in homework_id_list:
+                if homework_id == tuple[1]:
+                    index_list_of_deletion.append(index)
+        for i in sorted(index_list_of_deletion, reverse=True):
+            del homeworks_tuple_list_new[i]
+        self.close_db()
+        return homeworks_tuple_list_new
+
+    ################not tested yet
+    def get_homework_bool(self, students_session_tuple):
+        self.open_db()
+        homework_list_details = []
+        for index, value in enumerate(students_session_tuple):
+            if index == 1:
+                self.mycursor.execute(f"select user_name from student_info where personal_id = '{value}';'")
+                self.myresult = self.mycursor.fetchall()
+                homeworks_tuple_list_all = self.get_homeworks_names(self.myresult[0])
+                homeworks_tuple_list_new = copy.deepcopy(homeworks_tuple_list_all)
+                homeworks_tuple_list_not_finished = self.check_if_homework_finished(homeworks_tuple_list_all, value)
+                for homework_tuple in homeworks_tuple_list_new:
+                    if homework_tuple in homeworks_tuple_list_not_finished:  # homework tuple consist of homework_name, homework_id and course_id
+                        homework_list_details.append((homework_tuple, "Not finished"))
+                    else:
+                        homework_list_details.append((homework_tuple, "Finished"))
+        self.close_db()
+        return homework_list_details
+
+    ############# not tested yet
+    def check_if_homework_finished_before(self, homework_id, user_name):
+        self.open_db()
+        self.mycursor.execute(f"SELECT personal_id From student_info where user_name = '{user_name}';")
+        self.myresult = self.mycursor.fetchall()
+        personal_id_list = []
+        for item in self.myresult:
+            personal_id_list.append(str(item[0]))
+        self.mycursor.execute(f"SELECT homework_stat_id From finished_homework_ab_es where personal_id = '{personal_id_list[0]}' and homework_id = '{homework_id}';")
+        self.myresult = self.mycursor.fetchall()
+        finished_list = []
+        for item in self.myresult:
+            finished_list.append(str(item[0]))
+        self.close_db()
+        if finished_list == []:
+            return False
         else:
-            return session_id_list
+            return True
 
     # Time_management tab methods
     def get_first_name(self, username):
@@ -317,7 +416,7 @@ class Read_db:
         for item in self.myresult:
             course_list.append(item[0])
         course_id = course_list[0]
-        self.mycursor.execute(f"select id from pdf_files_mil where course_id = {course_id} and file_name = '{lecture_name}';")#it might show error here because i didnt serround course_id with single coutation
+        self.mycursor.execute(f"select id from pdf_files_mil where course_id = {course_id} and file_name = '{lecture_name}';")
         self.myresult = self.mycursor.fetchall()
         id_list = []
         for item in self.myresult:

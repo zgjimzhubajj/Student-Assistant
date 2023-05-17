@@ -119,7 +119,7 @@ class UI_main_window(QMainWindow):
 
     def button_ts_see_session_pushed(self):
         self.clear_window()
-        self.see_session_window = UI_see_session_window(self)
+        self.see_session_window = UI_see_session_window(self, self.username)
         self.see_session_window.closed.connect(self.show_this_window)
         self.close()
         self.see_session_window.show()
@@ -157,6 +157,7 @@ class UI_main_window(QMainWindow):
         self.pomodoro_settings.closed.connect(self.show_this_window)
         self.close()
         self.pomodoro_settings.show()
+
 
     # material tab
     def btn_m_select_lecture_pushed(self):
@@ -207,11 +208,9 @@ class UI_main_window(QMainWindow):
         self.list_widget_tm_time_schedule.clear()
         self.btn_tm_start_pomodoro.setEnabled(False)
 
-
     def reminder_of_upcoming_homeworks(self):
         """
         Update the labels displaying the upcoming homeworks for the logged-in user.
-
         Only showing those due in 14 days or less. Uses a QTimer to refresh the labels
         once every minute.
         """
@@ -223,7 +222,7 @@ class UI_main_window(QMainWindow):
             data = homework.split(" ")
             due_date = datetime.datetime.strptime(data[2], '%Y-%m-%d').date()
             days_until_due = (due_date - datetime.date.today()).days
-            if days_until_due <= 14:
+            if days_until_due <= 14 and  days_until_due >=0:
                 course.append(data[0])
                 task.append(data[1])
                 date.append(data[2])

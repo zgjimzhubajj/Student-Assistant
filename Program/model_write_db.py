@@ -85,3 +85,15 @@ class Write_db():
         self.mycursor.execute(f"INSERT INTO notes_mil (note_name, note_data, personal_id) Values('{note_name}', '{note_data}', {personal_id_list[0]})")
         self.mydb.commit()
         self.close_db()
+
+################## not tested yet
+    def mark_homework_as_done(self, homework_id, user_name):
+        self.open_db()
+        self.mycursor.execute(f"SELECT personal_id From student_info Where user_name = '{user_name}';")
+        self.myresult = self.mycursor.fetchall()
+        personal_id_list = []
+        for item in self.myresult:
+            personal_id_list.append(item[0])
+        self.mycursor.execute(f"INSERT INTO finished_homework_ab_es (homework_stat, personal_id, homework_id) Values('{1}', '{personal_id_list[0]}', {homework_id})")
+        self.mydb.commit()
+        self.close_db()
