@@ -273,7 +273,12 @@ class Read_db:
         personal_id_list = []
         for item in self.myresult:
             personal_id_list.append(str(item[0]))
-        self.mycursor.execute(f"SELECT session_name From session_ab_es where personal_id = '{personal_id_list[0]}';")
+        self.mycursor.execute(f"SELECT session_id From student_session_ab_es where personal_id = '{personal_id_list[0]}';")
+        self.myresult = self.mycursor.fetchall()
+        session_id_list = []
+        for item in self.myresult:
+            session_id_list.append(str(item[0]))
+        self.mycursor.execute(f"SELECT session_name From session_ab_es where session_id = '{session_id_list[0]}';")
         self.myresult = self.mycursor.fetchall()
         session_name_list = []
         for item in self.myresult:
@@ -291,15 +296,23 @@ class Read_db:
 
     ######### not tested yet
     def get_students_session(self, session_name, user_name):
-        session_id_list = self.get_session_id(session_name, user_name)
         self.open_db()
-        session_id = session_id_list[0]
-        self.mycursor.execute(f"SELECT personal_id From student_session_ab_es where session_id = '{session_id}';")
+        self.mycursor.execute(f"SELECT personal_id From student_info where user_name = '{user_name}';")
+        self.myresult = self.mycursor.fetchall()
+        personal_id_list = []
+        for item in self.myresult:
+            personal_id_list.append(str(item[0]))
+        self.mycursor.execute(f"SELECT session_id From student_session_ab_es where personal_id = '{personal_id_list[0]}';")
+        self.myresult = self.mycursor.fetchall()
+        session_id_list = []
+        for item in self.myresult:
+            session_id_list.append(str(item[0]))
+        self.mycursor.execute(f"SELECT personal_id From student_session_ab_es where session_id = '{session_id_list[0]}';")
         self.myresult = self.mycursor.fetchall()
         student_id_list = []
         for item in self.myresult:
             student_id_list.append(str(item[0]))
-        student_name_list = []
+        session_name_list = []
         for id in student_id_list:
             self.mycursor.execute(f"SELECT first_name, last_name, personal_id From student_info where personal_id = '{id}';")
             self.myresult = self.mycursor.fetchall()
@@ -308,9 +321,9 @@ class Read_db:
                 last_name = tuple[1]
                 personal_id = tuple[2]
                 name = first_name + " " + last_name
-                student_name_list.append((name, personal_id))
+                session_name_list.append((name, personal_id))
         self.close_db()
-        return student_name_list
+        return session_name_list
 
     ############# not tested yet
     def check_if_homework_finished(self, homeworks_tuple_list, personal_id):
