@@ -17,7 +17,7 @@
    <widget class="QLabel" name="lbl_1">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>130</x>
       <y>30</y>
       <width>171</width>
       <height>31</height>
@@ -30,11 +30,41 @@
    <widget class="QPushButton" name="btn_back">
     <property name="geometry">
      <rect>
-      <x>500</x>
-      <y>437</y>
+      <x>400</x>
+      <y>470</y>
       <width>151</width>
       <height>51</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+	border-style: solid;
+	border-width: 2px;
+	border-color: #9999aa;
+	border-radius: 10px;
+	color: white;
+	background-color: #3474eb
+}
+
+QPushButton:enabled {
+	background-color: #3474eb
+	color: white;
+}
+
+QPushButton:pressed {
+	background-color: #0d2f72;
+	color: #fffffe;
+}
+
+QPushButton:hover:!pressed {
+	background-color: E1F4FF;
+	color: 0c2f70;
+}
+
+QPushButton:disabled {
+	background-color: #aaaaaa;
+	color: #ffffff;
+}</string>
     </property>
     <property name="text">
      <string>Back</string>
@@ -43,10 +73,10 @@
    <widget class="QListWidget" name="list_widget_session_member_homework_detail">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>280</y>
-      <width>351</width>
-      <height>181</height>
+      <x>120</x>
+      <y>270</y>
+      <width>431</width>
+      <height>161</height>
      </rect>
     </property>
    </widget>
@@ -66,7 +96,7 @@
    <widget class="QLabel" name="lbl_4">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>130</x>
       <y>90</y>
       <width>181</width>
       <height>31</height>
@@ -79,8 +109,8 @@
    <widget class="QComboBox" name="combo_box_Sessions">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>30</y>
+      <x>350</x>
+      <y>20</y>
       <width>201</width>
       <height>41</height>
      </rect>
@@ -89,8 +119,8 @@
    <widget class="QComboBox" name="combo_box_members">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>90</y>
+      <x>350</x>
+      <y>80</y>
       <width>201</width>
       <height>41</height>
      </rect>
@@ -99,7 +129,7 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>130</x>
       <y>150</y>
       <width>191</width>
       <height>31</height>
@@ -112,8 +142,8 @@
    <widget class="QComboBox" name="combo_box_personal_homeworks">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>150</y>
+      <x>350</x>
+      <y>140</y>
       <width>201</width>
       <height>41</height>
      </rect>
@@ -122,11 +152,41 @@
    <widget class="QPushButton" name="btn_mark_as_done">
     <property name="geometry">
      <rect>
-      <x>470</x>
-      <y>150</y>
-      <width>151</width>
+      <x>350</x>
+      <y>190</y>
+      <width>201</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+	border-style: solid;
+	border-width: 2px;
+	border-color: #9999aa;
+	border-radius: 10px;
+	color: white;
+	background-color: #3474eb
+}
+
+QPushButton:enabled {
+	background-color: #3474eb
+	color: white;
+}
+
+QPushButton:pressed {
+	background-color: #0d2f72;
+	color: #fffffe;
+}
+
+QPushButton:hover:!pressed {
+	background-color: E1F4FF;
+	color: 0c2f70;
+}
+
+QPushButton:disabled {
+	background-color: #aaaaaa;
+	color: #ffffff;
+}</string>
     </property>
     <property name="text">
      <string>Mark as done</string>

@@ -39,6 +39,42 @@
         <height>51</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>MS Sans Serif</family>
+        <pointsize>15</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+	border-style: solid;
+	border-width: 2px;
+	border-color: #9999aa;
+	border-radius: 10px;
+	color: white;
+	background-color: #3474eb
+}
+
+QPushButton:enabled {
+	background-color: #3474eb
+	color: white;
+}
+
+QPushButton:pressed {
+	background-color: #0d2f72;
+	color: #fffffe;
+}
+
+QPushButton:hover:!pressed {
+	background-color: E1F4FF;
+	color: 0c2f70;
+}
+
+QPushButton:disabled {
+	background-color: #aaaaaa;
+	color: #ffffff;
+}</string>
+      </property>
       <property name="text">
        <string>Create a session</string>
       </property>
@@ -52,6 +88,42 @@
         <height>51</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>MS Sans Serif</family>
+        <pointsize>15</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+	border-style: solid;
+	border-width: 2px;
+	border-color: #9999aa;
+	border-radius: 10px;
+	color: white;
+	background-color: #3474eb
+}
+
+QPushButton:enabled {
+	background-color: #3474eb
+	color: white;
+}
+
+QPushButton:pressed {
+	background-color: #0d2f72;
+	color: #fffffe;
+}
+
+QPushButton:hover:!pressed {
+	background-color: E1F4FF;
+	color: 0c2f70;
+}
+
+QPushButton:disabled {
+	background-color: #aaaaaa;
+	color: #ffffff;
+}</string>
+      </property>
       <property name="text">
        <string>See sessions</string>
       </property>
@@ -59,9 +131,9 @@
      <widget class="QLabel" name="lbl_ts_list_widget">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>20</x>
         <y>200</y>
-        <width>261</width>
+        <width>331</width>
         <height>16</height>
        </rect>
       </property>
@@ -74,7 +146,7 @@
        <rect>
         <x>20</x>
         <y>380</y>
-        <width>321</width>
+        <width>401</width>
         <height>16</height>
        </rect>
       </property>
@@ -95,8 +167,8 @@
      <widget class="QListWidget" name="list_widget_homework_detail">
       <property name="geometry">
        <rect>
-        <x>25</x>
-        <y>411</y>
+        <x>20</x>
+        <y>410</y>
         <width>761</width>
         <height>151</height>
        </rect>
@@ -111,10 +183,46 @@
       <property name="geometry">
        <rect>
         <x>310</x>
-        <y>350</y>
+        <y>420</y>
         <width>191</width>
         <height>51</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>MS Sans Serif</family>
+        <pointsize>15</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+	border-style: solid;
+	border-width: 2px;
+	border-color: #9999aa;
+	border-radius: 10px;
+	color: white;
+	background-color: #3474eb
+}
+
+QPushButton:enabled {
+	background-color: #3474eb
+	color: white;
+}
+
+QPushButton:pressed {
+	background-color: #0d2f72;
+	color: #fffffe;
+}
+
+QPushButton:hover:!pressed {
+	background-color: E1F4FF;
+	color: 0c2f70;
+}
+
+QPushButton:disabled {
+	background-color: #aaaaaa;
+	color: #ffffff;
+}</string>
       </property>
       <property name="text">
        <string>Start Pomodoro</string>
@@ -124,10 +232,46 @@
       <property name="geometry">
        <rect>
         <x>310</x>
-        <y>410</y>
+        <y>490</y>
         <width>191</width>
         <height>51</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>MS Sans Serif</family>
+        <pointsize>15</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+	border-style: solid;
+	border-width: 2px;
+	border-color: #9999aa;
+	border-radius: 10px;
+	color: white;
+	background-color: #3474eb
+}
+
+QPushButton:enabled {
+	background-color: #3474eb
+	color: white;
+}
+
+QPushButton:pressed {
+	background-color: #0d2f72;
+	color: #fffffe;
+}
+
+QPushButton:hover:!pressed {
+	background-color: E1F4FF;
+	color: 0c2f70;
+}
+
+QPushButton:disabled {
+	background-color: #aaaaaa;
+	color: #ffffff;
+}</string>
       </property>
       <property name="text">
        <string>Pomodoro settings</string>
@@ -136,14 +280,16 @@
      <widget class="QLabel" name="lbl_tm_welcome">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>111</width>
+        <x>110</x>
+        <y>20</y>
+        <width>701</width>
         <height>51</height>
        </rect>
       </property>
       <property name="font">
        <font>
+        <family>MS Sans Serif</family>
+        <pointsize>18</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
@@ -156,7 +302,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>70</y>
+        <y>170</y>
         <width>261</width>
         <height>41</height>
        </rect>
@@ -175,8 +321,8 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>60</y>
-        <width>111</width>
+        <y>140</y>
+        <width>421</width>
         <height>16</height>
        </rect>
       </property>
@@ -194,7 +340,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>110</y>
+        <y>230</y>
         <width>47</width>
         <height>13</height>
        </rect>
@@ -207,7 +353,7 @@
       <property name="geometry">
        <rect>
         <x>120</x>
-        <y>110</y>
+        <y>230</y>
         <width>47</width>
         <height>13</height>
        </rect>
@@ -220,7 +366,7 @@
       <property name="geometry">
        <rect>
         <x>210</x>
-        <y>110</y>
+        <y>230</y>
         <width>47</width>
         <height>13</height>
        </rect>
@@ -232,8 +378,8 @@
      <widget class="QListWidget" name="list_widget_tm_time_schedule">
       <property name="geometry">
        <rect>
-        <x>550</x>
-        <y>40</y>
+        <x>560</x>
+        <y>170</y>
         <width>251</width>
         <height>131</height>
        </rect>
@@ -242,11 +388,47 @@
      <widget class="QPushButton" name="btn_tm_add_activity">
       <property name="geometry">
        <rect>
-        <x>570</x>
-        <y>180</y>
-        <width>91</width>
-        <height>23</height>
+        <x>550</x>
+        <y>310</y>
+        <width>111</width>
+        <height>31</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>MS Sans Serif</family>
+        <pointsize>15</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+	border-style: solid;
+	border-width: 2px;
+	border-color: #9999aa;
+	border-radius: 10px;
+	color: white;
+	background-color: #3474eb
+}
+
+QPushButton:enabled {
+	background-color: #3474eb
+	color: white;
+}
+
+QPushButton:pressed {
+	background-color: #0d2f72;
+	color: #fffffe;
+}
+
+QPushButton:hover:!pressed {
+	background-color: E1F4FF;
+	color: 0c2f70;
+}
+
+QPushButton:disabled {
+	background-color: #aaaaaa;
+	color: #ffffff;
+}</string>
       </property>
       <property name="text">
        <string>Add</string>
@@ -256,8 +438,8 @@
       <property name="geometry">
        <rect>
         <x>560</x>
-        <y>20</y>
-        <width>241</width>
+        <y>140</y>
+        <width>321</width>
         <height>20</height>
        </rect>
       </property>
@@ -274,11 +456,47 @@
      <widget class="QPushButton" name="btn_tm_remove_activity">
       <property name="geometry">
        <rect>
-        <x>670</x>
-        <y>180</y>
-        <width>91</width>
-        <height>23</height>
+        <x>700</x>
+        <y>310</y>
+        <width>111</width>
+        <height>31</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>MS Sans Serif</family>
+        <pointsize>15</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+	border-style: solid;
+	border-width: 2px;
+	border-color: #9999aa;
+	border-radius: 10px;
+	color: white;
+	background-color: #3474eb
+}
+
+QPushButton:enabled {
+	background-color: #3474eb
+	color: white;
+}
+
+QPushButton:pressed {
+	background-color: #0d2f72;
+	color: #fffffe;
+}
+
+QPushButton:hover:!pressed {
+	background-color: E1F4FF;
+	color: 0c2f70;
+}
+
+QPushButton:disabled {
+	background-color: #aaaaaa;
+	color: #ffffff;
+}</string>
       </property>
       <property name="text">
        <string>Remove</string>
@@ -292,11 +510,47 @@
      <widget class="QPushButton" name="btn_m_add_note">
       <property name="geometry">
        <rect>
-        <x>120</x>
-        <y>530</y>
-        <width>75</width>
-        <height>23</height>
+        <x>650</x>
+        <y>500</y>
+        <width>161</width>
+        <height>41</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>MS Sans Serif</family>
+        <pointsize>15</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+	border-style: solid;
+	border-width: 2px;
+	border-color: #9999aa;
+	border-radius: 10px;
+	color: white;
+	background-color: #3474eb
+}
+
+QPushButton:enabled {
+	background-color: #3474eb
+	color: white;
+}
+
+QPushButton:pressed {
+	background-color: #0d2f72;
+	color: #fffffe;
+}
+
+QPushButton:hover:!pressed {
+	background-color: E1F4FF;
+	color: 0c2f70;
+}
+
+QPushButton:disabled {
+	background-color: #aaaaaa;
+	color: #ffffff;
+}</string>
       </property>
       <property name="text">
        <string>Add note</string>
@@ -305,11 +559,47 @@
      <widget class="QPushButton" name="btn_m_select_lecture">
       <property name="geometry">
        <rect>
-        <x>310</x>
-        <y>300</y>
-        <width>131</width>
+        <x>10</x>
+        <y>500</y>
+        <width>161</width>
         <height>41</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>MS Sans Serif</family>
+        <pointsize>15</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+	border-style: solid;
+	border-width: 2px;
+	border-color: #9999aa;
+	border-radius: 10px;
+	color: white;
+	background-color: #3474eb
+}
+
+QPushButton:enabled {
+	background-color: #3474eb
+	color: white;
+}
+
+QPushButton:pressed {
+	background-color: #0d2f72;
+	color: #fffffe;
+}
+
+QPushButton:hover:!pressed {
+	background-color: E1F4FF;
+	color: 0c2f70;
+}
+
+QPushButton:disabled {
+	background-color: #aaaaaa;
+	color: #ffffff;
+}</string>
       </property>
       <property name="text">
        <string>Select Lecture</string>
@@ -320,16 +610,16 @@
        <rect>
         <x>10</x>
         <y>90</y>
-        <width>256</width>
-        <height>192</height>
+        <width>811</width>
+        <height>111</height>
        </rect>
       </property>
      </widget>
      <widget class="QListWidget" name="list_widget_m_lectures">
       <property name="geometry">
        <rect>
-        <x>290</x>
-        <y>90</y>
+        <x>10</x>
+        <y>280</y>
         <width>256</width>
         <height>192</height>
        </rect>
@@ -340,7 +630,7 @@
        <rect>
         <x>10</x>
         <y>60</y>
-        <width>81</width>
+        <width>231</width>
         <height>16</height>
        </rect>
       </property>
@@ -351,9 +641,9 @@
      <widget class="QLabel" name="label_3">
       <property name="geometry">
        <rect>
-        <x>290</x>
-        <y>60</y>
-        <width>91</width>
+        <x>20</x>
+        <y>240</y>
+        <width>351</width>
         <height>16</height>
        </rect>
       </property>
@@ -364,8 +654,8 @@
      <widget class="QListWidget" name="list_widget_m_notes">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>330</y>
+        <x>560</x>
+        <y>280</y>
         <width>256</width>
         <height>192</height>
        </rect>
@@ -374,8 +664,8 @@
      <widget class="QLabel" name="lbl_m_note_text">
       <property name="geometry">
        <rect>
-        <x>280</x>
-        <y>330</y>
+        <x>340</x>
+        <y>280</y>
         <width>221</width>
         <height>191</height>
        </rect>
@@ -389,11 +679,47 @@
    <widget class="QPushButton" name="btn_log_out">
     <property name="geometry">
      <rect>
-      <x>370</x>
+      <x>360</x>
       <y>630</y>
-      <width>111</width>
-      <height>24</height>
+      <width>121</width>
+      <height>41</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>MS Sans Serif</family>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+	border-style: solid;
+	border-width: 2px;
+	border-color: #9999aa;
+	border-radius: 10px;
+	color: white;
+	background-color: #3474eb
+}
+
+QPushButton:enabled {
+	background-color: #3474eb
+	color: white;
+}
+
+QPushButton:pressed {
+	background-color: #0d2f72;
+	color: #fffffe;
+}
+
+QPushButton:hover:!pressed {
+	background-color: E1F4FF;
+	color: 0c2f70;
+}
+
+QPushButton:disabled {
+	background-color: #aaaaaa;
+	color: #ffffff;
+}</string>
     </property>
     <property name="text">
      <string>Log Out</string>
@@ -406,7 +732,7 @@
      <x>0</x>
      <y>0</y>
      <width>909</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

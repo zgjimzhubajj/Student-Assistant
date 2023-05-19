@@ -20,7 +20,7 @@
    <widget class="QLabel" name="lbl_wrong_input">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>30</x>
       <y>320</y>
       <width>471</width>
       <height>41</height>
@@ -237,8 +237,8 @@ QPushButton:disabled {
      <rect>
       <x>40</x>
       <y>100</y>
-      <width>401</width>
-      <height>191</height>
+      <width>421</width>
+      <height>221</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -357,7 +357,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>494</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
