@@ -278,13 +278,17 @@ class Read_db:
         session_id_list = []
         for item in self.myresult:
             session_id_list.append(str(item[0]))
-        self.mycursor.execute(f"SELECT session_name From session_ab_es where session_id = '{session_id_list[0]}';")
-        self.myresult = self.mycursor.fetchall()
-        session_name_list = []
-        for item in self.myresult:
-            session_name_list.append(str(item[0]))
-        self.close_db()
-        return session_name_list
+        if session_id_list != []:
+            self.mycursor.execute(f"SELECT session_name From session_ab_es where session_id = '{session_id_list[0]}';")
+            self.myresult = self.mycursor.fetchall()
+            session_name_list = []
+            for item in self.myresult:
+                session_name_list.append(str(item[0]))
+            self.close_db()
+            return session_name_list
+        else:
+            self.close_db()
+            return []
 
     ########### not tested yet
     def get_homeworks_names(self, user_name):
