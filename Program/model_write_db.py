@@ -52,7 +52,6 @@ class Write_db():
 
 # gui_main_window methods
     # team_session tab methods
-    ####################not tested yet
     def store_session(self, session_name, user_name):
         self.open_db()
         self.mycursor.execute(f"SELECT personal_id From student_info where user_name = '{user_name}';")
@@ -64,7 +63,6 @@ class Write_db():
         self.mydb.commit()
         self.close_db()
 
-####################not tested yet
     def store_students_in_session(self, student_session_list, session_id):
         self.open_db()
         for tuple in student_session_list:
@@ -86,7 +84,6 @@ class Write_db():
         self.mydb.commit()
         self.close_db()
 
-################## not tested yet
     def mark_homework_as_done(self, homework_id, user_name):
         self.open_db()
         self.mycursor.execute(f"SELECT personal_id From student_info Where user_name = '{user_name}';")

@@ -314,6 +314,99 @@ class TestReadDb(unittest.TestCase):
         self.write_db.close_db()
         self.delete_user()
 
+    # team_session tab
+    def test_get_students(self):
+        self.create_user()
+        expected_list = [("a a", "1234567890")]
+        self.assertEqual(self.read_db.get_students("a"), expected_list)
+        self.delete_user()
+
+    def test_get_first_name_last_name(self):
+        self.create_user()
+        expected_first_name = "a"
+        expected_last_name = "a"
+        self.assertEqual(self.read_db.get_first_name_last_name("a"), (expected_first_name, expected_last_name))
+        self.delete_user()
+
+    def test_check_session_name(self):
+        self.create_user()
+        session_name = "session1"
+        self.write_db.store_session(session_name, self.username)
+        self.assertEqual(self.read_db.check_session_name(session_name,self.username), True)
+        self.write_db.open_db()
+        self.write_db.mycursor.execute(f"DELETE FROM session_ab_es WHERE session_name = '{session_name}';")
+        self.write_db.mydb.commit()
+        self.write_db.close_db()
+        self.delete_user()
+
+    def test_check_session_members(self):
+        student_session_list = []
+        self.create_user()
+        self.assertEqual(self.read_db.check_session_members(student_session_list, self.username), False)
+        self.delete_user()
+
+    def test_get_session_ids(self):
+        student_id_list = []
+        self.create_user()
+        self.assertEqual(self.read_db.get_session_ids(self.username), student_id_list)
+        self.delete_user()
+
+    def test_get_session_id(self):
+        self.create_user()
+        session_name = "session1"
+        self.write_db.store_session(session_name, self.username)
+        session_id = self.read_db.get_session_id(session_name, self.username)
+        self.assertEqual(self.read_db.get_session_id(session_name, self.username), session_id)
+        self.write_db.open_db()
+        self.write_db.mycursor.execute(f"DELETE FROM session_ab_es WHERE session_name = '{session_name}';")
+        self.write_db.mydb.commit()
+        self.write_db.close_db()
+        self.delete_user()
+
+    def test_get_sessions_names(self):
+        self.create_user()
+        student_session_list = [("a a", "1234567890")]
+        session_name = "session1"
+        expected_session_name_list = ["session1"]
+        self.write_db.store_session(session_name, self.username)
+        session_id = self.read_db.get_session_id(session_name, self.username)
+        self.write_db.store_students_in_session(student_session_list, session_id)
+        self.assertEqual(self.read_db.get_sessions_names(self.username), expected_session_name_list)
+        self.write_db.open_db()
+        self.write_db.mycursor.execute(f"DELETE FROM student_session_ab_es WHERE session_id = '{session_id[0]}';")
+        self.write_db.mycursor.execute(f"DELETE FROM session_ab_es WHERE session_name = '{session_name}';")
+        self.write_db.mydb.commit()
+        self.write_db.close_db()
+        self.delete_user()
+
+    def test_get_homeworks_names(self):
+        self.create_user()
+        expected_list = [('homework1', 1, 1), ('homework2', 2, 2), ('homework3', 3, 3), ('homework4', 4, 4), ('homework5', 5, 5)]
+        self.assertEqual(self.read_db.get_homeworks_names(self.username), expected_list)
+        self.delete_user()
+
+    def test_get_students_session(self):
+        self.create_user()
+        student_session_list = [("a a", "1234567890")]
+        session_name = "session1"
+        expected_student_session_name_list = [("a a", "1234567890")]
+        self.write_db.store_session(session_name, self.username)
+        session_id = self.read_db.get_session_id(session_name, self.username)
+        self.write_db.store_students_in_session(student_session_list, session_id)
+        self.assertEqual(self.read_db.get_students_session(session_name, self.username), expected_student_session_name_list)
+        self.write_db.open_db()
+        self.write_db.mycursor.execute(f"DELETE FROM student_session_ab_es WHERE session_id = '{session_id[0]}';")
+        self.write_db.mycursor.execute(f"DELETE FROM session_ab_es WHERE session_name = '{session_name}';")
+        self.write_db.mydb.commit()
+        self.write_db.close_db()
+        self.delete_user()
+
+    def test_check_if_homework_finished_before(self):
+        self.create_user()
+        homework_id = "1"
+        self.assertEqual(self.read_db.check_if_homework_finished_before(homework_id, self.username), False)
+        self.delete_user()
+
     def create_user(self):
         self.first_name = "a"
         self.last_name = "a"

@@ -96,6 +96,53 @@ class TestWriteDb(unittest.TestCase):
     # def tearDown(self):
     #     self.db = None
 
+    # team_session tab
+    def test_store_session(self):
+        self.create_user()
+        session_name = "session1"
+        self.write_db.store_session(session_name, self.username)
+        self.assertEqual(self.read_db.check_session_name(session_name,self.username), True)
+        self.write_db.open_db()
+        self.write_db.mycursor.execute(f"DELETE FROM session_ab_es WHERE session_name = '{session_name}';")
+        self.write_db.mydb.commit()
+        self.write_db.close_db()
+        self.delete_user()
+
+    def test_store_students_in_session(self):
+        self.create_user()
+        student_session_list = [("a a", "1234567890")]
+        session_name = "session1"
+        expected_session_name_list = ["session1"]
+        self.write_db.store_session(session_name, self.username)
+        session_id = self.read_db.get_session_id(session_name, self.username)
+        self.write_db.store_students_in_session(student_session_list, session_id)
+        self.assertEqual(self.read_db.get_sessions_names(self.username), expected_session_name_list)
+        self.write_db.open_db()
+        self.write_db.mycursor.execute(f"DELETE FROM student_session_ab_es WHERE session_id = '{session_id[0]}';")
+        self.write_db.mycursor.execute(f"DELETE FROM session_ab_es WHERE session_name = '{session_name}';")
+        self.write_db.mydb.commit()
+        self.write_db.close_db()
+        self.delete_user()
+
+    def create_user(self):
+        self.first_name = "a"
+        self.last_name = "a"
+        self.email = "a@a.a"
+        self.password = "a"
+        self.username = "a"
+        self.personal_id = "1234567890"
+        self.year_of_study = "1"
+        self.name_of_program = "Programing"
+        self.write_db.insert_student_info(self.first_name, self.last_name, self.email, self.username, self.password, self.personal_id, self.year_of_study, self.name_of_program)
+
+    def delete_user(self):
+        self.write_db.open_db()
+        self.write_db.mycursor.execute(f"DELETE FROM student_course_ab_es WHERE personal_id = '{self.personal_id}';")
+        self.write_db.mydb.commit()
+        self.write_db.mycursor.execute(f"DELETE FROM student_info WHERE personal_id = '{self.personal_id}';")
+        self.write_db.mydb.commit()
+        self.write_db.close_db()
+
 
 if __name__ == "__main__":
     unittest.main()

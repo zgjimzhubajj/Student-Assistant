@@ -144,7 +144,7 @@ class Read_db:
         self.close_db()
         return list_of_lists
 
-################ not tested yet
+
     def get_students(self, user_name):
         self.open_db()
         self.mycursor.execute(f"select program_name, year_of_study from student_info where user_name = '{user_name}';")
@@ -167,7 +167,6 @@ class Read_db:
         self.close_db()
         return student_list
 
-    ################ not tested yet
     def get_first_name_last_name(self, user_name):
         self.open_db()
         self.mycursor.execute(f"select first_name, last_name from student_info where user_name = '{user_name}';")
@@ -181,7 +180,6 @@ class Read_db:
         self.close_db()
         return first_name, last_name
 
-################### not tested yet
     def check_session_name(self, session_name, user_name):
         self.open_db()
         self.mycursor.execute(f"SELECT personal_id From student_info where user_name = '{user_name}';")
@@ -200,7 +198,6 @@ class Read_db:
         else:
             return False
 
-    ###################### not tested yet
     def check_session_members(self, student_session_list, user_name):
         list_exist = False
         session_id_list = self.get_session_ids(user_name)
@@ -227,7 +224,6 @@ class Read_db:
                     self.close_db()
                     return list_exist
 
-################not tested yet
     def get_session_ids(self, user_name):
         self.open_db()
         self.mycursor.execute(f"SELECT personal_id From student_info where user_name = '{user_name}';")
@@ -260,12 +256,7 @@ class Read_db:
             session_id_list.append(str(item[0]))
         self.close_db()
         return session_id_list
-        # if session_id_list == []:
-        #     return []
-        # else:
-        #     return session_id_list
 
-    ######### not tested yet
     def get_sessions_names(self, user_name):
         self.open_db()
         self.mycursor.execute(f"SELECT personal_id From student_info where user_name = '{user_name}';")
@@ -290,7 +281,6 @@ class Read_db:
             self.close_db()
             return []
 
-    ########### not tested yet
     def get_homeworks_names(self, user_name):
         self.open_db()
         self.mycursor.execute(f"SELECT homework_ab_es.homework_name, homework_ab_es.homework_id, homework_ab_es.course_id FROM student_info JOIN student_course_ab_es ON student_info.personal_id = student_course_ab_es.personal_id JOIN course_ab_es ON student_course_ab_es.course_id = course_ab_es.course_id JOIN homework_ab_es ON course_ab_es.course_id = homework_ab_es.course_id WHERE student_info.user_name = '{user_name[0]}';")
@@ -298,7 +288,6 @@ class Read_db:
         self.close_db()
         return self.myresult
 
-    ######### not tested yet
     def get_students_session(self, session_name, user_name):
         self.open_db()
         self.mycursor.execute(f"SELECT personal_id From student_info where user_name = '{user_name}';")
@@ -329,7 +318,6 @@ class Read_db:
         self.close_db()
         return session_name_list
 
-    ############# not tested yet
     def check_if_homework_finished(self, homeworks_tuple_list, personal_id):
         homeworks_tuple_list_new = homeworks_tuple_list
         self.open_db()
@@ -348,7 +336,6 @@ class Read_db:
         self.close_db()
         return homeworks_tuple_list_new
 
-    ################not tested yet
     def get_homework_bool(self, students_session_tuple):
         self.open_db()
         homework_list_details = []
@@ -367,7 +354,6 @@ class Read_db:
         self.close_db()
         return homework_list_details
 
-    ############# not tested yet
     def check_if_homework_finished_before(self, homework_id, user_name):
         self.open_db()
         self.mycursor.execute(f"SELECT personal_id From student_info where user_name = '{user_name}';")
