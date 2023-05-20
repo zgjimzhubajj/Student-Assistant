@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>909</width>
+    <width>941</width>
     <height>725</height>
    </rect>
   </property>
@@ -19,7 +19,7 @@
      <rect>
       <x>20</x>
       <y>10</y>
-      <width>871</width>
+      <width>901</width>
       <height>601</height>
      </rect>
     </property>
@@ -280,7 +280,7 @@ QPushButton:disabled {
      <widget class="QListWidget" name="list_widget_tm_time_schedule">
       <property name="geometry">
        <rect>
-        <x>510</x>
+        <x>550</x>
         <y>180</y>
         <width>251</width>
         <height>131</height>
@@ -290,9 +290,9 @@ QPushButton:disabled {
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
-        <x>510</x>
+        <x>550</x>
         <y>150</y>
-        <width>321</width>
+        <width>351</width>
         <height>20</height>
        </rect>
       </property>
@@ -749,8 +749,8 @@ QPushButton:disabled {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>909</width>
-     <height>21</height>
+     <width>941</width>
+     <height>22</height>
     </rect>
    </property>
   </widget>
