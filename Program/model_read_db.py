@@ -343,9 +343,12 @@ class Read_db:
             if index == 1:
                 self.mycursor.execute(f"select user_name from student_info where personal_id = '{value}';'")
                 self.myresult = self.mycursor.fetchall()
-                homeworks_tuple_list_all = self.get_homeworks_names(self.myresult[0])
-                homeworks_tuple_list_new = copy.deepcopy(homeworks_tuple_list_all)
-                homeworks_tuple_list_not_finished = self.check_if_homework_finished(homeworks_tuple_list_all, value)
+                user_name = []
+                for tuple in self.myresult:
+                    user_name.append(tuple[0])
+                homework_list1 = self.get_homeworks_1(user_name[0])
+                homeworks_tuple_list_new = copy.deepcopy(homework_list1)
+                homeworks_tuple_list_not_finished = self.check_if_homework_finished(homework_list1, value)
                 for homework_tuple in homeworks_tuple_list_new:
                     if homework_tuple in homeworks_tuple_list_not_finished:  # homework tuple consist of homework_name, homework_id and course_id
                         homework_list_details.append((homework_tuple, "Not finished"))
@@ -353,6 +356,29 @@ class Read_db:
                         homework_list_details.append((homework_tuple, "Finished"))
         self.close_db()
         return homework_list_details
+    def get_homeworks_1(self, username):
+        list_courses = self.get_course(username)
+        list_of_homeworks = []
+        for course in list_courses:
+            for homework in self.get_homework_detail_1(course):
+                list_of_homeworks.append(homework)
+        return list_of_homeworks
+    def get_homework_detail_1(self, course_name):
+        self.open_db()
+        self.mycursor.execute(f"select course_id from course_ab_es where course_name = '{course_name}';")
+        self.myresult = self.mycursor.fetchall()
+        course_list = []
+        for item in self.myresult:
+            course_list.append(str(item[0]))
+        course_id = course_list[0]
+        self.mycursor.execute(f"select homework_name, homework_id, course_id from homework_ab_es where course_id = {course_id};")
+        self.myresult = self.mycursor.fetchall()
+        list_of_lists = []
+        for tup in self.myresult:
+            tuple_ = (tup[0], tup[1], tup[2])
+            list_of_lists.append(tuple_)
+        self.close_db()
+        return list_of_lists
 
     def check_if_homework_finished_before(self, homework_id, user_name):
         self.open_db()

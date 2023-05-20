@@ -49,7 +49,7 @@ class UI_see_session_window(QMainWindow):
     # button actions
     def button_mark_as_done_pushed(self):
             if self.homework_index != 0:
-                for index, tuple in enumerate(self.homeworks_tuple_list):
+                for index, tuple in enumerate(self.cntrl.get_homeworks_1(self.user_name)):
                     if index == (self.homework_index - 1):
                         if self.cntrl.check_if_homework_finished_before(tuple[1], self.user_name):
                             QMessageBox.information(self, "Error", "This homework already marked as finish")
@@ -103,10 +103,11 @@ class UI_see_session_window(QMainWindow):
             if self.member_name == first_name_last_name_of_user:
                 self.combo_box_personal_homeworks.setEnabled(True)
                 self.btn_mark_as_done.setEnabled(True)
-                self.homeworks_tuple_list = self.cntrl.get_homeworks_names(self.user_name)
+                self.homeworks_tuple_list = self.cntrl.get_homeworks(self.user_name)
                 self.homeworks_name_list = []
-                for tuple in self.homeworks_tuple_list:
-                    self.homeworks_name_list.append(tuple[0])
+                for homework in self.homeworks_tuple_list:
+                    homework_list = homework.split(" ")
+                    self.homeworks_name_list.append(homework_list[1])
                 self.homeworks_name_list.insert(0, "")
                 self.combo_box_personal_homeworks.addItems(self.homeworks_name_list)
             else:

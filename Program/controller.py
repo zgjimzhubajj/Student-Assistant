@@ -117,9 +117,11 @@ class Controller():
     def mark_homework_as_done(self, homework_id, user_name):
         self.write_db.mark_homework_as_done(homework_id, user_name)
 
-
     def check_if_homework_finished_before(self,homework_id, user_name):
         return self.read_db.check_if_homework_finished_before(homework_id, user_name)
+    
+    def get_homeworks_1(self, user_name):
+        return self.read_db.get_homeworks_1(user_name)
 
 
     # material tab methods

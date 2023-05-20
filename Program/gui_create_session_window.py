@@ -66,13 +66,16 @@ class UI_create_session_window(QMainWindow):
                 self.lbl_wrong_inputs.setText("Session name already exist")
 
     def button_add_student_pushed(self):
-        self.student_session_list.append(self.student_list[self.index])
-        self.list_widget_member_of_session.addItem(self.selected_student)
-        self.btn_create_session.setEnabled(True)
-        del self.student_list[self.index]
-        self.combo_box_student_name.clear()
-        for tuple in self.student_list:
-            self.combo_box_student_name.addItem(tuple[0])
+        if self.student_list == [('', 0)]:
+            self.btn_add_student.setEnabled(False)
+        else:
+            self.student_session_list.append(self.student_list[self.index])
+            self.list_widget_member_of_session.addItem(self.selected_student)
+            self.btn_create_session.setEnabled(True)
+            del self.student_list[self.index]
+            self.combo_box_student_name.clear()
+            for tuple in self.student_list:
+                self.combo_box_student_name.addItem(tuple[0])
 
     def button_back_pushed(self):
         self.clear_window()

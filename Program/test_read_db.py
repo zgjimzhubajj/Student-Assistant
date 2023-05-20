@@ -407,6 +407,32 @@ class TestReadDb(unittest.TestCase):
         self.assertEqual(self.read_db.check_if_homework_finished_before(homework_id, self.username), False)
         self.delete_user()
 
+    def test_get_homeworks_1(self):
+        self.first_name = "a"
+        self.last_name = "a"
+        self.email = "a@a.a"
+        self.password = "a"
+        self.username = "a"
+        self.personal_id = "1234567890"
+        self.year_of_study = "1"
+        self.name_of_program = "Medicine"
+        self.write_db.insert_student_info(self.first_name, self.last_name, self.email, self.username, self.password, self.personal_id, self.year_of_study, self.name_of_program)
+        self.assertEqual(self.read_db.get_homeworks_1(self.username), [('homework6', 6, 6)])
+        self.delete_user()
+
+    def test_get_homework_detail_1(self):
+        self.first_name = "a"
+        self.last_name = "a"
+        self.email = "a@a.a"
+        self.password = "a"
+        self.username = "a"
+        self.personal_id = "1234567890"
+        self.year_of_study = "1"
+        self.name_of_program = "Medicine"
+        self.write_db.insert_student_info(self.first_name, self.last_name, self.email, self.username, self.password, self.personal_id, self.year_of_study, self.name_of_program)
+        self.assertEqual(self.read_db.get_homework_detail_1("anatomy"), [('homework6', 6, 6)])
+        self.delete_user()
+
     def create_user(self):
         self.first_name = "a"
         self.last_name = "a"
