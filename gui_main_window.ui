@@ -19,7 +19,7 @@
      <rect>
       <x>20</x>
       <y>10</y>
-      <width>841</width>
+      <width>871</width>
       <height>601</height>
      </rect>
     </property>
@@ -309,9 +309,9 @@ QPushButton:disabled {
      <widget class="QWidget" name="verticalLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>300</x>
+        <x>240</x>
         <y>400</y>
-        <width>221</width>
+        <width>321</width>
         <height>131</height>
        </rect>
       </property>
