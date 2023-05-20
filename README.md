@@ -49,7 +49,7 @@ Do the following steps to install Git Bash, Chocolatey and Make:
 
 How to do testings:
 -------------------
-Using gitbash in the path of the repository use those commands in this order:
+Using gitbash in the path of the repository use those commands in this order and do not forget to use the database in the repository before running the tests:
 1. <make venv> to create venv
 2. <. .venv/Scripts/activate> to activate venv
 3. <make install-requirements> to install the needed requirements for testings

@@ -60,7 +60,7 @@ CREATE TABLE `finished_homework_ab_es` (
   KEY `homework_id` (`homework_id`),
   CONSTRAINT `finished_homework_ab_es_ibfk_1` FOREIGN KEY (`personal_id`) REFERENCES `student_info` (`personal_id`),
   CONSTRAINT `finished_homework_ab_es_ibfk_2` FOREIGN KEY (`homework_id`) REFERENCES `homework_ab_es` (`homework_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -113,7 +113,7 @@ CREATE TABLE `notes_mil` (
   `note_data` varchar(1000) NOT NULL,
   `personal_id` int NOT NULL,
   PRIMARY KEY (`note_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -192,7 +192,7 @@ CREATE TABLE `session_ab_es` (
   PRIMARY KEY (`session_id`),
   KEY `personal_id` (`personal_id`),
   CONSTRAINT `session_ab_es_ibfk_1` FOREIGN KEY (`personal_id`) REFERENCES `student_info` (`personal_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -227,7 +227,6 @@ CREATE TABLE `student_course_ab_es` (
 
 LOCK TABLES `student_course_ab_es` WRITE;
 /*!40000 ALTER TABLE `student_course_ab_es` DISABLE KEYS */;
-INSERT INTO `student_course_ab_es` VALUES ('1234567892',6),('1234567892',7),('1234567892',8),('1234567892',9),('1234567892',10);
 /*!40000 ALTER TABLE `student_course_ab_es` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -257,7 +256,6 @@ CREATE TABLE `student_info` (
 
 LOCK TABLES `student_info` WRITE;
 /*!40000 ALTER TABLE `student_info` DISABLE KEYS */;
-INSERT INTO `student_info` VALUES ('1234567892','c','c','c','c','c@c.c','Medicine',1);
 /*!40000 ALTER TABLE `student_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -296,4 +294,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-15 22:03:18
+-- Dump completed on 2023-05-20 14:22:29
