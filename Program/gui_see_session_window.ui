@@ -27,49 +27,6 @@
      <string>Sessions:</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btn_back">
-    <property name="geometry">
-     <rect>
-      <x>400</x>
-      <y>470</y>
-      <width>151</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton {
-	border-style: solid;
-	border-width: 2px;
-	border-color: #9999aa;
-	border-radius: 10px;
-	color: white;
-	background-color: #3474eb
-}
-
-QPushButton:enabled {
-	background-color: #3474eb
-	color: white;
-}
-
-QPushButton:pressed {
-	background-color: #0d2f72;
-	color: #fffffe;
-}
-
-QPushButton:hover:!pressed {
-	background-color: E1F4FF;
-	color: 0c2f70;
-}
-
-QPushButton:disabled {
-	background-color: #aaaaaa;
-	color: #ffffff;
-}</string>
-    </property>
-    <property name="text">
-     <string>Back</string>
-    </property>
-   </widget>
    <widget class="QListWidget" name="list_widget_session_member_homework_detail">
     <property name="geometry">
      <rect>
@@ -84,7 +41,7 @@ QPushButton:disabled {
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>250</y>
+      <y>240</y>
       <width>351</width>
       <height>31</height>
      </rect>
@@ -149,17 +106,26 @@ QPushButton:disabled {
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="btn_mark_as_done">
+   <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
       <x>350</x>
-      <y>190</y>
+      <y>180</y>
       <width>201</width>
-      <height>41</height>
+      <height>61</height>
      </rect>
     </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton {
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QPushButton" name="btn_mark_as_done">
+       <property name="font">
+        <font>
+         <family>MS Sans Serif</family>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
 	border-style: solid;
 	border-width: 2px;
 	border-color: #9999aa;
@@ -187,10 +153,68 @@ QPushButton:disabled {
 	background-color: #aaaaaa;
 	color: #ffffff;
 }</string>
+       </property>
+       <property name="text">
+        <string>Mark as done</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>440</y>
+      <width>160</width>
+      <height>80</height>
+     </rect>
     </property>
-    <property name="text">
-     <string>Mark as done</string>
-    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <widget class="QPushButton" name="btn_back">
+       <property name="font">
+        <font>
+         <family>MS Sans Serif</family>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	border-style: solid;
+	border-width: 2px;
+	border-color: #9999aa;
+	border-radius: 10px;
+	color: white;
+	background-color: #3474eb
+}
+
+QPushButton:enabled {
+	background-color: #3474eb
+	color: white;
+}
+
+QPushButton:pressed {
+	background-color: #0d2f72;
+	color: #fffffe;
+}
+
+QPushButton:hover:!pressed {
+	background-color: E1F4FF;
+	color: 0c2f70;
+}
+
+QPushButton:disabled {
+	background-color: #aaaaaa;
+	color: #ffffff;
+}</string>
+       </property>
+       <property name="text">
+        <string>Back</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
