@@ -182,7 +182,7 @@ QPushButton:disabled {
      <widget class="QLabel" name="lbl_tm_welcome">
       <property name="geometry">
        <rect>
-        <x>130</x>
+        <x>10</x>
         <y>10</y>
         <width>701</width>
         <height>51</height>
@@ -204,7 +204,7 @@ QPushButton:disabled {
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>200</y>
+        <y>140</y>
         <width>261</width>
         <height>41</height>
        </rect>
@@ -223,7 +223,7 @@ QPushButton:disabled {
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>170</y>
+        <y>120</y>
         <width>421</width>
         <height>16</height>
        </rect>
@@ -235,14 +235,14 @@ QPushButton:disabled {
        </font>
       </property>
       <property name="text">
-       <string>Upcoming tasks within the next 14 days</string>
+       <string>Upcoming tasks within the next 14 days:</string>
       </property>
      </widget>
      <widget class="QLabel" name="lbl_tm_reminder_course">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>260</y>
+        <y>180</y>
         <width>47</width>
         <height>13</height>
        </rect>
@@ -255,7 +255,7 @@ QPushButton:disabled {
       <property name="geometry">
        <rect>
         <x>120</x>
-        <y>260</y>
+        <y>180</y>
         <width>47</width>
         <height>13</height>
        </rect>
@@ -268,7 +268,7 @@ QPushButton:disabled {
       <property name="geometry">
        <rect>
         <x>210</x>
-        <y>260</y>
+        <y>180</y>
         <width>47</width>
         <height>13</height>
        </rect>
@@ -280,8 +280,8 @@ QPushButton:disabled {
      <widget class="QListWidget" name="list_widget_tm_time_schedule">
       <property name="geometry">
        <rect>
-        <x>550</x>
-        <y>180</y>
+        <x>580</x>
+        <y>80</y>
         <width>251</width>
         <height>131</height>
        </rect>
@@ -290,9 +290,9 @@ QPushButton:disabled {
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
-        <x>550</x>
-        <y>150</y>
-        <width>351</width>
+        <x>590</x>
+        <y>60</y>
+        <width>281</width>
         <height>20</height>
        </rect>
       </property>
@@ -309,8 +309,8 @@ QPushButton:disabled {
      <widget class="QWidget" name="verticalLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>240</x>
-        <y>400</y>
+        <x>280</x>
+        <y>390</y>
         <width>321</width>
         <height>131</height>
        </rect>
@@ -407,8 +407,8 @@ QPushButton:disabled {
      <widget class="QWidget" name="verticalLayoutWidget_2">
       <property name="geometry">
        <rect>
-        <x>600</x>
-        <y>320</y>
+        <x>620</x>
+        <y>220</y>
         <width>160</width>
         <height>80</height>
        </rect>
@@ -691,7 +691,7 @@ QPushButton:disabled {
    <widget class="QWidget" name="verticalLayoutWidget_3">
     <property name="geometry">
      <rect>
-      <x>350</x>
+      <x>380</x>
       <y>620</y>
       <width>160</width>
       <height>51</height>
@@ -750,7 +750,7 @@ QPushButton:disabled {
      <x>0</x>
      <y>0</y>
      <width>941</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
