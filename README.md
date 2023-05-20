@@ -13,6 +13,9 @@ Further more this program will contribute to the fourth SDGs goal which is to im
 
 Features of the program:
 ------------------------
+1. Create team session which allows the user to collaburate with his/her team mates
+2. Time manegement to allow the user to see the uppcoming homeworks and organize his/her time for the day either by using a personal time organizer or using pomodoro to avoid procrastenation
+3. Material place to allow the user to see all the materials of his/her lectures in one place
 
 Installing the program:
 --------------------
@@ -46,6 +49,13 @@ Do the following steps to install Git Bash, Chocolatey and Make:
 
 How to do testings:
 -------------------
-
-Other useful commands:
-----------------------
+Using gitbash in the path of the repository use those commands in this order:
+1. <make venv> to create venv
+2. <. .venv/Scripts/activate> to activate venv
+3. <make install-requirements> to install the needed requirements for testings
+4. <make install-toml>
+5. <make build-toml>
+6. <make install-mysql>
+7. <make randon-cc> to see the quality of the code
+8. <make coverage-read> to test Read_db class
+9. <make coverage-write> to test Write_db class
